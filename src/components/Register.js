@@ -42,9 +42,9 @@ const Register = (props) => {
   const [fullname, setFullname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [dob,setDob]=useState("");
-  const [signupDate,setSignupDate]=useState("");
-  const [image,setImage]=useState("");
+  const [dob, setDob] = useState("");
+  const [signupDate, setSignupDate] = useState("");
+  const [image, setImage] = useState("");
   const [successful, setSuccessful] = useState(false);
   const [message, setMessage] = useState("");
 
@@ -63,18 +63,18 @@ const Register = (props) => {
     setPassword(password);
   };
 
-const onChangeDob = (e) => {
-  const dob = e.target.value;
-  setDob(dob);
-};
-const onChangeSignupDate = (e) => {
-  const signupDate = e.target.value;
-  setSignupDate(signupDate);
-};
-const onChangeImage = (e) => {
-  const image = e.target.value;
-  setImage(image);
-};
+  const onChangeDob = (e) => {
+    const dob = e.target.value;
+    setDob(dob);
+  };
+  const onChangeSignupDate = (e) => {
+    const signupDate = e.target.value;
+    setSignupDate(signupDate);
+  };
+  const onChangeImage = (e) => {
+    const image = e.target.value;
+    setImage(image);
+  };
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -85,7 +85,14 @@ const onChangeImage = (e) => {
     form.current.validateAll();
 
     if (checkBtn.current.context._errors.length === 0) {
-      AuthService.register(email, password, fullname,dob,signupDate,image).then(
+      AuthService.register(
+        email,
+        password,
+        fullname,
+        dob,
+        signupDate,
+        image
+      ).then(
         (response) => {
           setMessage(response.data.message);
           setSuccessful(true);

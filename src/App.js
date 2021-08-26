@@ -15,6 +15,7 @@ import BoardBronze from "./components/BoardBronze";
 import BoardSilver from "./components/BoardSilver";
 import BoardGold from "./components/BoardGold";
 import BoardPlatinum from "./components/BoardPlatinum";
+import AddBooks from "./components/AddBooks";
 
 const App = () => {
   const [showAdminBoard, setShowAdminBoard] = useState(false);
@@ -129,6 +130,8 @@ const App = () => {
                 Sign Up
               </Link>
             </li>
+
+        
           </div>
         )}
       </nav>
@@ -146,6 +149,7 @@ const App = () => {
           <Route path="/gold" component={BoardGold} />
           <Route path="/platinum" component={BoardPlatinum} />
 
+          <Route path="/addBooks" component={AddBooks} />
         </Switch>
       </div>
     </div>
