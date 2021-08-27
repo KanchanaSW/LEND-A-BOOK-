@@ -3,6 +3,8 @@ import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
 
+//import reportWebVitals from "./reportWebVitals";
+
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
@@ -12,5 +14,5 @@ ReactDOM.render(
   </BrowserRouter>,
   document.getElementById("root")
 );
-
+//reportWebVitals();
 serviceWorker.unregister();

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Switch, Route, Link } from "react-router-dom";
+import {Link } from "react-router-dom";
 
 import UserService from "../services/user.service";
 
@@ -29,10 +29,20 @@ const BoardAdmin = () => {
       <header className="jumbotron">
         <h3>{content}</h3>
       </header>
-     
+
       <div className="form-group">
         <Link to={"/addBooks"} className="btn btn-info">
           Add Books
+        </Link>
+      </div>
+      <div className="form-group">
+        <Link to={"/books"} className="btn btn-info">
+          Book List
+        </Link>
+      </div>
+      <div className="form-group">
+        <Link to={"/bookList"} className="btn btn-info">
+          Books
         </Link>
       </div>
     </div>

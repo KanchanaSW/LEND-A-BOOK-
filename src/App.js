@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Switch, Route, Link } from "react-router-dom";
+
+
 import "bootstrap/dist/css/bootstrap.css";
 import "./App.css";
+
 
 import AuthService from "./services/auth.service";
 
@@ -16,6 +19,9 @@ import BoardSilver from "./components/BoardSilver";
 import BoardGold from "./components/BoardGold";
 import BoardPlatinum from "./components/BoardPlatinum";
 import AddBooks from "./components/AddBooks";
+import ViewBooks from "./components/ViewBooks";
+import BookList from "./components/BookList";
+import ViewBook from "./components/ViewBook";
 
 const App = () => {
   const [showAdminBoard, setShowAdminBoard] = useState(false);
@@ -130,27 +136,30 @@ const App = () => {
                 Sign Up
               </Link>
             </li>
-
-        
           </div>
         )}
       </nav>
 
       <div className="container mt-3">
-        <Switch>
-          <Route exact path={["/", "/home"]} component={Home} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/register" component={Register} />
-          <Route exact path="/profile" component={Profile} />
-          <Route path="/user" component={BoardUser} />
-          <Route path="/admin" component={BoardAdmin} />
-          <Route path="/bronze" component={BoardBronze} />
-          <Route path="/silver" component={BoardSilver} />
-          <Route path="/gold" component={BoardGold} />
-          <Route path="/platinum" component={BoardPlatinum} />
+  
+          <Switch>
+            <Route exact path={["/", "/home"]} component={Home} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/register" component={Register} />
+            <Route exact path="/profile" component={Profile} />
+            <Route path="/user" component={BoardUser} />
+            <Route path="/admin" component={BoardAdmin} />
+            <Route path="/bronze" component={BoardBronze} />
+            <Route path="/silver" component={BoardSilver} />
+            <Route path="/gold" component={BoardGold} />
+            <Route path="/platinum" component={BoardPlatinum} />
 
-          <Route path="/addBooks" component={AddBooks} />
-        </Switch>
+            <Route path="/addBooks" component={AddBooks} />
+            <Route path="/books" component={ViewBooks} />
+            <Route path="/bookList" component={BookList} />
+            <Route path="/book/:isbn" component={ViewBook} />
+          </Switch>
+     
       </div>
     </div>
   );

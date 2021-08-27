@@ -72,6 +72,10 @@ const AddBooks = (props) => {
         (response) => {
           setMessage(response.data.message);
           setSuccessful(true);
+          setTimeout(function () {
+            props.history.push("/books");
+            //window.location.reload(1);
+          }, 3000);
         },
         (error) => {
           const resMessage =
