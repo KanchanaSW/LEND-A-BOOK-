@@ -77,32 +77,28 @@ export default {
 */
 
 
-class BookService{
-
-
-deleteBookDetails=(isbn)=>{
-    return axios.delete(
-      API_URL + "deleteBook/"
-      + isbn ,
-      { headers: authHeader() }
-    );
-};
- getCountOfAllBooks=()=>{
+class BookService {
+  deleteBookDetails = (isbn) => {
+    return axios.delete(API_URL + "deleteBook/" + isbn, {
+      headers: authHeader(),
+    });
+  };
+  getCountOfAllBooks = () => {
     return axios.get(API_URL + "books/count", { headers: authHeader() });
-};
+  };
 
- viewBookDetails=(isbn)=>{
-    return axios.get(API_URL + "book/" + isbn , { headers: authHeader() });
-};
+  viewBookDetails = (isbn) => {
+    return axios.get(API_URL + "book/" + isbn, { headers: authHeader() });
+  };
 
- getSearchBookByTitle=(title)=>{
-    return axios.get(API_URL + "search/"+ title , { headers: authHeader() });
-};
+  getSearchBookByTitle = (title) => {
+    return axios.get(API_URL + "search/" + title, { headers: authHeader() });
+  };
 
- getBookList=()=>{
+  getBookList = () => {
     return axios.get(API_URL + "books", { headers: authHeader() });
-};
-
+  };
+  /*
  postAddBook=(isbn,title,author,publisher,copiesAvi,coverPage)=>{
     return axios.post(
       API_URL + "addBook",
@@ -116,29 +112,29 @@ deleteBookDetails=(isbn)=>{
       },
       { headers: authHeader() }
     );
-};
+};*/
 
- putUpdateBook = (
-  isbn,
-  title,
-  author,
-  publisher,
-  copiesAvi,
-  coverPage
-) => {
-  return axios.put(
-    API_URL + "updateBook",
-    {
-      isbn,
-      title,
-      author,
-      publisher,
-      copiesAvi,
-      coverPage,
-    },
-    { headers: authHeader() }
-  );
-};
+  /* putUpdateBook = (isbn, title, author, publisher, copiesAvi, coverPage) => {
+    return axios.put(
+      API_URL + "updateBook",
+      {
+        isbn,
+        title,
+        author,
+        publisher,
+        copiesAvi,
+        coverPage,
+      },
+      { headers: authHeader() }
+    );
+  };
+}*/
 
+  postAddBook = (book) => {
+    return axios.post(API_URL + "addBook",  book , { headers: authHeader() });
+  };
+  putUpdateBook = (book, isbn)=> {
+    return axios.put(API_URL + "update/"+isbn, book, {headers: authHeader()});
+  };
 }
 export default new BookService();

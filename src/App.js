@@ -18,10 +18,12 @@ import BoardBronze from "./components/BoardBronze";
 import BoardSilver from "./components/BoardSilver";
 import BoardGold from "./components/BoardGold";
 import BoardPlatinum from "./components/BoardPlatinum";
-import AddBooks from "./components/AddBooks";
-import ViewBooks from "./components/ViewBooks";
+
+
 import BookList from "./components/BookList";
 import ViewBook from "./components/ViewBook";
+import AddBook from "./components/AddBook";
+import UpdateBook from "./components/UpdateBook";
 
 const App = () => {
   const [showAdminBoard, setShowAdminBoard] = useState(false);
@@ -154,10 +156,10 @@ const App = () => {
             <Route path="/gold" component={BoardGold} />
             <Route path="/platinum" component={BoardPlatinum} />
 
-            <Route path="/addBooks" component={AddBooks} />
-            <Route path="/books" component={ViewBooks} />
             <Route path="/bookList" component={BookList} />
             <Route path="/book/:isbn" component={ViewBook} />
+            <Route path="/addBook" component={AddBook}/>
+            <Route path="/update/:isbn" component={UpdateBook}/>
           </Switch>
      
       </div>

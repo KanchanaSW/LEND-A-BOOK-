@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+/* import React, { useState, useEffect } from "react";
 import BookService from "../services/book.service";
 
 const ViewBooks = (e) => {
@@ -91,3 +91,4 @@ const ViewBooks = (e) => {
 };
 
 export default ViewBooks;
+ */

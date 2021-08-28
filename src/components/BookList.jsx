@@ -7,6 +7,8 @@ class BookList extends React.Component {
     this.state = {
       books: [],
     };
+    this.addBook=this.addBook.bind(this);
+    this.editBook=this.editBook.bind(this);
     this.deleteBook=this.deleteBook.bind(this);
     this.viewBook=this.viewBook.bind(this);
   }
@@ -16,6 +18,14 @@ class BookList extends React.Component {
       this.setState({ books: res.data });
     });
   }
+
+  addBook(){
+    this.props.history.push(`/addBook`);
+  }
+  editBook(isbn){
+    this.props.history.push(`/update/${isbn}`);
+  }
+
   deleteBook(isbn){
        BookService.deleteBookDetails(isbn).then((res) => {
          this.setState({
@@ -33,6 +43,11 @@ class BookList extends React.Component {
   render() {
     return (
       <div>
+        <div className="btn btn-primary" onClick={this.addBook}>
+          Add New Book
+        </div>
+        <br />
+        <br></br>
         <table className="table table-striped table-bordered">
           <thead>
             <tr>
@@ -56,12 +71,20 @@ class BookList extends React.Component {
                 <td>{book.coverPage}</td>
                 <td>
                   <button
+                    onClick={() => this.editBook(book.isbn)}
+                    className="btn btn-info"
+                  >
+                    Update
+                  </button>
+
+                  <button
                     style={{ marginLeft: "10px" }}
                     onClick={() => this.viewBook(book.isbn)}
                     className="btn btn-info"
                   >
                     View
                   </button>
+
                   <button
                     style={{ marginLeft: "10px" }}
                     onClick={() => this.deleteBook(book.isbn)}
