@@ -7,10 +7,10 @@ class BookList extends React.Component {
     this.state = {
       books: [],
     };
-    this.addBook=this.addBook.bind(this);
-    this.editBook=this.editBook.bind(this);
-    this.deleteBook=this.deleteBook.bind(this);
-    this.viewBook=this.viewBook.bind(this);
+    this.addBook = this.addBook.bind(this);
+    this.editBook = this.editBook.bind(this);
+    this.deleteBook = this.deleteBook.bind(this);
+    this.viewBook = this.viewBook.bind(this);
   }
 
   componentDidMount() {
@@ -19,26 +19,23 @@ class BookList extends React.Component {
     });
   }
 
-  addBook(){
+  addBook() {
     this.props.history.push(`/addBook`);
   }
-  editBook(isbn){
-    this.props.history.push(`/update/${isbn}`);
+  editBook(id) {
+    this.props.history.push(`/updateBook/${id}`);
   }
 
-  deleteBook(isbn){
-       BookService.deleteBookDetails(isbn).then((res) => {
-         this.setState({
-           books:this.state.books.filter(
-             (book)=>book.isbn !=isbn
-           ),
-         });        
-       });
+  deleteBook(id) {
+    BookService.deleteBookDetails(id).then((res) => {
+      this.setState({
+        books: this.state.books.filter((book) => book.id != id),
+      });
+    });
   }
-  viewBook(isbn){
-    this.props.history.push(`/book/${isbn}`);
-   }
-
+  viewBook(id) {
+    this.props.history.push(`/book/${id}`);
+  }
 
   render() {
     return (
@@ -51,43 +48,50 @@ class BookList extends React.Component {
         <table className="table table-striped table-bordered">
           <thead>
             <tr>
+              <th>ID</th>
               <th>ISBN</th>
               <th>Title</th>
               <th>Author</th>
               <th>Publisher</th>
-              <th>copiesAvi</th>
-              <th>coverPage</th>
+              <th>Status</th>
+              <th>CoverPage</th>
+              <th>Summary</th>
             </tr>
           </thead>
 
           <tbody>
             {this.state.books.map((book) => (
-              <tr key={book.isbn}>
+              <tr key={book.id}>
+                <td>{book.id}</td>
                 <td>{book.isbn}</td>
                 <td>{book.title}</td>
                 <td>{book.author}</td>
                 <td>{book.publisher}</td>
-                <td>{book.copiesAvi}</td>
+                <td>{book.status}</td>
                 <td>{book.coverPage}</td>
+                <td>{book.summary}</td>
+
                 <td>
                   <button
-                    onClick={() => this.editBook(book.isbn)}
+                    onClick={() => this.editBook(book.id)}
                     className="btn btn-info"
                   >
                     Update
                   </button>
-
+                </td>
+                <td>
                   <button
                     style={{ marginLeft: "10px" }}
-                    onClick={() => this.viewBook(book.isbn)}
+                    onClick={() => this.viewBook(book.id)}
                     className="btn btn-info"
                   >
                     View
                   </button>
-
+                </td>
+                <td>
                   <button
                     style={{ marginLeft: "10px" }}
-                    onClick={() => this.deleteBook(book.isbn)}
+                    onClick={() => this.deleteBook(book.id)}
                     className="btn btn-danger"
                   >
                     Delete

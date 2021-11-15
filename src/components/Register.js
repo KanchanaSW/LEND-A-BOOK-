@@ -43,8 +43,8 @@ const Register = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [dob, setDob] = useState("");
-  const [signupDate, setSignupDate] = useState("");
   const [image, setImage] = useState("");
+  const [isBlacklisted, setBlacklisted] = useState("");
   const [successful, setSuccessful] = useState(false);
   const [message, setMessage] = useState("");
 
@@ -67,14 +67,14 @@ const Register = (props) => {
     const dob = e.target.value;
     setDob(dob);
   };
-  const onChangeSignupDate = (e) => {
-    const signupDate = e.target.value;
-    setSignupDate(signupDate);
-  };
   const onChangeImage = (e) => {
     const image = e.target.value;
     setImage(image);
   };
+ const onChangeBlacklisted = (e) => {
+   const isBlacklisted = e.target.value;
+   setBlacklisted(isBlacklisted);
+ };
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -90,8 +90,8 @@ const Register = (props) => {
         password,
         fullname,
         dob,
-        signupDate,
-        image
+        image,
+        isBlacklisted
       ).then(
         (response) => {
           setMessage(response.data.message);
@@ -171,17 +171,6 @@ const Register = (props) => {
               </div>
 
               <div className="form-group">
-                <label htmlFor="signupDate">Signup Date</label>
-                <Input
-                  type="text"
-                  className="form-control"
-                  name="signupDate"
-                  value={signupDate}
-                  onChange={onChangeSignupDate}
-                />
-              </div>
-
-              <div className="form-group">
                 <label htmlFor="image">Image</label>
                 <Input
                   type="text"
@@ -189,6 +178,16 @@ const Register = (props) => {
                   name="image"
                   value={image}
                   onChange={onChangeImage}
+                />
+              </div>
+
+              <div className="form-group">
+                <Input
+                  type="hidden"
+                  className="form-control"
+                  name="isBlaclisted"
+                  value={false}
+                  onChange={onChangeBlacklisted}
                 />
               </div>
 

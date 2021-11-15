@@ -14,10 +14,6 @@ import Home from "./components/Home";
 import Profile from "./components/Profile";
 import BoardUser from "./components/BoardUser";
 import BoardAdmin from "./components/BoardAdmin";
-import BoardBronze from "./components/BoardBronze";
-import BoardSilver from "./components/BoardSilver";
-import BoardGold from "./components/BoardGold";
-import BoardPlatinum from "./components/BoardPlatinum";
 
 
 import BookList from "./components/BookList";
@@ -28,10 +24,7 @@ import UpdateBook from "./components/UpdateBook";
 const App = () => {
   const [showAdminBoard, setShowAdminBoard] = useState(false);
   const [currentUser, setCurrentUser] = useState(undefined);
-  const [showBronzeBoard,setShowABronzeBoard]=useState(false);
-  const [showSilverBoard,setShowASilverBoard]=useState(false);
-  const [showGoldBoard,setShowAGoldBoard]=useState(false);
-  const [showPlatinmBoard,setShowAPlatinmBoard]=useState(false);
+  //const [showUserBoard, setShowUserBoard] = useState(false);
 
   useEffect(() => {
     const user = AuthService.getCurrentUser();
@@ -39,10 +32,7 @@ const App = () => {
     if (user) {
       setCurrentUser(user);
       setShowAdminBoard(user.roles.includes("ROLE_ADMIN"));
-      setShowABronzeBoard(user.roles.includes("ROLE_BRONZE"));
-      setShowASilverBoard(user.roles.includes("ROLE_SILVER"));
-      setShowAGoldBoard(user.roles.includes("ROLE_GOLD"));
-      setShowAPlatinmBoard(user.roles.includes("ROLE_PLATINUM"));
+      //setShowUserBoard(user.roles.includes("ROLE_USER"))
     }
   }, []);
 
@@ -67,38 +57,6 @@ const App = () => {
             <li className="nav-item">
               <Link to={"/admin"} className="nav-link">
                 Admin Board
-              </Link>
-            </li>
-          )}
-
-          {showBronzeBoard && (
-            <li className="nav-item">
-              <Link to={"/bronze"} className="nav-link">
-                Bronze Board
-              </Link>
-            </li>
-          )}
-
-          {showSilverBoard && (
-            <li className="nav-item">
-              <Link to={"/silver"} className="nav-link">
-                Silver Board
-              </Link>
-            </li>
-          )}
-
-          {showGoldBoard && (
-            <li className="nav-item">
-              <Link to={"/gold"} className="nav-link">
-                Gold Board
-              </Link>
-            </li>
-          )}
-
-          {showPlatinmBoard && (
-            <li className="nav-item">
-              <Link to={"/platinum"} className="nav-link">
-                Platinum Board
               </Link>
             </li>
           )}
@@ -143,25 +101,19 @@ const App = () => {
       </nav>
 
       <div className="container mt-3">
-  
-          <Switch>
-            <Route exact path={["/", "/home"]} component={Home} />
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/register" component={Register} />
-            <Route exact path="/profile" component={Profile} />
-            <Route path="/user" component={BoardUser} />
-            <Route path="/admin" component={BoardAdmin} />
-            <Route path="/bronze" component={BoardBronze} />
-            <Route path="/silver" component={BoardSilver} />
-            <Route path="/gold" component={BoardGold} />
-            <Route path="/platinum" component={BoardPlatinum} />
+        <Switch>
+          <Route exact path={["/", "/home"]} component={Home} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/register" component={Register} />
+          <Route exact path="/profile" component={Profile} />
+          <Route path="/user" component={BoardUser} />
+          <Route path="/admin" component={BoardAdmin} />
 
-            <Route path="/bookList" component={BookList} />
-            <Route path="/book/:isbn" component={ViewBook} />
-            <Route path="/addBook" component={AddBook}/>
-            <Route path="/update/:isbn" component={UpdateBook}/>
-          </Switch>
-     
+          <Route path="/bookList" component={BookList} />
+          <Route path="/book/:isbn" component={ViewBook} />
+          <Route path="/addBook" component={AddBook} />
+          <Route path="/update/:isbn" component={UpdateBook} />
+        </Switch>
       </div>
     </div>
   );

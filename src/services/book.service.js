@@ -1,7 +1,7 @@
 import axios from "axios";
 import authHeader from "./auth-header";
 
-const API_URL = "http://localhost:8080/api/items/";
+const API_URL = "http://localhost:8080/api/admin/";
 /*
 
 const getCountOfAllBooks=()=>{
@@ -78,8 +78,8 @@ export default {
 
 
 class BookService {
-  deleteBookDetails = (isbn) => {
-    return axios.delete(API_URL + "deleteBook/" + isbn, {
+  deleteBookDetails = (id) => {
+    return axios.delete(API_URL + "deleteBook/" + id, {
       headers: authHeader(),
     });
   };
@@ -87,12 +87,12 @@ class BookService {
     return axios.get(API_URL + "books/count", { headers: authHeader() });
   };
 
-  viewBookDetails = (isbn) => {
-    return axios.get(API_URL + "book/" + isbn, { headers: authHeader() });
+  viewBookDetails = (id) => {
+    return axios.get(API_URL + "book/" + id, { headers: authHeader() });
   };
 
   getSearchBookByTitle = (title) => {
-    return axios.get(API_URL + "search/" + title, { headers: authHeader() });
+    return axios.get(API_URL + "bookTitle/" + title, { headers: authHeader() });
   };
 
   getBookList = () => {
@@ -133,8 +133,8 @@ class BookService {
   postAddBook = (book) => {
     return axios.post(API_URL + "addBook",  book , { headers: authHeader() });
   };
-  putUpdateBook = (book, isbn)=> {
-    return axios.put(API_URL + "update/"+isbn, book, {headers: authHeader()});
+  putUpdateBook = (book)=> {
+    return axios.put(API_URL + "updateBook", book, {headers: authHeader()});
   };
 }
 export default new BookService();

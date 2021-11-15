@@ -9,15 +9,17 @@ class AddBook extends Component {
       title: "",
       author: "",
       publisher: "",
-      copiesAvi: "",
+      status: "",
       coverPage: "",
+      summary:"",
     };
     this.changeIsbnHandler = this.changeIsbnHandler.bind(this);
     this.changeTitleHandler = this.changeTitleHandler.bind(this);
     this.changeAuthorHandler = this.changeAuthorHandler.bind(this);
     this.changePublisherHandler = this.changePublisherHandler.bind(this);
-    this.changeCopiesAviHandler = this.changeCopiesAviHandler.bind(this);
+    this.changeStatusHandler = this.changeStatusHandler.bind(this);
     this.changeCoverPageHandler = this.changeCoverPageHandler.bind(this);
+    this.changeSummaryHandler=this.changeSummaryHandler.bind(this);
     this.saveBook = this.saveBook.bind(this);
   }
   saveBook = (e) => {
@@ -27,8 +29,9 @@ class AddBook extends Component {
       title: this.state.title,
       author: this.state.author,
       publisher: this.state.publisher,
-      copiesAvi: this.state.copiesAvi,
+      status: this.state.status,
       coverPage: this.state.coverPage,
+      summary:this.state.summary,
     };
     console.log("book=>" + JSON.stringify(book));
 
@@ -49,12 +52,15 @@ class AddBook extends Component {
   changePublisherHandler = (event) => {
     this.setState({ publisher: event.target.value });
   };
-  changeCopiesAviHandler = (event) => {
-    this.setState({ copiesAvi: event.target.value });
+  changeStatusHandler = (event) => {
+    this.setState({ status: event.target.value });
   };
   changeCoverPageHandler = (event) => {
     this.setState({ coverPage: event.target.value });
   };
+  changeSummaryHandler=(event)=>{
+    this.setState({summary:event.target.value});
+  }
 
   cancel() {
     this.props.history.push("/bookList");
@@ -115,13 +121,13 @@ class AddBook extends Component {
                     />
                   </div>
                   <div className="form-group">
-                    <label>Book Copies Avilable</label>
+                    <label>Book Status</label>
                     <input
-                      placeholder="Book Copies Avilable"
-                      name="copiesAvi"
+                      type="hidden"
+                      name="status"
                       className="form-control"
-                      value={this.state.copiesAvi}
-                      onChange={this.changeCopiesAviHandler}
+                      value={"Available"}
+                      onChange={this.changeStatusHandler}
                     />
                   </div>
                   <div className="form-group">
@@ -132,6 +138,16 @@ class AddBook extends Component {
                       className="form-control"
                       value={this.state.coverPage}
                       onChange={this.changeCoverPageHandler}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>Book Summary</label>
+                    <input
+                      placeholder="Write the sumarry here"
+                      name="summary"
+                      className="form-control"
+                      value={this.state.summary}
+                      onChange={this.changeSummaryHandler}
                     />
                   </div>
 
