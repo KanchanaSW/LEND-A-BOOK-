@@ -5,31 +5,39 @@ class UpdateBook extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isbn: this.props.match.params.isbn,
+      id: this.props.match.params.id,
+      isbn:"",
       title: "",
       author: "",
       publisher: "",
-      copiesAvi: "",
+      status: "",
       coverPage: "",
+      summary:"",
+      noOfCopies:"",
     };
-   // this.changeIsbnHandler = this.changeIsbnHandler.bind(this);
+    this.changeIsbnHandler = this.changeIsbnHandler.bind(this);
     this.changeTitleHandler = this.changeTitleHandler.bind(this);
     this.changeAuthorHandler = this.changeAuthorHandler.bind(this);
     this.changePublisherHandler = this.changePublisherHandler.bind(this);
-    this.changeCopiesAviHandler = this.changeCopiesAviHandler.bind(this);
+    this.changeStatusHandler = this.changeStatusHandler.bind(this);
     this.changeCoverPageHandler = this.changeCoverPageHandler.bind(this);
+    this.changeSummaryHandler=this.changeSummaryHandler.bind(this);
+    this.changeNoOfCopiesHandler = this.changeNoOfCopiesHandler.bind(this);
     this.updateBook = this.updateBook.bind(this);
   }
 
 componentDidMount(){
-    BookService.viewBookDetails(this.state.isbn).then((res)=>{
+    BookService.viewBookDetails(this.state.id).then((res)=>{
         let book=res.data;
         this.setState({
+          isbn:book.isbn,
           title: book.title,
           author: book.author,
           publisher: book.publisher,
-          copiesAvi: book.copiesAvi,
+          status: book.status,
           coverPage: book.coverPage,
+          summary:book.summary,
+          noOfCopies:book.noOfCopies,
         });
     })
 }
@@ -41,21 +49,23 @@ componentDidMount(){
       title: this.state.title,
       author: this.state.author,
       publisher: this.state.publisher,
-      copiesAvi: this.state.copiesAvi,
+      status: this.state.status,
       coverPage: this.state.coverPage,
+      summary:this.state.summary,
+      noOfCopies:this.state.noOfCopies,
     };
     console.log("book=>" + JSON.stringify(book));
 
-    BookService.putUpdateBook(book,this.state.isbn).then(res=>{
+    BookService.putUpdateBook(book,this.state.id).then(res=>{
         this.props.history.push("/bookList");
         console.log("  "+JSON.stringify(res.data));
     })
   };
 
-  /*
+  
   changeIsbnHandler = (event) => {
     this.setState({ isbn: event.target.value });
-  };*/
+  };
   changeTitleHandler = (event) => {
     this.setState({ title: event.target.value });
   };
@@ -65,12 +75,18 @@ componentDidMount(){
   changePublisherHandler = (event) => {
     this.setState({ publisher: event.target.value });
   };
-  changeCopiesAviHandler = (event) => {
-    this.setState({ copiesAvi: event.target.value });
+  changeStatusHandler = (event) => {
+    this.setState({ status: event.target.value });
   };
   changeCoverPageHandler = (event) => {
     this.setState({ coverPage: event.target.value });
   };
+  changeSummaryHandler=(event)=>{
+    this.setState({ summary: event.target.value});
+  };
+  changeNoOfCopiesHandler=(event)=>{
+    this.setState({noOfCopies:event.target.value});
+  }
 
   cancel() {
     this.props.history.push("/bookList");
@@ -89,10 +105,17 @@ componentDidMount(){
               <div className="card-body">
                 <form>
                   <div className="form-group">
+                    <input
+                      type="hidden"
+                      name="id"
+                      className="form-control"
+                      value={this.state.id}
+                    />
+                  </div>
+                  <div className="form-group">
                     <label>ISBN</label>
                     <input
                       type="number"
-                      placeholder="ISBN"
                       name="isbn"
                       readOnly="readonly"
                       className="form-control"
@@ -102,56 +125,66 @@ componentDidMount(){
                   <div className="form-group">
                     <label>Book Title</label>
                     <input
-                      placeholder="Book Title"
-                      name="title"                     
+                      name="title"
                       className="form-control"
                       value={this.state.title}
                       onChange={this.changeTitleHandler}
-                    
                     />
                   </div>
                   <div className="form-group">
                     <label>Book Author</label>
                     <input
-                      placeholder="Book Author"
                       name="author"
                       className="form-control"
                       value={this.state.author}
                       onChange={this.changeAuthorHandler}
-                      
                     />
                   </div>
                   <div className="form-group">
                     <label>Book Publisher</label>
                     <input
-                      placeholder="Book Publisher"
                       name="publisher"
                       className="form-control"
                       value={this.state.publisher}
                       onChange={this.changePublisherHandler}
-                     
                     />
                   </div>
                   <div className="form-group">
-                    <label>Book Copies Avilable</label>
+                    <label>Status</label>
                     <input
-                      type="number"
-                      placeholder="Book Copies Avilable"
-                      name="copiesAvi"
+                      type="text"
+                      name="status"
                       className="form-control"
-                      value={this.state.copiesAvi}
-                      onChange={this.changeCopiesAviHandler}
-                     
+                      value={this.state.status}
+                      onChange={this.changeStatusHandler}
                     />
                   </div>
                   <div className="form-group">
                     <label>Book Cover Page</label>
                     <input
-                      placeholder="Book Cover Page"
                       name="coverPage"
                       className="form-control"
                       value={this.state.coverPage}
                       onChange={this.changeCoverPageHandler}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>Summary</label>
+                    <input
+                      name="summary"
+                      className="form-control"
+                      value={this.state.summary}
+                      onChange={this.changeSummaryHandler}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>Book Copies</label>
+                    <input
+                      type="number"
+                      name="noOfCopies"
+                      className="form-control"
+                      value={this.state.noOfCopies}
+                      onChange={this.changeNoOfCopiesHandler}
                     />
                   </div>
 

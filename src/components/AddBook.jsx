@@ -12,6 +12,7 @@ class AddBook extends Component {
       status: "",
       coverPage: "",
       summary:"",
+      noOfCopies:"",
     };
     this.changeIsbnHandler = this.changeIsbnHandler.bind(this);
     this.changeTitleHandler = this.changeTitleHandler.bind(this);
@@ -20,6 +21,7 @@ class AddBook extends Component {
     this.changeStatusHandler = this.changeStatusHandler.bind(this);
     this.changeCoverPageHandler = this.changeCoverPageHandler.bind(this);
     this.changeSummaryHandler=this.changeSummaryHandler.bind(this);
+    this.changeNoOfCopiesHandler=this.changeNoOfCopiesHandler.bind(this);
     this.saveBook = this.saveBook.bind(this);
   }
   saveBook = (e) => {
@@ -31,7 +33,8 @@ class AddBook extends Component {
       publisher: this.state.publisher,
       status: this.state.status,
       coverPage: this.state.coverPage,
-      summary:this.state.summary,
+      summary: this.state.summary,
+      noOfCopies: this.state.noOfCopies,
     };
     console.log("book=>" + JSON.stringify(book));
 
@@ -61,6 +64,9 @@ class AddBook extends Component {
   changeSummaryHandler=(event)=>{
     this.setState({summary:event.target.value});
   }
+  changeNoOfCopiesHandler=(event)=>{
+    this.setState({ noOfCopies:event.target.value });
+  };
 
   cancel() {
     this.props.history.push("/bookList");
@@ -121,7 +127,6 @@ class AddBook extends Component {
                     />
                   </div>
                   <div className="form-group">
-                    <label>Book Status</label>
                     <input
                       type="hidden"
                       name="status"
@@ -148,6 +153,17 @@ class AddBook extends Component {
                       className="form-control"
                       value={this.state.summary}
                       onChange={this.changeSummaryHandler}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>Book Copies</label>
+                    <input
+                      type="number"
+                      placeholder="100"
+                      name="noOfCopies"
+                      className="form-control"
+                      value={this.state.noOfCopies}
+                      onChange={this.changeNoOfCopiesHandler}
                     />
                   </div>
 

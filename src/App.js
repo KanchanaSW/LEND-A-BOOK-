@@ -110,9 +110,10 @@ const App = () => {
           <Route path="/admin" component={BoardAdmin} />
 
           <Route path="/bookList" component={BookList} />
-          <Route path="/book/:isbn" component={ViewBook} />
+          <Route path="/book/:id" component={ViewBook} />
           <Route path="/addBook" component={AddBook} />
-          <Route path="/update/:isbn" component={UpdateBook} />
+          <Route path="/updateBook/:id" component={UpdateBook} />
+        
         </Switch>
       </div>
     </div>

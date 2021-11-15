@@ -5,12 +5,12 @@ class ViewBook extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isbn: this.props.match.params.isbn,
+      id: this.props.match.params.id,
       book: {},
     };
   }
   componentDidMount() {
-    BookService.viewBookDetails(this.state.isbn).then((res) => {
+    BookService.viewBookDetails(this.state.id).then((res) => {
       this.setState({ book: res.data });
     });
   }
@@ -25,6 +25,12 @@ class ViewBook extends Component {
             <h4 className="text-center">View Book Details</h4>
           </thead>
           <tbody>
+            <tr>
+              <th class="" scope="row">
+                Book ID
+              </th>
+              <td class="">{this.state.book.id}</td>
+            </tr>
             <tr>
               <th class="" scope="row">
                 Book ISBN
@@ -51,15 +57,21 @@ class ViewBook extends Component {
             </tr>
             <tr>
               <th class="" scope="row">
-                Copies avilable
+                Status
               </th>
-              <td class="">{this.state.book.copiesAvi}</td>
+              <td class="">{this.state.book.status}</td>
             </tr>
             <tr>
               <th class="" scope="row">
                 Book cover Page
               </th>
               <td class="">{this.state.book.coverPage}</td>
+            </tr>
+            <tr>
+              <th class="" scope="row">
+                Book Summary
+              </th>
+              <td class="">{this.state.book.summary}</td>
             </tr>
           </tbody>
         </table>

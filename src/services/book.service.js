@@ -133,8 +133,8 @@ class BookService {
   postAddBook = (book) => {
     return axios.post(API_URL + "addBook",  book , { headers: authHeader() });
   };
-  putUpdateBook = (book)=> {
-    return axios.put(API_URL + "updateBook", book, {headers: authHeader()});
+  putUpdateBook = (book,id)=> {
+    return axios.put(API_URL + "updateBook/" + id, book, {headers: authHeader()});
   };
 }
 export default new BookService();
