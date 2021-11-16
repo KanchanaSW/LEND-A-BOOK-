@@ -36,6 +36,16 @@ const BoardAdmin = () => {
           Books
         </Link>
       </div>
+      <div className="form-group">
+        <Link to={"/userList"} className="btn btn-info">
+          Users
+        </Link>
+      </div>
+      <div className="form-group">
+        <Link to={"/movieList"} className="btn btn-info">
+          Movies
+        </Link>
+      </div>
     </div>
   );
 };

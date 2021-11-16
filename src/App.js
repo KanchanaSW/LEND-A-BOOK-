@@ -15,11 +15,14 @@ import Profile from "./components/Profile";
 import BoardUser from "./components/BoardUser";
 import BoardAdmin from "./components/BoardAdmin";
 
+import UserList from "./components/UserList";
 
 import BookList from "./components/BookList";
 import ViewBook from "./components/ViewBook";
 import AddBook from "./components/AddBook";
 import UpdateBook from "./components/UpdateBook";
+
+import MovieList from "./components/MovieList";
 
 const App = () => {
   const [showAdminBoard, setShowAdminBoard] = useState(false);
@@ -109,10 +112,13 @@ const App = () => {
           <Route path="/user" component={BoardUser} />
           <Route path="/admin" component={BoardAdmin} />
 
+          <Route path="/userList" component={UserList}/>
           <Route path="/bookList" component={BookList} />
           <Route path="/book/:id" component={ViewBook} />
           <Route path="/addBook" component={AddBook} />
           <Route path="/updateBook/:id" component={UpdateBook} />
+
+          <Route path="/movieList" component={MovieList}/>
         
         </Switch>
       </div>

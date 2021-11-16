@@ -7,6 +7,18 @@ label {
   max-width: 350px !important;
   padding: 40px 40px;
 }
+.card-container2.card{
+  width: 800px;
+  padding: 40px 40px;
+   margin-top: 50px;
+  
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+}
 
 .card {
   background-color: #f7f7f7;
@@ -22,11 +34,20 @@ label {
 }
 
 .profile-img-card {
-  width: 96px;
-  height: 96px;
+  src: '//ssl.gstatic.com/accounts/ui/avatar_2x.png';
+  width: 150px;
+  height: 150px;
   margin: 0 auto 10px;
   display: block;
   -moz-border-radius: 50%;
   -webkit-border-radius: 50%;
   border-radius: 50%;
+}
+
+.col-md-4{
+  margin-top: 100px;
+}
+.col-sm1{
+ width: 430px;
+ margin-left: 20px;
 }
