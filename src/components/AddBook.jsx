@@ -9,10 +9,10 @@ class AddBook extends Component {
       title: "",
       author: "",
       publisher: "",
-      status: "",
+      status: "Available",
       coverPage: "",
-      summary:"",
-      noOfCopies:"",
+      summary: "",
+      noOfCopies: "",
     };
     this.changeIsbnHandler = this.changeIsbnHandler.bind(this);
     this.changeTitleHandler = this.changeTitleHandler.bind(this);
@@ -131,7 +131,7 @@ class AddBook extends Component {
                       type="hidden"
                       name="status"
                       className="form-control"
-                      value={"Available"}
+                      value={this.state.status}
                       onChange={this.changeStatusHandler}
                     />
                   </div>

@@ -23,6 +23,9 @@ import AddBook from "./components/AddBook";
 import UpdateBook from "./components/UpdateBook";
 
 import MovieList from "./components/MovieList";
+import AddMovie from "./components/AddMovie";
+import UpdateMovie from "./components/UpdateMovie";
+import ViewMovie from "./components/ViewMovie";
 
 const App = () => {
   const [showAdminBoard, setShowAdminBoard] = useState(false);
@@ -113,12 +116,16 @@ const App = () => {
           <Route path="/admin" component={BoardAdmin} />
 
           <Route path="/userList" component={UserList}/>
+          
           <Route path="/bookList" component={BookList} />
           <Route path="/book/:id" component={ViewBook} />
           <Route path="/addBook" component={AddBook} />
           <Route path="/updateBook/:id" component={UpdateBook} />
 
           <Route path="/movieList" component={MovieList}/>
+          <Route path="/addMovie" component={AddMovie}/>
+          <Route path="/updateMovie/:movieId" component={UpdateMovie}/>
+          <Route path="/movie/:movieId" component={ViewMovie}/>
         
         </Switch>
       </div>

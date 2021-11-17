@@ -1,19 +1,19 @@
-import React, { Component } from 'react';
-import BookService from '../services/book.service';
+import React, { Component } from "react";
+import BookService from "../services/book.service";
 
 class UpdateBook extends Component {
   constructor(props) {
     super(props);
     this.state = {
       id: this.props.match.params.id,
-      isbn:"",
+      isbn: "",
       title: "",
       author: "",
       publisher: "",
       status: "",
       coverPage: "",
-      summary:"",
-      noOfCopies:"",
+      summary: "",
+      noOfCopies: "",
     };
     this.changeIsbnHandler = this.changeIsbnHandler.bind(this);
     this.changeTitleHandler = this.changeTitleHandler.bind(this);
@@ -21,48 +21,47 @@ class UpdateBook extends Component {
     this.changePublisherHandler = this.changePublisherHandler.bind(this);
     this.changeStatusHandler = this.changeStatusHandler.bind(this);
     this.changeCoverPageHandler = this.changeCoverPageHandler.bind(this);
-    this.changeSummaryHandler=this.changeSummaryHandler.bind(this);
+    this.changeSummaryHandler = this.changeSummaryHandler.bind(this);
     this.changeNoOfCopiesHandler = this.changeNoOfCopiesHandler.bind(this);
     this.updateBook = this.updateBook.bind(this);
   }
 
-componentDidMount(){
-    BookService.viewBookDetails(this.state.id).then((res)=>{
-        let book=res.data;
-        this.setState({
-          isbn:book.isbn,
-          title: book.title,
-          author: book.author,
-          publisher: book.publisher,
-          status: book.status,
-          coverPage: book.coverPage,
-          summary:book.summary,
-          noOfCopies:book.noOfCopies,
-        });
-    })
-}
+  componentDidMount() {
+    BookService.viewBookDetails(this.state.id).then((res) => {
+      let book = res.data;
+      this.setState({
+        isbn: book.isbn,
+        title: book.title,
+        author: book.author,
+        publisher: book.publisher,
+        status: book.status,
+        coverPage: book.coverPage,
+        summary: book.summary,
+        noOfCopies: book.noOfCopies,
+      });
+    });
+  }
 
   updateBook = (e) => {
     e.preventDefault();
     let book = {
-        isbn:this.state.isbn,
+      isbn: this.state.isbn,
       title: this.state.title,
       author: this.state.author,
       publisher: this.state.publisher,
       status: this.state.status,
       coverPage: this.state.coverPage,
-      summary:this.state.summary,
-      noOfCopies:this.state.noOfCopies,
+      summary: this.state.summary,
+      noOfCopies: this.state.noOfCopies,
     };
     console.log("book=>" + JSON.stringify(book));
 
-    BookService.putUpdateBook(book,this.state.id).then(res=>{
-        this.props.history.push("/bookList");
-        console.log("  "+JSON.stringify(res.data));
-    })
+    BookService.putUpdateBook(book, this.state.id).then((res) => {
+      this.props.history.push("/bookList");
+    //  console.log("  " + JSON.stringify(res.data));
+    });
   };
 
-  
   changeIsbnHandler = (event) => {
     this.setState({ isbn: event.target.value });
   };
@@ -81,12 +80,12 @@ componentDidMount(){
   changeCoverPageHandler = (event) => {
     this.setState({ coverPage: event.target.value });
   };
-  changeSummaryHandler=(event)=>{
-    this.setState({ summary: event.target.value});
+  changeSummaryHandler = (event) => {
+    this.setState({ summary: event.target.value });
   };
-  changeNoOfCopiesHandler=(event)=>{
-    this.setState({noOfCopies:event.target.value});
-  }
+  changeNoOfCopiesHandler = (event) => {
+    this.setState({ noOfCopies: event.target.value });
+  };
 
   cancel() {
     this.props.history.push("/bookList");

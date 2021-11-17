@@ -14,22 +14,25 @@ class MovieList extends React.Component{
     }
     componentDidMount(){
         MovieService.getMovieList().then((res)=>{
-            this.setState({movies:res.data});console.log({ movies: res.data });
+            this.setState({movies:res.data});
         });
     }
     addMovie(){
         this.props.history.push(`/addMovie`);
     }
-    editMovie(movieId){this.props.history.push(`/updateMovie/${movieId}`);}
+    editMovie(movieId){
+      this.props.history.push(`/updateMovie/${movieId}`);
+    }
+
     deleteMovie(movieId){
-        MovieService.deleteBookDetails(movieId).then((res)=>{
+        MovieService.deleteMovieDetails(movieId).then((res)=>{
             this.setState({
-                movies:this.state.movies.filter((movie)=>movie.movieId !== movieId),
+                movies:this.state.movies.filter((movie)=>movie.movieId != movieId),
             });
         });
     }
     viewMovie(movieId){
-        this.props.history.push(`/movies/${movieId}`);
+        this.props.history.push(`/movie/${movieId}`);
     }
 
 
