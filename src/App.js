@@ -5,7 +5,6 @@ import { Switch, Route, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
 import "./App.css";
 
-
 import AuthService from "./services/auth.service";
 
 import Login from "./components/Login";

@@ -157,6 +157,7 @@ const Register = (props) => {
 
   return (
     <div className="card card-container2">
+      <h3>Register User</h3>
       <div className="row">
         <div className="col-md-4">
           {loading ? (
@@ -165,12 +166,7 @@ const Register = (props) => {
             <img src={pic} alt="profile-img" className="profile-img-card" />
           )}
 
-          <input
-            type="file"
-            name="file"
-            placeholder="Upload an image"
-            onChange={uploadImage}
-          />
+          <input type="file" name="file" onChange={uploadImage} />
         </div>
         <Form onSubmit={handleRegister} ref={form}>
           {!successful && (
@@ -216,7 +212,7 @@ const Register = (props) => {
                 <div className="col-sm">
                   <label htmlFor="rePassword">Repeat Password</label>
                   <Input
-                    type="rePassword"
+                    type="password"
                     className="form-control"
                     name="rePassword"
                     value={rePassword}
@@ -266,6 +262,7 @@ const Register = (props) => {
                   />
                 </div>
               </div>
+              <br />
 
               <div className="form-group">
                 <button className="btn btn-primary btn-block">Sign Up</button>

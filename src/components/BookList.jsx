@@ -45,7 +45,54 @@ class BookList extends React.Component {
         </div>
         <br />
         <br></br>
-        <table className="table table-striped table-bordered">
+        <div className="card">
+          {this.state.books.map((book) => (            
+              <div key={book.id}>
+                <div class="card mb-3" style={{ maxWidth: "500px" }}>
+                  <div class="row g-0">
+                    <div class="col-5 col-lg-4">
+                      <br />
+                      <br />
+                      <img
+                        src={book.coverPage}
+                        class="img-fluid rounded-start"
+                      />
+                    </div>
+                    <div class="col-7 col-lg-8">
+                      <div class="card-body">
+                        <h5 class="card-title">{book.title}</h5>
+                        <p class="card-text">{book.summary}</p>
+                        {/*    <p class="card-text">
+                              <small class="text-muted">
+                                <ul class="list-group list-group-flush">
+                                  <li class="list-group-item">{book.id}</li>
+                                  <li class="list-group-item">{book.isbn}</li>
+                                  <li class="list-group-item">{book.author}</li>
+                                  <li class="list-group-item">
+                                    {book.publisher}
+                                  </li>
+                                  <li class="list-group-item">{book.status}</li>
+                                </ul>
+                              </small>
+                            </p> */}
+                      </div>
+                      <div class="card-body">
+                        <a href="#" class="card-link">
+                          Reserve
+                        </a>
+                        <a href="#" class="card-link">
+                          Another link
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            
+          ))}
+        </div>
+
+        {/*   <table className="table table-striped table-bordered">
           <thead>
             <tr>
               <th>ID</th>
@@ -100,7 +147,7 @@ class BookList extends React.Component {
               </tr>
             ))}
           </tbody>
-        </table>
+        </table> */}
       </div>
     );
   }

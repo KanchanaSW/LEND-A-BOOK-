@@ -14,6 +14,7 @@ class UpdateBook extends Component {
       coverPage: "",
       summary: "",
       noOfCopies: "",
+     // pic: "",
     };
     this.changeIsbnHandler = this.changeIsbnHandler.bind(this);
     this.changeTitleHandler = this.changeTitleHandler.bind(this);
@@ -58,7 +59,7 @@ class UpdateBook extends Component {
 
     BookService.putUpdateBook(book, this.state.id).then((res) => {
       this.props.history.push("/bookList");
-    //  console.log("  " + JSON.stringify(res.data));
+      //  console.log("  " + JSON.stringify(res.data));
     });
   };
 
@@ -87,6 +88,25 @@ class UpdateBook extends Component {
     this.setState({ noOfCopies: event.target.value });
   };
 
+  uploadImage = async (e) => {
+    const files = e.target.files;
+    const data = new FormData();
+    data.append("file", files[0]);
+    data.append("upload_preset", "books_cover");
+
+    const res = await fetch(
+      "	https://api.cloudinary.com/v1_1/kanchana123/image/upload",
+      {
+        method: "POST",
+        body: data,
+      }
+    );
+    const file = await res.json();
+
+   // this.setState({ pic: file.secure_url });
+    this.setState({ coverPage: file.secure_url });
+  };
+
   cancel() {
     this.props.history.push("/bookList");
   }
@@ -97,12 +117,19 @@ class UpdateBook extends Component {
   render() {
     return (
       <div>
-        <div className="container">
-          <div className="row">
-            <div className="card col-md-6 offset-md-3 offset-md-3">
-              {this.getFormTitle()}
-              <div className="card-body">
-                <form>
+        <div className="container-fluid">
+          <form>
+            <div class="card2 card-container3">
+              <h3> Update Book</h3>
+              <div class="row">
+                <div class="col-5 col-lg-4">
+                  <br />
+                  <br />
+                  <img src={this.state.coverPage} class="card-img-top" />
+                  <input type="file" name="file" onChange={this.uploadImage} />
+                </div>
+
+                <div class="col-7 col-lg-8">
                   <div className="form-group">
                     <input
                       type="hidden"
@@ -116,7 +143,6 @@ class UpdateBook extends Component {
                     <input
                       type="number"
                       name="isbn"
-                      readOnly="readonly"
                       className="form-control"
                       value={this.state.isbn}
                     />
@@ -125,6 +151,7 @@ class UpdateBook extends Component {
                     <label>Book Title</label>
                     <input
                       name="title"
+                      required
                       className="form-control"
                       value={this.state.title}
                       onChange={this.changeTitleHandler}
@@ -159,24 +186,6 @@ class UpdateBook extends Component {
                     />
                   </div>
                   <div className="form-group">
-                    <label>Book Cover Page</label>
-                    <input
-                      name="coverPage"
-                      className="form-control"
-                      value={this.state.coverPage}
-                      onChange={this.changeCoverPageHandler}
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label>Summary</label>
-                    <input
-                      name="summary"
-                      className="form-control"
-                      value={this.state.summary}
-                      onChange={this.changeSummaryHandler}
-                    />
-                  </div>
-                  <div className="form-group">
                     <label>Book Copies</label>
                     <input
                       type="number"
@@ -186,8 +195,31 @@ class UpdateBook extends Component {
                       onChange={this.changeNoOfCopiesHandler}
                     />
                   </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <div className="form-group">
+                    <input
+                      type="hidden"
+                      name="coverPage"
+                      className="form-control"
+                      value={this.state.coverPage}
+                      onChange={this.changeCoverPageHandler}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>Book Summary</label>
+                    <textarea
+                      name="summary"
+                      className="form-control"
+                      value={this.state.summary}
+                      onChange={this.changeSummaryHandler}
+                      rows="4"
+                    ></textarea>
+                  </div>
 
-                  <button className="btn btn-success" onClick={this.updateBook}>
+                  <button className="btn btn-primary" onClick={this.updateBook}>
                     Update
                   </button>
                   <button
@@ -197,13 +229,73 @@ class UpdateBook extends Component {
                   >
                     Cancel
                   </button>
-                </form>
+                </div>
               </div>
+              <br />
             </div>
-          </div>
+          </form>
         </div>
       </div>
     );
   }
 }
 export default UpdateBook;
+ /*       <div>
+        <br />
+        <br />
+        <table class="table table-dark">
+          <thead>
+            <h4 className="text-center">View Book Details</h4>
+          </thead>
+          <tbody>
+            <tr>
+              <th class="" scope="row">
+                Book ID
+              </th>
+              <td class="">{this.state.book.id}</td>
+            </tr>
+            <tr>
+              <th class="" scope="row">
+                Book ISBN
+              </th>
+              <td class="">{this.state.book.isbn}</td>
+            </tr>
+            <tr>
+              <th class="" scope="row">
+                Book Title
+              </th>
+              <td class="">{this.state.book.title}</td>
+            </tr>
+            <tr>
+              <th class="" scope="row">
+                Book Author
+              </th>
+              <td class="">{this.state.book.author}</td>
+            </tr>
+            <tr>
+              <th class="" scope="row">
+                Book Publisher
+              </th>
+              <td class="">{this.state.book.publisher}</td>
+            </tr>
+            <tr>
+              <th class="" scope="row">
+                Status
+              </th>
+              <td class="">{this.state.book.status}</td>
+            </tr>
+            <tr>
+              <th class="" scope="row">
+                Book cover Page
+              </th>
+              <td class="">{this.state.book.coverPage}</td>
+            </tr>
+            <tr>
+              <th class="" scope="row">
+                Book Summary
+              </th>
+              <td class="">{this.state.book.summary}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div> */
