@@ -13,7 +13,7 @@ class UpdateBook extends Component {
       status: "",
       coverPage: "",
       summary: "",
-      noOfCopies: "",
+    //  noOfCopies: "",
      // pic: "",
     };
     this.changeIsbnHandler = this.changeIsbnHandler.bind(this);
@@ -23,7 +23,7 @@ class UpdateBook extends Component {
     this.changeStatusHandler = this.changeStatusHandler.bind(this);
     this.changeCoverPageHandler = this.changeCoverPageHandler.bind(this);
     this.changeSummaryHandler = this.changeSummaryHandler.bind(this);
-    this.changeNoOfCopiesHandler = this.changeNoOfCopiesHandler.bind(this);
+ //   this.changeNoOfCopiesHandler = this.changeNoOfCopiesHandler.bind(this);
     this.updateBook = this.updateBook.bind(this);
   }
 
@@ -38,7 +38,7 @@ class UpdateBook extends Component {
         status: book.status,
         coverPage: book.coverPage,
         summary: book.summary,
-        noOfCopies: book.noOfCopies,
+    //    noOfCopies: book.noOfCopies,
       });
     });
   }
@@ -53,7 +53,7 @@ class UpdateBook extends Component {
       status: this.state.status,
       coverPage: this.state.coverPage,
       summary: this.state.summary,
-      noOfCopies: this.state.noOfCopies,
+ //     noOfCopies: this.state.noOfCopies,
     };
     console.log("book=>" + JSON.stringify(book));
 
@@ -84,9 +84,9 @@ class UpdateBook extends Component {
   changeSummaryHandler = (event) => {
     this.setState({ summary: event.target.value });
   };
-  changeNoOfCopiesHandler = (event) => {
+  /* changeNoOfCopiesHandler = (event) => {
     this.setState({ noOfCopies: event.target.value });
-  };
+  }; */
 
   uploadImage = async (e) => {
     const files = e.target.files;
@@ -117,19 +117,19 @@ class UpdateBook extends Component {
   render() {
     return (
       <div>
-        <div className="container-fluid">
+        <div>
           <form>
-            <div class="card2 card-container3">
+            <div className="card" style={{ width: "800px" }}>
               <h3> Update Book</h3>
               <div class="row">
-                <div class="col-5 col-lg-4">
+                <div class="col-md-4" style={{ marginRight: "2%" }}>
                   <br />
                   <br />
-                  <img src={this.state.coverPage} class="card-img-top" />
+                  <img src={this.state.coverPage} class="cover-img-card2" />
                   <input type="file" name="file" onChange={this.uploadImage} />
                 </div>
 
-                <div class="col-7 col-lg-8">
+                <div class="col-md-7">
                   <div className="form-group">
                     <input
                       type="hidden"
@@ -184,21 +184,11 @@ class UpdateBook extends Component {
                       value={this.state.status}
                       onChange={this.changeStatusHandler}
                     />
-                  </div>
-                  <div className="form-group">
-                    <label>Book Copies</label>
-                    <input
-                      type="number"
-                      name="noOfCopies"
-                      className="form-control"
-                      value={this.state.noOfCopies}
-                      onChange={this.changeNoOfCopiesHandler}
-                    />
-                  </div>
+                  </div>             
                 </div>
               </div>
               <div class="row">
-                <div class="col">
+                <div class="col-md-11" style={{ marginLeft: "2%" }}>
                   <div className="form-group">
                     <input
                       type="hidden"
