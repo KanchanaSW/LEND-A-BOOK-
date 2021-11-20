@@ -7,7 +7,7 @@ class UpdateMovie extends React.Component {
     this.state = {
       movieId: this.props.match.params.movieId,
       title: "",
-      writer: "",
+      length: "",
       status: "",
       image: "",
       r18: "",
@@ -15,7 +15,7 @@ class UpdateMovie extends React.Component {
       noOfCopies: "",
     };
     this.changeTitleHandler = this.changeTitleHandler.bind(this);
-    this.changeWriterHandler = this.changeWriterHandler.bind(this);
+    this.changeLengthHandler = this.changeLengthHandler.bind(this);
     this.changeStatusHandler = this.changeStatusHandler.bind(this);
     this.changeImageHandler = this.changeImageHandler.bind(this);
     this.changeR18Handler = this.changeR18Handler.bind(this);
@@ -29,7 +29,7 @@ class UpdateMovie extends React.Component {
       let movie = res.data;
       this.setState({
         title: movie.title,
-        writer: movie.writer,
+        length: movie.length,
         status: movie.status,
         image: movie.image,
         r18: movie.r18,
@@ -43,7 +43,7 @@ class UpdateMovie extends React.Component {
     e.preventDefault();
     let movie = {
       title: this.state.title,
-      writer: this.state.writer,
+      length: this.state.length,
       status: this.state.status,
       image: this.state.image,
       r18: this.state.r18,
@@ -60,8 +60,8 @@ class UpdateMovie extends React.Component {
   changeTitleHandler = (event) => {
     this.setState({ title: event.target.value });
   };
-  changeWriterHandler = (event) => {
-    this.setState({ writer: event.target.value });
+  changeLengthHandler = (event) => {
+    this.setState({ length: event.target.value });
   };
   changeStatusHandler = (event) => {
     this.setState({ status: event.target.value });
@@ -78,6 +78,24 @@ class UpdateMovie extends React.Component {
   changeNoOfCopiesHandler = (event) => {
     this.setState({ noOfCopies: event.target.value });
   };
+  uploadImage = async (e) => {
+    const files = e.target.files;
+    const data = new FormData();
+    data.append("file", files[0]);
+    data.append("upload_preset", "movies_cover");
+
+    const res = await fetch(
+      "	https://api.cloudinary.com/v1_1/kanchana123/image/upload",
+      {
+        method: "POST",
+        body: data,
+      }
+    );
+    const file = await res.json();
+
+    //this.setState({ pic: file.secure_url });
+    this.setState({ image: file.secure_url });
+  };
 
   cancel() {
     this.props.history.push("/movieList");
@@ -89,7 +107,150 @@ class UpdateMovie extends React.Component {
   render() {
     return (
       <div>
-        <div className="container">
+        <form>
+          <div class="card" style={{ width: "850px" }}>
+            <div className="row">
+              <div className="col-md-11">
+                <h3> Update Movie</h3>
+              </div>
+              <div className="col-md-1">
+                <button
+                  className="btn btn-danger"
+                  onClick={this.cancel.bind(this)}
+                  style={{ marginLeft: "10px" }}
+                >
+                  X
+                </button>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-4" style={{ marginRight: "2%" }}>
+                <br />
+                <img src={this.state.image} class="cover-img-card2" />
+                <input type="file" name="file" onChange={this.uploadImage} />
+              </div>
+
+              <div class="col">
+                <div className="form-group">
+                  <input
+                    type="hidden"
+                    name="movieId"
+                    className="form-control"
+                    value={this.state.movieId}
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Movie Title</label>
+                  <input
+                    name="title"
+                    required
+                    className="form-control"
+                    value={this.state.title}
+                    onChange={this.changeTitleHandler}
+                  />
+                </div>
+                <div className="row">
+                  <div className="col-md-3">
+                    <div className="form-group">
+                      <label>length</label>
+                      <input
+                        type="text"
+                        name="length"
+                        className="form-control"
+                        value={this.state.length}
+                        onChange={this.changeLengthHandler}
+                      />
+                    </div>
+                  </div>
+                  <div className="col-md-3">
+                    <div className="form-group">
+                      <label>Copies</label>
+                      <input
+                        type="number"
+                        name="noOfCopies"
+                        min="1"
+                        className="form-control"
+                        value={this.state.noOfCopies}
+                        onChange={this.changeNoOfCopiesHandler}
+                      />
+                    </div>
+                  </div>
+                  <div className="col-md-3">
+                    <div className="form-group">
+                      <label>18+</label>
+                      <select
+                        name="r18"
+                        onChange={this.changeR18Handler}
+                        value={this.state.r18}
+                        class="form-control"
+                      >
+                        <option value="false" selected>
+                          False
+                        </option>
+                        <option value="true">True</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div className="col-md-3">
+                    <div className="form-group">
+                      <label>Status</label>
+                      <select
+                        name="status"
+                        onChange={this.changeStatusHandler}
+                        value={this.state.status}
+                        class="form-control"
+                      >
+                        <option value="Available">Available</option>
+                        <option value="UnAvailable">UnAvailable</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="form-group">
+                  <input
+                    type="hidden"
+                    name="image"
+                    className="form-control"
+                    value={this.state.image}
+                    onChange={this.changeImageHandler}
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Movie Summary</label>
+                  <textarea
+                    placeholder="Write the sumarry here"
+                    name="description"
+                    className="form-control"
+                    value={this.state.description}
+                    onChange={this.changeDescriptionHandler}
+                    rows="4"
+                  ></textarea>
+                </div>
+                <div className="row">
+                  <div className="col-md-10"></div>
+                  <div className="col-md-2">
+                    <button
+                      className="btn btn-success"
+                      onClick={this.updateMovie}
+                    >
+                      Update
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    );
+  }
+}
+export default UpdateMovie;
+
+
+/*     <div className="container">
           <div className="row">
             <div className="card col-md-6 offset-md-3 offset-md-3">
               {this.getFormTitle()}
@@ -123,7 +284,7 @@ class UpdateMovie extends React.Component {
                     />
                   </div>
                   <div className="form-group">
-                      <label>Status</label>
+                    <label>Status</label>
                     <input
                       type="text"
                       name="status"
@@ -179,9 +340,4 @@ class UpdateMovie extends React.Component {
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    );
-  }
-}
-export default UpdateMovie;
+        </div> */

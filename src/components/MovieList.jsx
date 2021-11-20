@@ -42,62 +42,41 @@ class MovieList extends React.Component{
             <div className="btn btn-primary" onClick={this.addMovie}>
               Add new movie
             </div>
-            <br />
-            <br />
-            <table className="table table-striped table-bordered">
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Title</th>
-                  <th>Writer</th>
-                  <th>Status</th>
-                  <th>Image</th>
-                  <th>18+</th>
-                  <th>Summary</th>
-                </tr>
-              </thead>
-
-              <tbody>
-                {this.state.movies.map((movie) => (
-                  <tr key={movie.movieId}>
-                    <td>{movie.movieId}</td>
-                    <td>{movie.title}</td>
-                    <td>{movie.writer}</td>
-                    <td>{movie.status}</td>
-                    <td>{movie.image}</td>
-                    <td>{movie.r18}</td>
-                    <td>{movie.description}</td>
-
-                    <td>
+            <div className="row">
+              {this.state.movies.map((movie) => (
+                <div className="col-md-3" key={movie.movieId}>
+                  <div className="card bwm-card">
+                    <img src={movie.image} className="cover-img-card" />
+                    <div className="card-body">
+                      <h5 className="card-title">{movie.title}</h5>
+                      <p className="card-text2">{movie.description}....</p>
+                    </div>
+                    <table>
                       <button
-                        onClick={() => this.editMovie(movie.movieId)}
-                        className="btn btn-info"
-                      >
-                        Update
-                      </button>
-                    </td>
-                    <td>
-                      <button
-                        style={{ marginLeft: "10px" }}
+                        style={{ marginRight: "14px", marginLeft: "10px" }}
+                        class="btn btn-outline-success btn-sm"
                         onClick={() => this.viewMovie(movie.movieId)}
-                        className="btn btn-info"
                       >
-                        View
+                        Read More
                       </button>
-                    </td>
-                    <td>
                       <button
-                        style={{ marginLeft: "10px" }}
-                        onClick={() => this.deleteMovie(movie.movieId)}
-                        className="btn btn-danger"
+                        style={{ marginRight: "14px" }}
+                        class="btn btn-outline-primary btn-sm"
+                        onClick={() => this.editMovie(movie.movieId)}
                       >
-                        Delete
+                        Edit
                       </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+                      <button
+                        class="btn btn-outline-danger btn-sm"
+                        onClick={() => this.deleteMovie(movie.movieId)}
+                      >
+                        X
+                      </button>
+                    </table>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         );
     }

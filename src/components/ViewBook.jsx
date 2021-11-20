@@ -34,10 +34,9 @@ class ViewBook extends Component {
                       <li class="list-group-item">{this.state.book.id}</li>
                       <li class="list-group-item">{this.state.book.isbn}</li>
                       <li class="list-group-item">{this.state.book.author}</li>
-                      <li class="list-group-item">
-                        {this.state.book.publisher}
-                      </li>
+                      <li class="list-group-item">{this.state.book.publisher}</li>
                       <li class="list-group-item">{this.state.book.status}</li>
+                      <li class="list-group-item">{this.state.book.noOfCopies}</li>
                     </ul>
                   </small>
                 </p>

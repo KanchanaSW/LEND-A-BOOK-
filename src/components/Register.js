@@ -159,7 +159,7 @@ const Register = (props) => {
     <div className="card card-container2">
       <h3>Register User</h3>
       <div className="row">
-        <div className="col-md-4" style={{marginTop:"100px"}}>
+        <div className="col-md-4" style={{ marginTop: "100px" }}>
           {loading ? (
             <h3>Loading...</h3>
           ) : (
@@ -209,6 +209,7 @@ const Register = (props) => {
                     validations={[required, vpassword]}
                   />
                 </div>
+             
                 <div className="col-sm">
                   <label htmlFor="rePassword">Repeat Password</label>
                   <Input

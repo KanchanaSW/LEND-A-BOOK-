@@ -44,7 +44,7 @@ render(){
                     style={{ width: "80px", borderRadius: "50%" }}
                   />
                 </td>
-                <td>{user.blacklisted}</td>
+                <td>{`${user.blacklisted}`}</td>
               </tr>
             ))}
           </tbody>

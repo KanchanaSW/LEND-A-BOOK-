@@ -11,69 +11,59 @@ class ViewMovie extends React.Component{
     }
     componentDidMount(){
         MovieService.viewMovieDetails(this.state.movieId).then((res)=>{
-            this.setState({movie:res.data});
+            this.setState({movie:res.data});console.log(this.state.movie);
         });
     }
     render(){
         return (
           <div>
-            <br />
-            <br />
-            <table class="table table-dark">
-              <thead>
-                <h4 className="text-center">View Movie Details</h4>
-              </thead>
-              <tbody>
-                <tr>
-                  <th class="" scope="row">
-                    Movie ID
-                  </th>
-                  <td class="">{this.state.movie.movieId}</td>
-                </tr>
-                <tr>
-                  <th class="" scope="row">
-                    Movie Title
-                  </th>
-                  <td class="">{this.state.movie.title}</td>
-                </tr>
-                <tr>
-                  <th class="" scope="row">
-                    Movie Writer
-                  </th>
-                  <td class="">{this.state.movie.writer}</td>
-                </tr>
-                <tr>
-                  <th class="" scope="row">
-                    Status
-                  </th>
-                  <td class="">{this.state.movie.status}</td>
-                </tr>
-                <tr>
-                  <th class="" scope="row">
-                    Movie Image
-                  </th>
-                  <td class="">{this.state.movie.image}</td>
-                </tr>
-                <tr>
-                  <th class="" scope="row">
-                    Movie description
-                  </th>
-                  <td class="">{this.state.movie.description}</td>
-                </tr>
-                <tr>
-                  <th class="" scope="row">
-                    18+
-                  </th>
-                  <td class="">{this.state.movie.r18}</td>
-                </tr>
-                <tr>
-                  <th class="" scope="row">
-                    Number of Copies
-                  </th>
-                  <td class="">{this.state.movie.noOfCopies}</td>
-                </tr>
-              </tbody>
-            </table>
+            <div class="card mb-3" style={{ maxWidth: "800px" }}>
+              <div class="row g-0">
+                <div class="col-5 col-lg-4">
+                  <br />
+                  <br />
+                  <img
+                    src={this.state.movie.image}
+                    class="img-fluid rounded-start"
+                  />
+                </div>
+                <div class="col-7 col-lg-8">
+                  <div class="card-body">
+                    <h5 class="card-title">{this.state.movie.title}</h5>
+                    <p class="card-text">{this.state.movie.description}</p>
+                    <p class="card-text">
+                      <small class="text-muted">
+                        <ul class="list-group list-group-flush">
+                          <li class="list-group-item">
+                            {this.state.movie.movieId}
+                          </li>
+                          <li class="list-group-item">
+                            {this.state.movie.length}
+                          </li>
+                          <li class="list-group-item">
+                            {this.state.movie.status}
+                          </li>
+                          <li class="list-group-item">
+                           18+ : {`${this.state.movie.r18}`}
+                          </li>
+                          <li class="list-group-item">
+                            {this.state.movie.noOfCopies}
+                          </li>
+                        </ul>
+                      </small>
+                    </p>
+                  </div>
+                  <div class="card-body">
+                    <a href="#" class="card-link">
+                      Reserve
+                    </a>
+                    <a href="#" class="card-link">
+                      Another link
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         );
     }

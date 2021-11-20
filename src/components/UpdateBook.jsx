@@ -13,7 +13,7 @@ class UpdateBook extends Component {
       status: "",
       coverPage: "",
       summary: "",
-    //  noOfCopies: "",
+      noOfCopies: "",
      // pic: "",
     };
     this.changeIsbnHandler = this.changeIsbnHandler.bind(this);
@@ -23,7 +23,7 @@ class UpdateBook extends Component {
     this.changeStatusHandler = this.changeStatusHandler.bind(this);
     this.changeCoverPageHandler = this.changeCoverPageHandler.bind(this);
     this.changeSummaryHandler = this.changeSummaryHandler.bind(this);
- //   this.changeNoOfCopiesHandler = this.changeNoOfCopiesHandler.bind(this);
+    this.changeNoOfCopiesHandler = this.changeNoOfCopiesHandler.bind(this);
     this.updateBook = this.updateBook.bind(this);
   }
 
@@ -38,7 +38,7 @@ class UpdateBook extends Component {
         status: book.status,
         coverPage: book.coverPage,
         summary: book.summary,
-    //    noOfCopies: book.noOfCopies,
+        noOfCopies: book.noOfCopies,
       });
     });
   }
@@ -53,7 +53,7 @@ class UpdateBook extends Component {
       status: this.state.status,
       coverPage: this.state.coverPage,
       summary: this.state.summary,
- //     noOfCopies: this.state.noOfCopies,
+      noOfCopies: this.state.noOfCopies,
     };
     console.log("book=>" + JSON.stringify(book));
 
@@ -84,9 +84,9 @@ class UpdateBook extends Component {
   changeSummaryHandler = (event) => {
     this.setState({ summary: event.target.value });
   };
-  /* changeNoOfCopiesHandler = (event) => {
+   changeNoOfCopiesHandler = (event) => {
     this.setState({ noOfCopies: event.target.value });
-  }; */
+  }; 
 
   uploadImage = async (e) => {
     const files = e.target.files;
@@ -120,7 +120,19 @@ class UpdateBook extends Component {
         <div>
           <form>
             <div className="card" style={{ width: "800px" }}>
-              <h3> Update Book</h3>
+              <div className="row">
+                <div className="col-md-11">
+                  <h3> Update Book</h3>
+                </div>
+                <div className="col-md-1">
+                  <button
+                    className="btn btn-danger"
+                    onClick={this.cancel.bind(this)}
+                  >
+                    X
+                  </button>
+                </div>
+              </div>
               <div class="row">
                 <div class="col-md-4" style={{ marginRight: "2%" }}>
                   <br />
@@ -129,7 +141,7 @@ class UpdateBook extends Component {
                   <input type="file" name="file" onChange={this.uploadImage} />
                 </div>
 
-                <div class="col-md-7">
+                <div class="col">
                   <div className="form-group">
                     <input
                       type="hidden"
@@ -138,14 +150,31 @@ class UpdateBook extends Component {
                       value={this.state.id}
                     />
                   </div>
-                  <div className="form-group">
-                    <label>ISBN</label>
-                    <input
-                      type="number"
-                      name="isbn"
-                      className="form-control"
-                      value={this.state.isbn}
-                    />
+                  <div className="row">
+                    <div className="col-md-9">
+                      <div className="form-group">
+                        <label>ISBN</label>
+                        <input
+                          type="number"
+                          name="isbn"
+                          className="form-control"
+                          value={this.state.isbn}
+                          onChange={this.changeIsbnHandler}
+                        />
+                      </div>
+                    </div>
+                    <div className="col-md-3">
+                      <div className="form-group">
+                        <label>Copies</label>
+                        <input
+                          type="number"
+                          name="noOfCopies"
+                          className="form-control"
+                          value={this.state.noOfCopies}
+                          onChange={this.changeNoOfCopiesHandler}
+                        />
+                      </div>
+                    </div>
                   </div>
                   <div className="form-group">
                     <label>Book Title</label>
@@ -177,18 +206,20 @@ class UpdateBook extends Component {
                   </div>
                   <div className="form-group">
                     <label>Status</label>
-                    <input
-                      type="text"
+                    <select
                       name="status"
-                      className="form-control"
-                      value={this.state.status}
                       onChange={this.changeStatusHandler}
-                    />
-                  </div>             
+                      value={this.state.status}
+                      class="form-control"
+                    >
+                      <option value="Available">Available</option>
+                      <option value="UnAvailable">UnAvailable</option>
+                    </select>
+                  </div>
                 </div>
               </div>
               <div class="row">
-                <div class="col-md-11" style={{ marginLeft: "2%" }}>
+                <div class="col-md-12">
                   <div className="form-group">
                     <input
                       type="hidden"
@@ -208,16 +239,13 @@ class UpdateBook extends Component {
                       rows="4"
                     ></textarea>
                   </div>
-
-                  <button className="btn btn-primary" onClick={this.updateBook}>
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-md-10"></div>
+                <div className="col-md-2">
+                  <button className="btn btn-success" style={{marginLeft:"12px"}} onClick={this.updateBook}>
                     Update
-                  </button>
-                  <button
-                    className="btn btn-danger"
-                    onClick={this.cancel.bind(this)}
-                    style={{ marginLeft: "10px" }}
-                  >
-                    Cancel
                   </button>
                 </div>
               </div>

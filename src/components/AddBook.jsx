@@ -12,7 +12,7 @@ class AddBook extends Component {
       status: "Available",
       coverPage: "",
       summary: "",
-      // noOfCopies: "",
+      noOfCopies: "1",
       pic: "https://www.mswordcoverpages.com/wp-content/uploads/2018/10/Book-cover-page-2-CRC.png",
     };
     this.changeIsbnHandler = this.changeIsbnHandler.bind(this);
@@ -22,7 +22,7 @@ class AddBook extends Component {
     this.changeStatusHandler = this.changeStatusHandler.bind(this);
     this.changeCoverPageHandler = this.changeCoverPageHandler.bind(this);
     this.changeSummaryHandler = this.changeSummaryHandler.bind(this);
-    //  this.changeNoOfCopiesHandler = this.changeNoOfCopiesHandler.bind(this);
+    this.changeNoOfCopiesHandler = this.changeNoOfCopiesHandler.bind(this);
     this.saveBook = this.saveBook.bind(this);
   }
   saveBook = (e) => {
@@ -35,7 +35,7 @@ class AddBook extends Component {
       status: this.state.status,
       coverPage: this.state.coverPage,
       summary: this.state.summary,
-      //   noOfCopies: this.state.noOfCopies,
+      noOfCopies: this.state.noOfCopies,
     };
     console.log("book=>" + JSON.stringify(book));
 
@@ -65,9 +65,9 @@ class AddBook extends Component {
   changeSummaryHandler = (event) => {
     this.setState({ summary: event.target.value });
   };
-  //changeNoOfCopiesHandler = (event) => {
-  //this.setState({ noOfCopies: event.target.value });
-  // };
+  changeNoOfCopiesHandler = (event) => {
+  this.setState({ noOfCopies: event.target.value });
+   };
   uploadImage = async (e) => {
     const files = e.target.files;
     const data = new FormData();
@@ -98,27 +98,56 @@ class AddBook extends Component {
     return (
       <div>
         <form>
-          <div class="card" style={{width:"800px"}}>
-            <h3> Add Book</h3>
+          <div class="card" style={{ width: "800px" }}>
+            <div className="row">
+              <div className="col-md-11">
+                <h3> Add Book</h3>
+              </div>
+              <div className="col-md-1">
+                <button
+                  className="btn btn-danger"
+                  onClick={this.cancel.bind(this)}
+                >
+                  X
+                </button>
+              </div>
+            </div>
             <div class="row">
-              <div class="col-md-4" style={{marginRight:"2%"}}>
+              <div class="col-md-4" style={{ marginRight: "2%" }}>
                 <br />
-                <br />
+               
                 <img src={this.state.pic} class="cover-img-card2" />
                 <input type="file" name="file" onChange={this.uploadImage} />
               </div>
 
-              <div class="col-md-7">
-                <div className="form-group">
-                  <label>ISBN</label>
-                  <input
-                    type="number"
-                    placeholder="ISBN"
-                    name="isbn"
-                    className="form-control"
-                    value={this.state.isbn}
-                    onChange={this.changeIsbnHandler}
-                  />
+              <div class="col">
+                <div className="row">
+                  <div className="col-md-9">
+                    <div className="form-group">
+                      <label>ISBN</label>
+                      <input
+                        type="number"
+                        placeholder="ISBN"
+                        name="isbn"
+                        className="form-control"
+                        value={this.state.isbn}
+                        onChange={this.changeIsbnHandler}
+                      />
+                    </div>
+                  </div>
+                  <div className="col-md-3">
+                    <div className="form-group">
+                      <label>Copies</label>
+                      <input
+                        type="number"
+                        name="noOfCopies"
+                        min="1"
+                        className="form-control"
+                        value={this.state.noOfCopies}
+                        onChange={this.changeNoOfCopiesHandler}
+                      />
+                    </div>
+                  </div>
                 </div>
                 <div className="form-group">
                   <label>Book Title</label>
@@ -163,7 +192,7 @@ class AddBook extends Component {
               </div>
             </div>
             <div class="row">
-              <div class="col-md-11">
+              <div class="col-md-12">
                 <div className="form-group">
                   <input
                     type="hidden"
@@ -185,19 +214,20 @@ class AddBook extends Component {
                   ></textarea>
                 </div>
 
-                <button className="btn btn-primary" onClick={this.saveBook}>
-                  Save
-                </button>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-md-10"></div>
+              <div className="col-md-2">
                 <button
-                  className="btn btn-danger"
-                  onClick={this.cancel.bind(this)}
-                  style={{ marginLeft: "10px" }}
+                  className="btn btn-primary"
+                  style={{ marginLeft: "32px" }}
+                  onClick={this.saveBook}
                 >
-                  Cancel
+                  Save
                 </button>
               </div>
             </div>
-            <br />
           </div>
         </form>
       </div>
@@ -205,3 +235,88 @@ class AddBook extends Component {
   }
 }
 export default AddBook;
+
+
+/* 
+       <div className="container">
+          <div className="row">
+            <div className="card col-md-6 offset-md-3 offset-md-3">
+              {this.getFormTitle()}
+              <div className="card-body">
+                <form>
+                  <div className="form-group">
+                    <label>Movie Title</label>
+                    <input
+                      placeholder="Movie Title"
+                      name="title"
+                      required
+                      className="form-control"
+                      value={this.state.title}
+                      onChange={this.changeTitleHandler}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>length</label>
+                    <input
+                      placeholder="Movie writer"
+                      name="writer"
+                      className="form-control"
+                      value={this.state.length}
+                      onChange={this.changeLengthHandler}
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <input
+                      type="hidden"
+                      name="status"
+                      className="form-control"
+                      value={this.state.status}
+                      onChange={this.changeStatusHandler}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>Image</label>
+                    <input
+                      placeholder="URL"
+                      name="image"
+                      className="form-control"
+                      value={this.state.image}
+                      onChange={this.changeImageHandler}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>18+</label>
+                    <input
+                      name="r18"
+                      className="form-control"
+                      value={this.state.r18}
+                      onChange={this.changeR18Handler}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>Summary</label>
+                    <input
+                      placeholder="Write the sumarry here"
+                      name="description"
+                      className="form-control"
+                      value={this.state.description}
+                      onChange={this.changeDescriptionHandler}
+                    />
+                  </div>
+
+                  <button className="btn btn-success" onClick={this.saveMovie}>
+                    Save
+                  </button>
+                  <button
+                    className="btn btn-danger"
+                    onClick={this.cancel.bind(this)}
+                    style={{ marginLeft: "10px" }}
+                  >
+                    Cancel
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>  */
