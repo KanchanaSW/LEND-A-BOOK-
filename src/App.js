@@ -15,6 +15,7 @@ import BoardUser from "./components/BoardUser";
 import BoardAdmin from "./components/BoardAdmin";
 
 import UserList from "./components/UserList";
+import Subscription from "./components/Subscription";
 
 import BookList from "./components/BookList";
 import ViewBook from "./components/ViewBook";
@@ -78,6 +79,11 @@ const App = () => {
         {currentUser ? (
           <div className="navbar-nav ml-auto">
             <li className="nav-item">
+              <Link to={"/subscription"} className="nav-link">
+                Subscription
+              </Link>
+            </li>
+            <li className="nav-item">
               <Link to={"/profile"} className="nav-link">
                 {currentUser.email}
               </Link>
@@ -114,18 +120,18 @@ const App = () => {
           <Route path="/user" component={BoardUser} />
           <Route path="/admin" component={BoardAdmin} />
 
-          <Route path="/userList" component={UserList}/>
-          
+          <Route path="/userList" component={UserList} />
+          <Route exact path="/subscription" component={Subscription} />
+
           <Route path="/bookList" component={BookList} />
           <Route path="/book/:id" component={ViewBook} />
           <Route path="/addBook" component={AddBook} />
           <Route path="/updateBook/:id" component={UpdateBook} />
 
-          <Route path="/movieList" component={MovieList}/>
-          <Route path="/addMovie" component={AddMovie}/>
-          <Route path="/updateMovie/:movieId" component={UpdateMovie}/>
-          <Route path="/movie/:movieId" component={ViewMovie}/>
-        
+          <Route path="/movieList" component={MovieList} />
+          <Route path="/addMovie" component={AddMovie} />
+          <Route path="/updateMovie/:movieId" component={UpdateMovie} />
+          <Route path="/movie/:movieId" component={ViewMovie} />
         </Switch>
       </div>
     </div>

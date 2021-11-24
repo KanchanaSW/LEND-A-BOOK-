@@ -17,6 +17,9 @@ const getAdminBoard = () => {
 const getAllUsers=()=>{
   return axios.get(API_URL2+"all",{headers:authHeader()});
 }
+const putUpdateSubscription = (subscriptionId) => {
+  return axios.put(API_URL2+"update-subs/"+subscriptionId,{headers:authHeader()});
+};
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
@@ -24,4 +27,5 @@ export default {
   getUserBoard,
   getAdminBoard,
   getAllUsers,
+  putUpdateSubscription,
 };
