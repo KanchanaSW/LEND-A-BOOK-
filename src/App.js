@@ -16,6 +16,7 @@ import BoardAdmin from "./components/BoardAdmin";
 
 import UserList from "./components/UserList";
 import Subscription from "./components/Subscription";
+import UpdateSubs from "./components/UpdateSubs";
 
 import BookList from "./components/BookList";
 import ViewBook from "./components/ViewBook";
@@ -122,6 +123,7 @@ const App = () => {
 
           <Route path="/userList" component={UserList} />
           <Route exact path="/subscription" component={Subscription} />
+          <Route path ="/updateSubs/:subscriptionId" component={UpdateSubs}/>
 
           <Route path="/bookList" component={BookList} />
           <Route path="/book/:id" component={ViewBook} />

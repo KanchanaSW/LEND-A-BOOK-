@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap');
+
+/* * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif
+}  */
+/* 
+ body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #0C4160;
+    padding: 30px 10px
+}  */
+
+.card-b {
+    max-width: 500px;
+    margin: auto;
+    color: black;
+    border-radius: 20 px;
+    background-color: #f7f7f7;
+    margin-top: 50px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+}
+/* 
+p {
+    margin: 0px
+} */
+
+.container-b .h8 {
+    font-size: 30px;
+    font-weight: 800;
+    text-align: center;
+}
+
+.btn-b.btn-primary {
+    width: 100%;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 15px;
+    background-image: linear-gradient(to right, #77A1D3 0%, #79CBCA 51%, #77A1D3 100%);
+    border: none;
+    transition: 0.5s;
+    background-size: 200% auto
+}
+
+.btn-b.btn.btn-primary:hover {
+    background-position: right center;
+    color: #fff;
+    text-decoration: none
+}
+
+.btn-b.btn-primary:hover .fas.fa-arrow-right {
+    transform: translate(15px);
+    transition: transform 0.2s ease-in
+}
+
+.form-control-b {
+    color: black;
+    background-color: silver;
+    border: 2px solid transparent;
+    height: 60px;
+    padding-left: 20px;
+    vertical-align: middle
+}
+
+.form-control-b:focus {
+    color: black;
+    background-color: darkgray;
+    border: 2px solid darkgray;
+    box-shadow: none
+}
+
+/* .text-b {
+    font-size: 14px;
+    font-weight: 600
+}
+
+::placeholder {
+    font-size: 14px;
+    font-weight: 600
+} */
