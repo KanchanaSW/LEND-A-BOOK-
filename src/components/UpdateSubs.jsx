@@ -57,7 +57,7 @@ class UpdateSubs extends React.Component {
       <div>
         <div class="container-b p-0">
           <div class="card-b px-4">
-            <p class="h8 py-3">Payment Details</p>
+            <p class="h8 py-3">Upgrade Your Plan</p>
             <div class="row gx-3">
               <div class="col-12">
                 <div class="d-flex flex-column">
@@ -66,7 +66,7 @@ class UpdateSubs extends React.Component {
                     class="form-control-b mb-3"
                     type="text"
                     placeholder="Name"
-                    value="Barry Allen"
+                    value="Saman Kumara"
                   />
                 </div>
               </div>
@@ -105,7 +105,7 @@ class UpdateSubs extends React.Component {
                   class="btn-b btn-primary mb-3"
                   onClick={this.updateSubscription}
                 >
-                  <span class="ps-3">Pay {this.state.membershipFee}</span>{" "}
+                  <span class="ps-3">Pay {this.state.membershipFee}</span>{" "}LKR
                   <span class="fas fa-arrow-right"></span>{" "}
                 </button>
               </div>

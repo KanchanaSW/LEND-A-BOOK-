@@ -28,6 +28,8 @@ import AddMovie from "./components/AddMovie";
 import UpdateMovie from "./components/UpdateMovie";
 import ViewMovie from "./components/ViewMovie";
 
+import IssueList from "./components/IssueList";
+
 const App = () => {
   const [showAdminBoard, setShowAdminBoard] = useState(false);
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -134,6 +136,8 @@ const App = () => {
           <Route path="/addMovie" component={AddMovie} />
           <Route path="/updateMovie/:movieId" component={UpdateMovie} />
           <Route path="/movie/:movieId" component={ViewMovie} />
+
+          <Route path="/issueList" component={IssueList}/>
         </Switch>
       </div>
     </div>
