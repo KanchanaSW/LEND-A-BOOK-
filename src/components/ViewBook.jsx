@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import BookService from "../services/book.service";
+import IssueService from "../services/issueService";
 
 class ViewBook extends Component {
   constructor(props) {
@@ -8,21 +9,54 @@ class ViewBook extends Component {
       id: this.props.match.params.id,
       book: {},
     };
+    this.saveReserve = this.saveReserve.bind(this);
+    this.cancel=this.cancel.bind(this);
   }
   componentDidMount() {
     BookService.viewBookDetails(this.state.id).then((res) => {
       this.setState({ book: res.data });
     });
   }
+  saveReserve = (e) => {
+    e.preventDefault();
+    let reserveTemp = {
+      bookId: this.state.id,
+    };
+    console.log("temp Reserve=>" + JSON.stringify(reserveTemp));
+
+    IssueService.postReserve(reserveTemp).then((res) => {
+      this.props.history.push("/bookList");
+    });
+  };
+  cancel() {
+    this.props.history.push("/bookList");
+  }
 
   render() {
     return (
       <div>
         <div class="card mb-3" style={{ maxWidth: "800px" }}>
+          <div className="row">
+            <div className="col-md-11">
+              <h3>View Book</h3>
+            </div>
+            <div className="col-md-1">
+              <button
+                className="btn btn-danger"
+                onClick={this.cancel.bind(this)}
+              >
+                X
+              </button>
+            </div>
+          </div>
           <div class="row g-0">
             <div class="col-5 col-lg-4">
-              <br/><br/>
-              <img src={this.state.book.coverPage}  class="img-fluid rounded-start" />
+              <br />
+              <br />
+              <img
+                src={this.state.book.coverPage}
+                class="img-fluid rounded-start"
+              />
             </div>
             <div class="col-7 col-lg-8">
               <div class="card-body">
@@ -34,20 +68,24 @@ class ViewBook extends Component {
                       <li class="list-group-item">{this.state.book.id}</li>
                       <li class="list-group-item">{this.state.book.isbn}</li>
                       <li class="list-group-item">{this.state.book.author}</li>
-                      <li class="list-group-item">{this.state.book.publisher}</li>
+                      <li class="list-group-item">
+                        {this.state.book.publisher}
+                      </li>
                       <li class="list-group-item">{this.state.book.status}</li>
-                      <li class="list-group-item">{this.state.book.noOfCopies}</li>
+                      <li class="list-group-item">
+                        {this.state.book.noOfCopies}
+                      </li>
                     </ul>
                   </small>
                 </p>
               </div>
               <div class="card-body">
-                <a href="#" class="card-link">
+                <button
+                  class="btn btn-outline-primary btn-sm"
+                  onClick={this.saveReserve}
+                >
                   Reserve
-                </a>
-                <a href="#" class="card-link">
-                  Another link
-                </a>
+                </button>
               </div>
             </div>
           </div>
@@ -58,8 +96,7 @@ class ViewBook extends Component {
 }
 export default ViewBook;
 
-
-        /*  <table className="table table-striped table-bordered">
+/*  <table className="table table-striped table-bordered">
           <thead>
             <tr>
               <th>ID</th>
