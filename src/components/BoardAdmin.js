@@ -50,6 +50,11 @@ const BoardAdmin = () => {
           Book Issues
         </Link>
       </div>
+      <div className="form-group">
+        <Link to={"/issueBook"} className="btn btn-info">
+          Issue Book
+        </Link>
+      </div>
     </div>
   );
 };

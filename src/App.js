@@ -29,6 +29,8 @@ import UpdateMovie from "./components/UpdateMovie";
 import ViewMovie from "./components/ViewMovie";
 
 import IssueList from "./components/IssueList";
+import ViewIssue from "./components/ViewIssue";
+import IssueBook from "./components/IssueBook";
 
 const App = () => {
   const [showAdminBoard, setShowAdminBoard] = useState(false);
@@ -138,6 +140,8 @@ const App = () => {
           <Route path="/movie/:movieId" component={ViewMovie} />
 
           <Route path="/issueList" component={IssueList}/>
+          <Route path="/issueNR/:issueId" component={ViewIssue}/>
+          <Route path="/issueBook" component={IssueBook}/>
         </Switch>
       </div>
     </div>
