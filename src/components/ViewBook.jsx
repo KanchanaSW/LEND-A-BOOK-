@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import BookService from "../services/book.service";
 import IssueService from "../services/issueService";
+import ReserveService from "../services/reserve.service";
 
 class ViewBook extends Component {
   constructor(props) {
@@ -24,7 +25,7 @@ class ViewBook extends Component {
     };
     console.log("temp Reserve=>" + JSON.stringify(reserveTemp));
 
-    IssueService.postReserve(reserveTemp).then((res) => {
+    ReserveService.postReserve(reserveTemp).then((res) => {
       this.props.history.push("/bookList");
     });
   };
