@@ -8,14 +8,18 @@ class IssueBook extends React.Component {
     this.state = {
       reserveTemp: [],
       list: [],
+      tempList: [],
       issueDate: "",
       expectedReturnDate: "",
+      bookId: "",
     };
     this.show = this.show.bind(this);
+    this.addItem = this.addItem.bind(this);
     this.delete = this.delete.bind(this);
     this.changeIssueDate = this.changeIssueDate.bind(this);
     this.changeExpectedReturnDate = this.changeExpectedReturnDate.bind(this);
     this.addIssue = this.addIssue.bind(this);
+    this.handleSelect = this.handleSelect.bind(this);
   }
   addIssue = (e) => {
     e.preventDefault();
@@ -35,23 +39,39 @@ class IssueBook extends React.Component {
   changeExpectedReturnDate = (event) => {
     this.setState({ expectedReturnDate: event.target.value });
   };
+
   componentDidMount() {
     ReserveService.getUserReserversList().then((res) => {
       this.setState({ reserveTemp: res.data });
     });
   }
+  handleSelect = (bookId) => {
+    if (this.state.list == "") {
+      this.addItem(bookId);
+    } else {
+      this.state.list.forEach((x) => {
+        if (x == bookId) {
+          console.log("exists => " + x);
+          this.delete(bookId);
+        } else if (x != bookId){
+          this.addItem(bookId);
+        }
+      });
+    }
+  };
 
   addItem = (bookId) => {
-    this.setState((prevState) => ({
-      list: [...prevState.list, bookId],
+    this.setState(() => ({
+      list: this.state.list.concat(bookId),
     }));
+    console.log(bookId);
   };
   delete(bookId) {
-    this.setState((prevState) => ({
-      list: prevState.list.filter((el) => el != bookId),
+    this.setState(() => ({
+      list: this.state.list.filter((el) => el != bookId),
     }));
   }
-  show = () => {
+  show = (res) => {
     console.log(this.state.list);
   };
   render() {
@@ -61,6 +81,7 @@ class IssueBook extends React.Component {
         <table className="table table-striped table-bordered">
           <thead>
             <tr>
+              <th></th>
               <th>Reserve-Id</th>
               <th>BookId</th>
             </tr>
@@ -69,16 +90,15 @@ class IssueBook extends React.Component {
           <tbody>
             {this.state.reserveTemp.map((rt) => (
               <tr key={rt.issueId}>
+                <td>
+                  <input
+                    style={{ paddingLeft: "10px"}}
+                    type="checkbox"
+                    onClick={() => this.handleSelect(rt.bookId)}
+                  />
+                </td>
                 <td>{rt.reserveId}</td>
                 <td>{rt.bookId}</td>
-                <td>
-                  <button
-                    className="btn btn-outline-success btn-sm"
-                    onClick={() => this.addItem(rt.bookId)}
-                  >
-                    add
-                  </button>
-                </td>
               </tr>
             ))}
           </tbody>
@@ -86,24 +106,6 @@ class IssueBook extends React.Component {
         <br></br>
         <br></br>
         <div>
-          <ol>
-            {this.state.list.map((subItems, sIndex) => {
-              return (
-                (<li key={subItems + sIndex}> {subItems}</li>),
-                (
-                  <li>
-                    <p
-                      style={{ color: "red", marginLeft: "10px" }}
-                      onClick={this.delete.bind(this, subItems)}
-                    >
-                      x
-                    </p>
-                  </li>
-                )
-              );
-            })}
-          </ol>
-         
           <div className="row">
             <div className="col">
               <div className="form-group">

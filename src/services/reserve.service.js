@@ -11,6 +11,10 @@ class ReserveService {
     });
   };
 
+  getUserBookReserve=(bookId)=>{
+    return axios.get(API_URL + "userBookReserve/"+bookId,{headers:authHeader()});
+  };
+
   getUserReserversList=()=>{
       return axios.get(API_URL + "userReserves",{headers:authHeader()});
   };
