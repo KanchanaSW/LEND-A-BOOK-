@@ -10,8 +10,8 @@ class IssueService {
       headers: authHeader(),
     });
   };
-  putExtendIssueBook = (issue, issueId) => {
-    return axios.put(API_URL + "extendIssue/" + issueId, issue, {
+  getExtendIssueBook = (issueId) => {
+    return axios.get(API_URL + "extendIssue/" + issueId, {
       headers: authHeader(),
     });
   };

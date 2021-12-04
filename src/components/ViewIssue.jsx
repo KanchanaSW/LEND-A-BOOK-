@@ -7,15 +7,24 @@ class ViewIssue extends Component {
     this.state = {
       issueId: this.props.match.params.issueId,
       issuedBooks: [],
-      issuedBooksR:[],
+      issuedBooksR: [],
     };
+    this.returnBook=this.returnBook.bind(this);
+  }
+  returnBook(issuedBookId) {
+    IssueService.getReturnABook(issuedBookId).then((res)=>{
+      this.props.history.push("/issueList");
+      console.log({x:res.data}+"// status //"+res.status);
+    })
   }
   componentDidMount() {
     IssueService.getViewMyIssuedBooksListNR(this.state.issueId).then((res) => {
-      this.setState({ issuedBooks: res.data });console.log({ issuedBooks: res.data });
+      this.setState({ issuedBooks: res.data });
+      console.log({ issuedBooks: res.data });
     });
-    IssueService.getViewMyIssuedBooksListR(this.state.issueId).then((res)=>{
-        this.setState({ issuedBooksR: res.data});console.log({ issuedBooksR: res.data });
+    IssueService.getViewMyIssuedBooksListR(this.state.issueId).then((res) => {
+      this.setState({ issuedBooksR: res.data });
+      console.log({ issuedBooksR: res.data });
     });
   }
   render() {
@@ -30,7 +39,7 @@ class ViewIssue extends Component {
               <th>Issued-Date</th>
               <th>Expected-Return-Date</th>
               <th>Charge</th>
-              <th>View</th>
+              <th>Return</th>
             </tr>
           </thead>
 
@@ -42,6 +51,14 @@ class ViewIssue extends Component {
                 <td>{issuedBook.startDate}</td>
                 <td>{issuedBook.endDate}</td>
                 <td>{issuedBook.amount}</td>
+                <td>
+                  <button
+                    className="btn btn-outline-primary btn-sm"
+                    onClick={() => this.returnBook(issuedBook.issuedBookId)}
+                  >
+                    Return
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>
