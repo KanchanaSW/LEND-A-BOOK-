@@ -59,4 +59,10 @@ class IssueService {
     });
   };
 }
+//testing movie iss addid
+  postAddMovieIssuetest = (issue) => {
+    return axios.post(API_URL + "addNewIssueMovie", issue, {
+      headers: authHeader(),
+    });
+  };
 export default new IssueService();
