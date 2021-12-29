@@ -11,15 +11,24 @@ class ReserveService {
     });
   };
 
-  getUserBookReserve=(bookId)=>{
-    return axios.get(API_URL + "userBookReserve/"+bookId,{headers:authHeader()});
+  getUserBookReserve = (bookId) => {
+    return axios.get(API_URL + "userBookReserve/" + bookId, {
+      headers: authHeader(),
+    });
   };
 
-  getUserReserversList=()=>{
-      return axios.get(API_URL + "userReserves",{headers:authHeader()});
+  getUserReserversList = () => {
+    return axios.get(API_URL + "userReservesBooks", {
+      headers: authHeader(),
+    });
   };
-  deleteAResrve=(reserveId)=>{
-      return axios.delete(API_URL + "deleteReserve/"+reserveId,{headers:authHeader()});
+  getUserReservesMovieList = () => {
+    return axios.get(API_URL + "userReservesMovies", { headers: authHeader() });
+  };
+  deleteAResrve = (reserveId) => {
+    return axios.delete(API_URL + "deleteReserve/" + reserveId, {
+      headers: authHeader(),
+    });
   };
 }
 export default new ReserveService();

@@ -11,7 +11,7 @@ class ViewBook extends Component {
       book: {},
     };
     this.saveReserve = this.saveReserve.bind(this);
-    this.cancel=this.cancel.bind(this);
+    this.cancel = this.cancel.bind(this);
   }
   componentDidMount() {
     BookService.viewBookDetails(this.state.id).then((res) => {

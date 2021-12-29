@@ -1,6 +1,7 @@
 import React from "react";
 import MovieService from "../services/movie.service";
 import IssueService from "../services/issueService";
+import ReserveService from "../services/reserve.service";
 
 class ViewMovie extends React.Component {
   constructor(props) {
@@ -24,11 +25,10 @@ class ViewMovie extends React.Component {
       movieId: this.state.movieId,
     };
     console.log("temp Reserve=>" + JSON.stringify(reserveTemp));
-
-    IssueService.postReserve(reserveTemp).then((res) => {
+    ReserveService.postReserve(reserveTemp).then((res) => {
       this.props.history.push("/movieList");
     });
-  };
+  }; /*  */
   cancel() {
     this.props.history.push("/movieList");
   }

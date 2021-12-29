@@ -2,7 +2,7 @@ import React from "react";
 import ReserveService from "../services/reserve.service";
 import IssueService from "../services/issueService";
 
-class IssueBook extends React.Component {
+class IssueMovie extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -11,7 +11,7 @@ class IssueBook extends React.Component {
       tempList: [],
       issueDate: "",
       expectedReturnDate: "",
-      bookId: "",
+      movieId: "",
     };
     this.show = this.show.bind(this);
     this.addItem = this.addItem.bind(this);
@@ -29,7 +29,7 @@ class IssueBook extends React.Component {
       expectedReturnDate: this.state.expectedReturnDate,
     };
     console.log("issue=>" + JSON.stringify(issue));
-    IssueService.postAddBookIssue(issue).then((res) => {
+    IssueService.postAddMovieIssue(issue).then((res) => {
       this.props.history.push("/issueList");
     });
   };
@@ -41,34 +41,35 @@ class IssueBook extends React.Component {
   };
 
   componentDidMount() {
-    ReserveService.getUserReserversList().then((res) => {
+    ReserveService.getUserReservesMovieList().then((res) => {
+      console.log(res.data);
       this.setState({ reserveTemp: res.data });
     });
   }
-  handleSelect = (bookId) => {
+  handleSelect = (movieId) => {
     if (this.state.list == "") {
-      this.addItem(bookId);
+      this.addItem(movieId);
     } else {
       this.state.list.forEach((x) => {
-        if (x == bookId) {
+        if (x == movieId) {
           console.log("exists => " + x);
-          this.delete(bookId);
-        } else if (x != bookId) {
-          this.addItem(bookId);
+          this.delete(movieId);
+        } else if (x != movieId) {
+          this.addItem(movieId);
         }
       });
     }
   };
 
-  addItem = (bookId) => {
+  addItem = (movieId) => {
     this.setState(() => ({
-      list: this.state.list.concat(bookId),
+      list: this.state.list.concat(movieId),
     }));
-    console.log(bookId);
+    console.log(movieId);
   };
-  delete(bookId) {
+  delete(movieId) {
     this.setState(() => ({
-      list: this.state.list.filter((el) => el != bookId),
+      list: this.state.list.filter((el) => el != movieId),
     }));
   }
   show = (res) => {
@@ -83,7 +84,7 @@ class IssueBook extends React.Component {
             <tr>
               <th></th>
               <th>Reserve-Id</th>
-              <th>BookId</th>
+              <th>MovieId</th>
             </tr>
           </thead>
 
@@ -94,11 +95,11 @@ class IssueBook extends React.Component {
                   <input
                     style={{ paddingLeft: "10px" }}
                     type="checkbox"
-                    onClick={() => this.handleSelect(rt.bookId)}
+                    onClick={() => this.handleSelect(rt.movieId)}
                   />
                 </td>
                 <td>{rt.reserveId}</td>
-                <td>{rt.bookId}</td>
+                <td>{rt.movieId}</td>
               </tr>
             ))}
           </tbody>
@@ -149,4 +150,4 @@ class IssueBook extends React.Component {
     );
   }
 }
-export default IssueBook;
+export default IssueMovie;

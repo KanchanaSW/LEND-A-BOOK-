@@ -10,6 +10,7 @@ class IssueList extends React.Component {
     };
     this.viewIssue = this.viewIssue.bind(this);
     this.viewReserves = this.viewReserves.bind(this);
+    this.viewMovieReserves = this.viewMovieReserves.bind(this);
     this.extendIssueDate = this.extendIssueDate.bind(this);
   }
   componentDidMount() {
@@ -44,12 +45,18 @@ class IssueList extends React.Component {
   viewReserves() {
     this.props.history.push(`/issueBook`);
   }
+  viewMovieReserves(){
+    this.props.history.push(`/issueMovie`);
+  }
 
   render() {
     return (
       <div>
         <div className="btn btn-primary" onClick={this.viewReserves}>
           Reserves
+        </div>
+        <div className="btn btn-primary" onClick={this.viewMovieReserves}>
+          Movie-Reserves
         </div>
         <h3>Current Issues</h3>
         <table className="table table-striped table-bordered">
@@ -77,8 +84,8 @@ class IssueList extends React.Component {
                 <td>{issue.charges}</td>
                 <td>
                   <button
-                  className="btn btn-outline-primary btn-sm"
-                  onClick={()=> this.extendIssueDate(issue.issueId)}
+                    className="btn btn-outline-primary btn-sm"
+                    onClick={() => this.extendIssueDate(issue.issueId)}
                   >
                     Extend
                   </button>
