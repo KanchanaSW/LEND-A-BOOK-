@@ -30,6 +30,7 @@ import ViewMovie from "./components/ViewMovie";
 
 import IssueList from "./components/IssueList";
 import ViewIssue from "./components/ViewIssue";
+import ViewIssueMovie from "./components/ViewIssueMovie";
 import IssueBook from "./components/IssueBook";
 
 const App = () => {
@@ -141,6 +142,7 @@ const App = () => {
 
           <Route path="/issueList" component={IssueList}/>
           <Route path="/issueNR/:issueId" component={ViewIssue}/>
+          <Route path="/issueNRmovie/:issueId" component={ViewIssueMovie}/>
           <Route path="/issueBook" component={IssueBook}/>
         </Switch>
       </div>

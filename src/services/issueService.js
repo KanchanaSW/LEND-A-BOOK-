@@ -58,11 +58,12 @@ class IssueService {
       headers: authHeader(),
     });
   };
-}
-//testing movie iss addid
-  postAddMovieIssuetest = (issue) => {
-    return axios.post(API_URL + "addNewIssueMovie", issue, {
-      headers: authHeader(),
-    });
+
+  //check if is books or
+  getCheckIsBooks = (issueId) => {
+    return axios.get(API_URL + "isBooks/" + issueId, { headers: authHeader() });
   };
+}
+
+
 export default new IssueService();

@@ -29,7 +29,17 @@ class IssueList extends React.Component {
     console.log("success");
   }
   viewIssue(issueId) {
-    this.props.history.push(`/issueNR/${issueId}`);
+    IssueService.getCheckIsBooks(issueId).then((res) => {
+      console.log(res.data);
+      if (res.data === "books") {
+        this.props.history.push(`/issueNR/${issueId}`);
+      } else {
+        console.log("movies");
+        this.props.history.push(`/issueNRmovie/${issueId}`);
+      }
+    });
+
+    
   }
   viewReserves() {
     this.props.history.push(`/issueBook`);
