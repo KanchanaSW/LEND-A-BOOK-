@@ -23,7 +23,7 @@ class IssueList extends React.Component {
     });
   }
   extendIssueDate(issueId) {   
-    IssueService.getExtendIssueBook(issueId).then((res)=>{
+    IssueService.getExtendIssue(issueId).then((res)=>{
         window.location.reload(false);
     })
     console.log("success");

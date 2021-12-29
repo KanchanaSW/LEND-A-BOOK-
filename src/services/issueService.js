@@ -4,19 +4,25 @@ import authHeader from "./auth-header";
 const API_URL = "http://localhost:8080/api/admin/";
 
 class IssueService {
-    
   postAddBookIssue = (issue) => {
     return axios.post(API_URL + "addNewIssue", issue, {
       headers: authHeader(),
     });
   };
-  getExtendIssueBook = (issueId) => {
+  //add issue movies
+  postAddMovieIssue = (issue) => {
+    return axios.post(API_URL + "addNewIssueMovie", issue, {
+      headers: authHeader(),
+    });
+  };
+  //extend issue both book and movie
+  getExtendIssue = (issueId) => {
     return axios.get(API_URL + "extendIssue/" + issueId, {
       headers: authHeader(),
     });
   };
-  getReturnIssuedBook = (issueId) => {
-    return axios.get(API_URL + "returnAllBooks/" + issueId, {
+  getReturnIssued = (issueId) => {
+    return axios.get(API_URL + "returnAllIssues/" + issueId, {
       headers: authHeader(),
     });
   };
@@ -25,24 +31,30 @@ class IssueService {
       headers: authHeader(),
     });
   };
-  getViewMyIssuesListNR = () => {
-    return axios.get(API_URL + "viewMyIssues", { headers: authHeader() });
+  //return a movie
+  getReturnAMovie = (issuedMovieId) => {
+    return axios.get(API_URL + "returnAMovie/" + issuedMovieId, {
+      headers: authHeader(),
+    });
   };
-  getViewMyIssuedBooksListNR = (issueId) => {
-    return axios.get(API_URL + "viewIssuedBooks/" + issueId, {
+  getViewMyIssuesListNR = () => {
+    return axios.get(API_URL + "viewMyIssues/", { headers: authHeader() });
+  };
+  // returned Issues (Completed issues)
+  getViewMyIssuesListR = () => {
+    return axios.get(API_URL + "viewMyReturnedIssues/", {
       headers: authHeader(),
     });
   };
 
-  // returned Issues (Completed issues)
-  getViewMyIssuesListR = () => {
-    return axios.get(API_URL + "viewMyReturnedIssues", {
+  getViewSingleIssuedNR = (issueId) => {
+    return axios.get(API_URL + "viewIssued/" + issueId, {
       headers: authHeader(),
     });
   };
   //returned issued books.
-  getViewMyIssuedBooksListR = (issueId) => {
-    return axios.get(API_URL + "viewReturnedIssuedBooks/" + issueId, {
+  getViewSingleIssuedR = (issueId) => {
+    return axios.get(API_URL + "viewReturnedIssued/" + issueId, {
       headers: authHeader(),
     });
   };

@@ -15,18 +15,19 @@ class ViewIssue extends Component {
     IssueService.getReturnABook(issuedBookId).then((res)=>{
       this.props.history.push("/issueList");
       console.log({x:res.data}+"// status //"+res.status);
-    })
-  }
+    });
+  };
   componentDidMount() {
-    IssueService.getViewMyIssuedBooksListNR(this.state.issueId).then((res) => {
+    IssueService.getViewSingleIssuedNR(this.state.issueId).then((res) => {
       this.setState({ issuedBooks: res.data });
       console.log({ issuedBooks: res.data });
     });
-    IssueService.getViewMyIssuedBooksListR(this.state.issueId).then((res) => {
+    IssueService.getViewSingleIssuedR(this.state.issueId).then((res) => {
       this.setState({ issuedBooksR: res.data });
+      console.log("Returned issue list");
       console.log({ issuedBooksR: res.data });
     });
-  }
+  };
   render() {
     return (
       <div>
