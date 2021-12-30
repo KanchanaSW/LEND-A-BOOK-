@@ -84,6 +84,7 @@ class IssueBook extends React.Component {
               <th></th>
               <th>Reserve-Id</th>
               <th>BookId</th>
+              <th>Book-Title</th>
             </tr>
           </thead>
 
@@ -94,11 +95,12 @@ class IssueBook extends React.Component {
                   <input
                     style={{ paddingLeft: "10px" }}
                     type="checkbox"
-                    onClick={() => this.handleSelect(rt.bookId)}
+                    onClick={() => this.handleSelect(rt.book.id)}
                   />
                 </td>
                 <td>{rt.reserveId}</td>
-                <td>{rt.bookId}</td>
+                <td>{rt.book.id}</td>
+                <td>{rt.book.title}</td>
               </tr>
             ))}
           </tbody>

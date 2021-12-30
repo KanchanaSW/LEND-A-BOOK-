@@ -85,6 +85,7 @@ class IssueMovie extends React.Component {
               <th></th>
               <th>Reserve-Id</th>
               <th>MovieId</th>
+              <th>Movie-Title</th>
             </tr>
           </thead>
 
@@ -95,16 +96,22 @@ class IssueMovie extends React.Component {
                   <input
                     style={{ paddingLeft: "10px" }}
                     type="checkbox"
-                    onClick={() => this.handleSelect(rt.movieId)}
+                    onClick={() => this.handleSelect(rt.movie.movieId)}
                   />
                 </td>
                 <td>{rt.reserveId}</td>
-                <td>{rt.movieId}</td>
+                <td>{rt.movie.movieId}</td>
+                <td>{rt.movie.title}</td>
               </tr>
             ))}
           </tbody>
         </table>
         <br></br>
+        <button
+          style={{ paddingLeft: "10px" }}
+          type="checkbox"
+          onClick={() => this.show()}
+        />
         <br></br>
         <div>
           <div className="row">

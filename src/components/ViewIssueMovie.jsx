@@ -55,7 +55,7 @@ class ViewIssueMovie extends Component {
                 <td>
                   <button
                     className="btn btn-outline-primary btn-sm"
-                    onClick={() => this.returnMovie(im.issuedBookId)}
+                    onClick={() => this.returnMovie(im.issuedMovieId)}
                   >
                     Return
                   </button>
