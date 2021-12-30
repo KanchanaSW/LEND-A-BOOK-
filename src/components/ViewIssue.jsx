@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import IssueService from "../services/issueService";
+import Swal from "sweetalert2";
 
 class ViewIssue extends Component {
   constructor(props) {
@@ -12,10 +13,51 @@ class ViewIssue extends Component {
     this.returnBook=this.returnBook.bind(this);
   }
   returnBook(issuedBookId) {
-    IssueService.getReturnABook(issuedBookId).then((res)=>{
+   /*  IssueService.getReturnABook(issuedBookId).then((res)=>{
       this.props.history.push("/issueList");
-      console.log({x:res.data}+"// status //"+res.status);
-    });
+    //  console.log({x:res.data}+"// status //"+res.status);
+    }); */
+
+        IssueService.getReturnABook(issuedBookId)
+          .then((res) => {
+            console.log(res.data);
+            if (res.data === "success") {
+              Swal.fire({
+                title: "Return book Success!",
+                text: "Check the Issued book List!",
+                type: "success",
+                icon: "success",
+              }).then(this.props.history.push("/issueList"));
+            } else if (res.data === "un-successful") {
+              Swal.fire({
+                title: "Error occured",
+                text: "Return faild!",
+                type: "error",
+                icon: "warning",
+              }).then(function () {
+                console.log("Error : un-successfull");
+              });
+            } else {
+              Swal.fire({
+                title: "Network error",
+                text: "Extend Failed!",
+                type: "error",
+                icon: "warning",
+              }).then(function () {
+                console.log("Exception error");
+              });
+            }
+          })
+          .catch((error) => {
+            Swal.fire({
+              title: "Network error",
+              text: "Added Failed!",
+              type: "error",
+              icon: "warning",
+            }).then(function () {
+              console.log(error.response.data);
+            });
+          });
   };
   componentDidMount() {
     IssueService.getViewSingleIssuedNR(this.state.issueId).then((res) => {
