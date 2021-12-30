@@ -1,6 +1,7 @@
 import React from "react";
 import ReserveService from "../services/reserve.service";
 import IssueService from "../services/issueService";
+import Swal from "sweetalert2";
 
 class IssueMovie extends React.Component {
   constructor(props) {
@@ -28,10 +29,62 @@ class IssueMovie extends React.Component {
       issueDate: this.state.issueDate,
       expectedReturnDate: this.state.expectedReturnDate,
     };
-    console.log("issue=>" + JSON.stringify(issue));
-    IssueService.postAddMovieIssue(issue).then((res) => {
+    //console.log("issue=>" + JSON.stringify(issue));
+ /*    IssueService.postAddMovieIssue(issue).then((res) => {
       this.props.history.push("/issueList");
     });
+ */
+
+    IssueService.postAddMovieIssue(issue)
+      .then((res) => {
+        console.log(res.data);
+        if (res.data === "success") {
+          Swal.fire({
+            title: "Added Success!",
+            text: "Check the Issue List!",
+            type: "success",
+            icon: "success",
+          }).then(this.props.history.push("/issueList"));
+        } else if (res.data === "movie is un-available") {
+          Swal.fire({
+            title: "movie is not available",
+            text: "Issued failed!",
+            type: "error",
+            icon: "warning",
+          }).then(function () {
+            console.log("Error : movie is not available");
+          });
+        } else if (res.data === "Number of movies for subscription is over") {
+          Swal.fire({
+            title: "Number of movies for subscription is over",
+            text: "Issued failed!",
+            type: "error",
+            icon: "warning",
+          }).then(function () {
+            console.log("Number of movies for subscription is over");
+          });
+        } else {
+          Swal.fire({
+            title: "Network error",
+            text: "Added Failed!",
+            type: "error",
+            icon: "warning",
+          }).then(function () {
+            console.log("Exception error");
+          });
+        }
+      })
+      .catch((error) => {
+        Swal.fire({
+          title: "Network error",
+          text: "Added Failed!",
+          type: "error",
+          icon: "warning",
+        }).then(function () {
+          console.log(error.response.data);
+        });
+      });
+
   };
   changeIssueDate = (event) => {
     this.setState({ issueDate: event.target.value });
@@ -107,11 +160,6 @@ class IssueMovie extends React.Component {
           </tbody>
         </table>
         <br></br>
-        <button
-          style={{ paddingLeft: "10px" }}
-          type="checkbox"
-          onClick={() => this.show()}
-        />
         <br></br>
         <div>
           <div className="row">

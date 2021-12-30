@@ -1,5 +1,6 @@
 import React from "react";
 import MovieService from "../services/movie.service";
+import Swal from "sweetalert2";
 
 class AddMovie extends React.Component {
   constructor(props) {
@@ -27,18 +28,50 @@ class AddMovie extends React.Component {
     e.preventDefault();
     let movie = {
       title: this.state.title,
-      length: this.state.length+"mins",
+      length: this.state.length + "mins",
       status: this.state.status,
       image: this.state.image,
       r18: this.state.r18,
       description: this.state.description,
       noOfCopies: this.state.noOfCopies,
     };
-    console.log("movie=>" + JSON.stringify(movie));
+    //console.log("movie=>" + JSON.stringify(movie));
 
-    MovieService.postAddMovie(movie).then((res) => {
-      this.props.history.push("/movieList");
-    });
+    MovieService.postAddMovie(movie)
+      .then((res) => {
+        console.log(res.data);
+        if (res.data === "success") {
+          Swal.fire({
+            title: "Added Success!",
+            text: "Check the Movie List!",
+            type: "success",
+            icon: "success",
+          }).then(this.props.history.push("/movieList"));   
+        } else {
+          console.log(res.statusText);
+        }
+      })
+      .catch((error) => {
+        if (error.response.data === "existsTitle") {
+          Swal.fire({
+            title: "Movie already exists with the same Title",
+            text: "Added Failed!",
+            type: "error",
+            icon: "warning",
+          }).then(function () {
+            console.log("Error : Movie already exists with the same Title");
+          });
+        } else {
+          Swal.fire({
+            title: "Network error",
+            text: "Added Failed!",
+            type: "error",
+            icon: "warning",
+          }).then(function () {
+            console.log("Exception error");
+          });
+        }
+      });
   };
 
   changeTitleHandler = (event) => {
@@ -141,7 +174,7 @@ class AddMovie extends React.Component {
                       />
                     </div>
                   </div>
-                 
+
                   <div className="col-md-4">
                     <div className="form-group">
                       <label>Copies</label>

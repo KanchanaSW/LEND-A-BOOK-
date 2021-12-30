@@ -1,5 +1,6 @@
 import React from "react";
 import BookService from "../services/book.service";
+import Swal from "sweetalert2";
 
 class BookList extends React.Component {
   constructor(props) {
@@ -24,11 +25,44 @@ class BookList extends React.Component {
     this.props.history.push(`/updateBook/${id}`);
   }
   deleteBook(id) {
-    BookService.deleteBookDetails(id).then((res) => {
-      this.setState({
-        books: this.state.books.filter((book) => book.id != id),
-      });
-    });
+     Swal.fire({
+       title: "Are you sure?",
+       text: "You won't be able to revert this!",
+       icon: "warning",
+       showCancelButton: true,
+       confirmButtonColor: "#3085d6",
+       cancelButtonColor: "#d33",
+       confirmButtonText: "Yes, delete it!",
+     }).then((result) => {
+       if (result.isConfirmed) {
+          BookService.deleteBookDetails(id).then((res) => {
+            this.setState({
+              books: this.state.books.filter((book) => book.id != id),
+            });
+          }).catch((error)=>{
+              if (error.response.data === "dontExists") {
+                Swal.fire({
+                  title: "Cannot find the book",
+                  text: "Delete Failed!",
+                  type: "error",
+                  icon: "warning",
+                }).then(function () {
+                  console.log("Error : Cannot find the book");
+                });
+              } else {
+                Swal.fire({
+                  title: "Book has issued",
+                  text: "Delete Failed!",
+                  type: "error",
+                  icon: "warning",
+                }).then(function () {
+                  console.log("Exception error");
+                });
+              }
+          })
+       }
+     });   
+  
   }
   viewBook(id) {
     this.props.history.push(`/book/${id}`);
@@ -79,61 +113,3 @@ class BookList extends React.Component {
   }
 }
 export default BookList;
-
-
-/* 
-
-            <table className="table table-striped table-bordered">
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Title</th>
-                  <th>Writer</th>
-                  <th>Status</th>
-                  <th>Image</th>
-                  <th>18+</th>
-                  <th>Summary</th>
-                </tr>
-              </thead>
-
-              <tbody>
-                {this.state.movies.map((movie) => (
-                  <tr key={movie.movieId}>
-                    <td>{movie.movieId}</td>
-                    <td>{movie.title}</td>
-                    <td>{movie.writer}</td>
-                    <td>{movie.status}</td>
-                    <td>{movie.image}</td>
-                    <td>{movie.r18}</td>
-                    <td>{movie.description}</td>
-
-                    <td>
-                      <button
-                        onClick={() => this.editMovie(movie.movieId)}
-                        className="btn btn-info"
-                      >
-                        Update
-                      </button>
-                    </td>
-                    <td>
-                      <button
-                        style={{ marginLeft: "10px" }}
-                        onClick={() => this.viewMovie(movie.movieId)}
-                        className="btn btn-info"
-                      >
-                        View
-                      </button>
-                    </td>
-                    <td>
-                      <button
-                        style={{ marginLeft: "10px" }}
-                        onClick={() => this.deleteMovie(movie.movieId)}
-                        className="btn btn-danger"
-                      >
-                        Delete
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table> */

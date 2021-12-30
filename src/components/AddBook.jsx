@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import BookService from "../services/book.service";
+import Swal from "sweetalert2";  
 
 class AddBook extends Component {
   constructor(props) {
@@ -37,11 +38,52 @@ class AddBook extends Component {
       summary: this.state.summary,
       noOfCopies: this.state.noOfCopies,
     };
-    console.log("book=>" + JSON.stringify(book));
+    //console.log("book=>" + JSON.stringify(book));
 
-    BookService.postAddBook(book).then((res) => {
-      this.props.history.push("/bookList");
-    });
+    BookService.postAddBook(book)
+      .then((res) => {
+        console.log(res.data);
+        if (res.data === "success") {
+           Swal.fire({
+             title: "Added Success!",
+             text: "Check the Book List!",
+             type: "success",
+             icon: "success",
+           }).then(this.props.history.push("/bookList"));          
+        } else {
+          console.log(res.statusText);
+        }
+      })
+      .catch((error) => {
+        if (error.response.data === "existsTitle") {
+          Swal.fire({
+            title: "Book already exists with the same Title",
+            text: "Added Failed!",
+            type: "error",
+            icon: "warning",
+          }).then(function () {
+            console.log("Error : Book already exists with the same Title");
+          });
+        } else if (error.response.data === "existsIsbn") {
+           Swal.fire({
+             title: "Book already exists with the same ISBN",
+             text: "Added Failed!",
+             type: "error",
+             icon: "warning",
+           }).then(function () {
+             console.log("Error : Book already exists with the same isbn");
+           });
+        } else {
+            Swal.fire({
+              title: "Network error",
+              text: "Added Failed!",
+              type: "error",
+              icon: "warning",
+            }).then(function () {
+              console.log("Exception error");
+            });
+        }
+      });
   };
 
   changeIsbnHandler = (event) => {
@@ -66,8 +108,8 @@ class AddBook extends Component {
     this.setState({ summary: event.target.value });
   };
   changeNoOfCopiesHandler = (event) => {
-  this.setState({ noOfCopies: event.target.value });
-   };
+    this.setState({ noOfCopies: event.target.value });
+  };
   uploadImage = async (e) => {
     const files = e.target.files;
     const data = new FormData();
@@ -115,7 +157,7 @@ class AddBook extends Component {
             <div class="row">
               <div class="col-md-4" style={{ marginRight: "2%" }}>
                 <br />
-               
+
                 <img src={this.state.pic} class="cover-img-card2" />
                 <input type="file" name="file" onChange={this.uploadImage} />
               </div>
@@ -213,7 +255,6 @@ class AddBook extends Component {
                     rows="4"
                   ></textarea>
                 </div>
-
               </div>
             </div>
             <div className="row">
@@ -235,7 +276,6 @@ class AddBook extends Component {
   }
 }
 export default AddBook;
-
 
 /* 
        <div className="container">

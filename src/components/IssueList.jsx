@@ -1,5 +1,6 @@
 import React from "react";
 import IssueService from "../services/issueService";
+import Swal from "sweetalert2";
 
 class IssueList extends React.Component {
   constructor(props) {
@@ -24,10 +25,53 @@ class IssueList extends React.Component {
     });
   }
   extendIssueDate(issueId) {   
-    IssueService.getExtendIssue(issueId).then((res)=>{
+    /* IssueService.getExtendIssue(issueId).then((res)=>{
         window.location.reload(false);
-    })
-    console.log("success");
+    }) */
+    
+
+    IssueService.getExtendIssue(issueId)
+      .then((res) => {
+        console.log(res.data);
+        if (res.data === "success") {
+          Swal.fire({
+            title: "Extended Success!",
+            text: "Check the Issue List!",
+            type: "success",
+            icon: "success",
+          }).then(window.location.reload(false));
+        } else if (res.data === "Already extended") {
+          Swal.fire({
+            title: "Already extended",
+            text: "Already extended!",
+            type: "error",
+            icon: "warning",
+          }).then(function () {
+            console.log("Error : Already extended");
+          });
+        }  else {
+          Swal.fire({
+            title: "Network error",
+            text: "Extend Failed!",
+            type: "error",
+            icon: "warning",
+          }).then(function () {
+            console.log("Exception error");
+          });
+        }
+      })
+      .catch((error) => {
+        Swal.fire({
+          title: "Network error",
+          text: "Added Failed!",
+          type: "error",
+          icon: "warning",
+        }).then(function () {
+          console.log(error.response.data);
+        });
+      });
+
+
   }
   viewIssue(issueId) {
     IssueService.getCheckIsBooks(issueId).then((res) => {
