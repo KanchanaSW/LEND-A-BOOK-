@@ -19,55 +19,6 @@ class AddMovie extends React.Component {
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-  /*  saveMovie = (e) => {
-    e.preventDefault();
-    let movie = {
-      title: this.state.title,
-      length: this.state.length + "mins",
-      status: this.state.status,
-      image: this.state.image,
-      r18: this.state.r18,
-      description: this.state.description,
-      noOfCopies: this.state.noOfCopies,
-    };
-    //console.log("movie=>" + JSON.stringify(movie));
-
-    MovieService.postAddMovie(movie)
-      .then((res) => {
-        console.log(res.data);
-        if (res.data === "success") {
-          Swal.fire({
-            title: "Added Success!",
-            text: "Check the Movie List!",
-            type: "success",
-            icon: "success",
-          }).then(this.props.history.push("/movieList"));   
-        } else {
-          console.log(res.statusText);
-        }
-      })
-      .catch((error) => {
-        if (error.response.data === "existsTitle") {
-          Swal.fire({
-            title: "Movie already exists with the same Title",
-            text: "Added Failed!",
-            type: "error",
-            icon: "warning",
-          }).then(function () {
-            console.log("Error : Movie already exists with the same Title");
-          });
-        } else {
-          Swal.fire({
-            title: "Network error",
-            text: "Added Failed!",
-            type: "error",
-            icon: "warning",
-          }).then(function () {
-            console.log("Exception error");
-          });
-        }
-      });
-  }; */
 
   hasError(key) {
     return this.state.errors.indexOf(key) !== -1;
