@@ -50,7 +50,7 @@ class Subscription extends React.Component {
                   <span className="sub"> {subscription.membershipFee}</span>/LKR
                 </p>
                 <button
-                  style={{ width: "250px" }}
+                  style={{ width: "220px" }}
                   className="btn btn-primary"
                   onClick={() => this.updateSubs(subscription.subscriptionId)}
                 >

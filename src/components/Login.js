@@ -48,16 +48,18 @@ const Login = (props) => {
           props.history.push("/profile");
           window.location.reload();
         },
-        (error) => {
-          const resMessage =
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString();
+        (error) => {          
+            if (error.response.data.toString() === "error") {
+            const resMessage = "invalid credintials";
+            setLoding(false);
+            setMessage(resMessage);
+            } else if (error.response.data.toString() === "dontExists") {
+                 const resMessage = "user dont exists with email";
+                 setLoding(false);
+                 setMessage(resMessage);
+            }
 
-          setLoding(false);
-          setMessage(resMessage);
+          
         }
       );
     } else {

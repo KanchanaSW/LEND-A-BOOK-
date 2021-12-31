@@ -9,7 +9,11 @@ import AuthService from "../services/auth.service";
 const required = (value) => {
   if (!value) {
     return (
-      <div className="alert alert-danger" role="alert">
+      <div
+        className="alert alert-danger"
+        role="alert"
+        style={{ fontSize: "12px" }}
+      >
         This field is required!
       </div>
     );
@@ -19,7 +23,11 @@ const required = (value) => {
 const validEmail = (value) => {
   if (!isEmail(value)) {
     return (
-      <div className="alert alert-danger" role="alert">
+      <div
+        className="alert alert-danger"
+        role="alert"
+        style={{ fontSize: "12px" }}
+      >
         This is not a valid email.
       </div>
     );
@@ -29,16 +37,24 @@ const validEmail = (value) => {
 const vpassword = (value) => {
   if (value.length < 6 || value.length > 40) {
     return (
-      <div className="alert alert-danger" role="alert">
-        The password must be between 6 and 40 characters.
+      <div
+        className="alert alert-danger"
+        role="alert"
+        style={{ fontSize: "12px" }}
+      >
+        must contain max 6 chars.
       </div>
     );
   }
 };
 const similar = (value) => {
-  if (vpassword.value != value.value) {
+  if (vpassword != value.value) {
     return (
-      <div className="alert alert-danger" role="alert">
+      <div
+        className="alert alert-danger"
+        role="alert"
+        style={{ fontSize: "12px" }}
+      >
         Passwords dont match.
       </div>
     );
@@ -159,14 +175,19 @@ const Register = (props) => {
     <div className="card card-container2">
       <h3>Register User</h3>
       <div className="row">
-        <div className="col-md-4" style={{ marginTop: "100px" }}>
+        <div className="col-md-4" style={{ marginTop: "25px" }}>
           {loading ? (
-            <h3>Loading...</h3>
+            <h6>Loading...</h6>
           ) : (
             <img src={pic} alt="profile-img" className="profile-img-card" />
           )}
 
-          <input type="file" name="file" onChange={uploadImage} />
+          <input
+            type="file"
+            name="file"
+            onChange={uploadImage}
+            style={{ color: "#f7f7f7", marginLeft: "57px" }}
+          />
         </div>
         <Form onSubmit={handleRegister} ref={form}>
           {!successful && (
@@ -209,7 +230,7 @@ const Register = (props) => {
                     validations={[required, vpassword]}
                   />
                 </div>
-             
+
                 <div className="col-sm">
                   <label htmlFor="rePassword">Repeat Password</label>
                   <Input

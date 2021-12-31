@@ -171,6 +171,7 @@ class AddBook extends Component {
                         type="number"
                         placeholder="ISBN"
                         name="isbn"
+                        required
                         className="form-control"
                         value={this.state.isbn}
                         onChange={this.changeIsbnHandler}
@@ -277,86 +278,3 @@ class AddBook extends Component {
 }
 export default AddBook;
 
-/* 
-       <div className="container">
-          <div className="row">
-            <div className="card col-md-6 offset-md-3 offset-md-3">
-              {this.getFormTitle()}
-              <div className="card-body">
-                <form>
-                  <div className="form-group">
-                    <label>Movie Title</label>
-                    <input
-                      placeholder="Movie Title"
-                      name="title"
-                      required
-                      className="form-control"
-                      value={this.state.title}
-                      onChange={this.changeTitleHandler}
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label>length</label>
-                    <input
-                      placeholder="Movie writer"
-                      name="writer"
-                      className="form-control"
-                      value={this.state.length}
-                      onChange={this.changeLengthHandler}
-                    />
-                  </div>
-
-                  <div className="form-group">
-                    <input
-                      type="hidden"
-                      name="status"
-                      className="form-control"
-                      value={this.state.status}
-                      onChange={this.changeStatusHandler}
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label>Image</label>
-                    <input
-                      placeholder="URL"
-                      name="image"
-                      className="form-control"
-                      value={this.state.image}
-                      onChange={this.changeImageHandler}
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label>18+</label>
-                    <input
-                      name="r18"
-                      className="form-control"
-                      value={this.state.r18}
-                      onChange={this.changeR18Handler}
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label>Summary</label>
-                    <input
-                      placeholder="Write the sumarry here"
-                      name="description"
-                      className="form-control"
-                      value={this.state.description}
-                      onChange={this.changeDescriptionHandler}
-                    />
-                  </div>
-
-                  <button className="btn btn-success" onClick={this.saveMovie}>
-                    Save
-                  </button>
-                  <button
-                    className="btn btn-danger"
-                    onClick={this.cancel.bind(this)}
-                    style={{ marginLeft: "10px" }}
-                  >
-                    Cancel
-                  </button>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>  */
