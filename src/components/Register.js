@@ -5,6 +5,7 @@ import CheckButton from "react-validation/build/button";
 import { isEmail } from "validator";
 
 import AuthService from "../services/auth.service";
+import Swal from "sweetalert2";
 
 const required = (value) => {
   if (!value) {
@@ -48,7 +49,7 @@ const vpassword = (value) => {
   }
 };
 const similar = (value) => {
-  if (vpassword != value.value) {
+  if (vpassword.value !== value.value) {
     return (
       <div
         className="alert alert-danger"
@@ -152,19 +153,42 @@ const Register = (props) => {
         isBlacklisted
       ).then(
         (response) => {
-          setMessage(response.data.message);
-          console.log(dob);
+          //setMessage(response.data.message);
+          console.log(response.data);
+          if (response.data === "success") {
+            Swal.fire({
+              title: "User Registeration Success!",
+              text: "Log In now",
+              type: "success",
+              icon: "success",
+            }).then(props.history.push("/login"));
+          } else {
+            console.log(response.data);
+          }
           setSuccessful(true);
         },
         (error) => {
-          const resMessage =
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString();
+          if (error.response.data.toString() === "error") {
+            Swal.fire({
+              title: "Something went wrong",
+              text: "Registeration Failed!",
+              type: "error",
+              icon: "warning",
+            }).then(function () {
+              console.log("Error : ");
+            });
+          } else if (error.response.data.toString() === "emailExists") {
+            Swal.fire({
+              title: "Email exists",
+              text: "Registeration Failed!",
+              type: "error",
+              icon: "warning",
+            }).then(function () {
+              console.log("Error : ");
+            });
+          }
 
-          setMessage(resMessage);
+          setMessage(error.response.data.toString());
           setSuccessful(false);
         }
       );
@@ -172,141 +196,135 @@ const Register = (props) => {
   };
 
   return (
-    <div className="card card-container2">
-      <h3>Register User</h3>
+    <div className="card3 card-container-3" style={{ width: "400px" }}>
+      <h3 style={{ marginLeft: "77px" }}>Register User</h3>
+
       <div className="row">
-        <div className="col-md-4" style={{ marginTop: "25px" }}>
-          {loading ? (
-            <h6>Loading...</h6>
-          ) : (
-            <img src={pic} alt="profile-img" className="profile-img-card" />
-          )}
+        {loading ? (
+          <h6>Loading...</h6>
+        ) : (
+          <img src={pic} alt="profile-img" className="profile-img-card" />
+        )}
 
-          <input
-            type="file"
-            name="file"
-            onChange={uploadImage}
-            style={{ color: "#f7f7f7", marginLeft: "57px" }}
-          />
-        </div>
-        <Form onSubmit={handleRegister} ref={form}>
-          {!successful && (
-            <div>
-              <div className="row">
-                <div className="col-sm1">
-                  <label htmlFor="fullname">Fullname</label>
-                  <Input
-                    type="text"
-                    className="form-control"
-                    name="fullname"
-                    value={fullname}
-                    onChange={onChangeFullname}
-                  />
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-sm1">
-                  <label htmlFor="email">Email</label>
-                  <Input
-                    type="text"
-                    className="form-control"
-                    name="email"
-                    value={email}
-                    onChange={onChangeEmail}
-                    validations={[required, validEmail]}
-                  />
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-sm">
-                  <label htmlFor="password">Password</label>
-                  <Input
-                    type="password"
-                    className="form-control"
-                    name="password"
-                    id="password"
-                    value={password}
-                    onChange={onChangePassword}
-                    validations={[required, vpassword]}
-                  />
-                </div>
-
-                <div className="col-sm">
-                  <label htmlFor="rePassword">Repeat Password</label>
-                  <Input
-                    type="password"
-                    className="form-control"
-                    name="rePassword"
-                    value={rePassword}
-                    onChange={onChangeRePassword}
-                    id="rePassword"
-                    validations={[required, similar]}
-                  />
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-sm1">
-                  <label htmlFor="dob">Date-Of-Birth</label>
-                  <input
-                    type="date"
-                    value={dob2}
-                    onChange={onChangeDob2}
-                    name="dob2"
-                  />
-                  <Input
-                    type="hidden"
-                    className="form-control"
-                    name="dob"
-                    value={dob}
-                    onChange={onChangeDob}
-                  />
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-sm1">
-                  <Input
-                    type="hidden"
-                    className="form-control"
-                    name="isBlaclisted"
-                    value={false}
-                    onChange={onChangeBlacklisted}
-                  />
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-sm1">
-                  <Input
-                    type="hidden"
-                    className="form-control"
-                    name="image"
-                    value={image}
-                    onChange={onChangeImage}
-                  />
-                </div>
-              </div>
-              <br />
-
-              <div className="form-group">
-                <button className="btn btn-primary btn-block">Sign Up</button>
-              </div>
-            </div>
-          )}
-
-          {message && (
-            <div className="form-group">
-              <div
-                className={
-                  successful ? "alert alert-success" : "alert alert-danger"
-                }
-                role="alert"
-              >
-                {message}
-              </div>
-            </div>
-          )}
-          <CheckButton style={{ display: "none" }} ref={checkBtn} />
-        </Form>
+        <input
+          type="file"
+          name="file"
+          onChange={uploadImage}
+          style={{ color: "#f7f7f7", marginLeft: "127px" }}
+        />
       </div>
+      <Form onSubmit={handleRegister} ref={form}>
+        {!successful && (
+          <div>
+            <div className="row">
+              <label htmlFor="fullname">Fullname</label>
+              <Input
+                type="text"
+                className="form-control"
+                name="fullname"
+                value={fullname}
+                onChange={onChangeFullname}
+              />
+            </div>
+            <div className="row">
+              <label htmlFor="email">Email</label>
+              <Input
+                type="text"
+                className="form-control"
+                name="email"
+                value={email}
+                onChange={onChangeEmail}
+                validations={[required, validEmail]}
+              />
+            </div>
+            <div className="row">
+              <div className="col-sm">
+                <label htmlFor="password">Password</label>
+                <Input
+                  type="password"
+                  className="form-control"
+                  name="password"
+                  id="password"
+                  value={password}
+                  onChange={onChangePassword}
+                  validations={[required, vpassword]}
+                />
+              </div>
+
+              <div className="col-sm">
+                <label htmlFor="rePassword">Repeat Password</label>
+                <Input
+                  type="password"
+                  className="form-control"
+                  name="rePassword"
+                  value={rePassword}
+                  onChange={onChangeRePassword}
+                  id="rePassword"
+                  validations={[required, similar]}
+                />
+              </div>
+            </div>
+            <div className="row">
+              <label htmlFor="dob">Date-Of-Birth</label>
+              <input
+                type="date"
+                className="form-control"
+                value={dob2}
+                onChange={onChangeDob2}
+                name="dob2"
+              />
+              <Input
+                type="hidden"
+                className="form-control"
+                name="dob"
+                value={dob}
+                onChange={onChangeDob}
+              />
+            </div>
+            <div className="row">
+              <div className="col-sm1">
+                <Input
+                  type="hidden"
+                  className="form-control"
+                  name="isBlaclisted"
+                  value={false}
+                  onChange={onChangeBlacklisted}
+                />
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-sm1">
+                <Input
+                  type="hidden"
+                  className="form-control"
+                  name="image"
+                  value={image}
+                  onChange={onChangeImage}
+                />
+              </div>
+            </div>
+            <br />
+
+            <div className="form-group">
+              <button className="btn btn-primary btn-block">Sign Up</button>
+            </div>
+          </div>
+        )}
+
+        {message && (
+          <div className="form-group">
+            <div
+              className={
+                successful ? "alert alert-success" : "alert alert-danger"
+              }
+              role="alert"
+            >
+              {message}
+            </div>
+          </div>
+        )}
+        <CheckButton style={{ display: "none" }} ref={checkBtn} />
+      </Form>
     </div>
   );
 };
