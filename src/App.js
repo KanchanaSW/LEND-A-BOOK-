@@ -35,6 +35,7 @@ import IssueBook from "./components/IssueBook";
 import IssueMovie from "./components/IssueMovie";
 
 import ScrapeBooks from "./components/Scrape/ScrapeBooks";
+import ScrapeMovies from "./components/Scrape/ScrapeMovies";
 
 const App = () => {
   const [showAdminBoard, setShowAdminBoard] = useState(false);
@@ -150,6 +151,7 @@ const App = () => {
           <Route path="/issueMovie" component={IssueMovie} />
 
           <Route path="/scrapeBooks" component={ScrapeBooks} />
+          <Route path="/scrapeMovies" component={ScrapeMovies}/>
         </Switch>
       </div>
     </div>

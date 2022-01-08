@@ -57,14 +57,18 @@ const BoardAdmin = () => {
           </Link>
         </div>
       </div>
-    <br></br>
-    <br></br>
+      <br></br>
+      <br></br>
       <div className="container">
-      
-
         <div className="form-group">
           <Link to={"/scrapeBooks"} className="btn btn-primary">
             Competitors-Books
+          </Link>
+        </div>
+        <br></br>
+        <div className="form-group">
+          <Link to={"/scrapeMovies"} className="btn btn-primary">
+            Competitors-Movies
           </Link>
         </div>
       </div>
