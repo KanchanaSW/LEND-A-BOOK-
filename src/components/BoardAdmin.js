@@ -71,6 +71,13 @@ const BoardAdmin = () => {
             Competitors-Movies
           </Link>
         </div>
+
+        <br></br>
+        <div className="form-group">
+          <Link to={"/apiBooksSearch"} className="btn btn-primary">
+            API-Books
+          </Link>
+        </div>
       </div>
     </div>
   );

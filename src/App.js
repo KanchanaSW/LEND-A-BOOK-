@@ -37,6 +37,8 @@ import IssueMovie from "./components/IssueMovie";
 import ScrapeBooks from "./components/Scrape/ScrapeBooks";
 import ScrapeMovies from "./components/Scrape/ScrapeMovies";
 
+import ApiBooksSearch from "./components/API-Intergration/apiBooksSearch";
+
 const App = () => {
   const [showAdminBoard, setShowAdminBoard] = useState(false);
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -152,6 +154,8 @@ const App = () => {
 
           <Route path="/scrapeBooks" component={ScrapeBooks} />
           <Route path="/scrapeMovies" component={ScrapeMovies}/>
+
+          <Route path="/apiBooksSearch" component={ApiBooksSearch}/>
         </Switch>
       </div>
     </div>
