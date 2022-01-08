@@ -34,6 +34,8 @@ import ViewIssueMovie from "./components/ViewIssueMovie";
 import IssueBook from "./components/IssueBook";
 import IssueMovie from "./components/IssueMovie";
 
+import ScrapeBooks from "./components/Scrape/ScrapeBooks";
+
 const App = () => {
   const [showAdminBoard, setShowAdminBoard] = useState(false);
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -129,7 +131,7 @@ const App = () => {
 
           <Route path="/userList" component={UserList} />
           <Route exact path="/subscription" component={Subscription} />
-          <Route path ="/updateSubs/:subscriptionId" component={UpdateSubs}/>
+          <Route path="/updateSubs/:subscriptionId" component={UpdateSubs} />
 
           <Route path="/bookList" component={BookList} />
           <Route path="/book/:id" component={ViewBook} />
@@ -141,11 +143,13 @@ const App = () => {
           <Route path="/updateMovie/:movieId" component={UpdateMovie} />
           <Route path="/movie/:movieId" component={ViewMovie} />
 
-          <Route path="/issueList" component={IssueList}/>
-          <Route path="/issueNR/:issueId" component={ViewIssue}/>
-          <Route path="/issueNRmovie/:issueId" component={ViewIssueMovie}/>
-          <Route path="/issueBook" component={IssueBook}/>
-          <Route path="/issueMovie" component={IssueMovie}/>
+          <Route path="/issueList" component={IssueList} />
+          <Route path="/issueNR/:issueId" component={ViewIssue} />
+          <Route path="/issueNRmovie/:issueId" component={ViewIssueMovie} />
+          <Route path="/issueBook" component={IssueBook} />
+          <Route path="/issueMovie" component={IssueMovie} />
+
+          <Route path="/scrapeBooks" component={ScrapeBooks} />
         </Switch>
       </div>
     </div>

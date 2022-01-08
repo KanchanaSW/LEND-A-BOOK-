@@ -25,35 +25,48 @@ const BoardAdmin = () => {
   }, []);
 
   return (
-    <div className="container">
-      <header className="jumbotron">
-        <h3>{content}</h3>
-      </header>
+    <div>
+      <div className="container">
+        <header className="jumbotron">
+          <h3>{content}</h3>
+        </header>
 
-      <div className="form-group">
-        <Link to={"/bookList"} className="btn btn-info">
-          Books
-        </Link>
+        <div className="form-group">
+          <Link to={"/bookList"} className="btn btn-info">
+            Books
+          </Link>
+        </div>
+        <div className="form-group">
+          <Link to={"/userList"} className="btn btn-info">
+            Users
+          </Link>
+        </div>
+        <div className="form-group">
+          <Link to={"/movieList"} className="btn btn-info">
+            Movies
+          </Link>
+        </div>
+        <div className="form-group">
+          <Link to={"/issueList"} className="btn btn-info">
+            Book Issues
+          </Link>
+        </div>
+        <div className="form-group">
+          <Link to={"/issueBook"} className="btn btn-info">
+            Issue Book
+          </Link>
+        </div>
       </div>
-      <div className="form-group">
-        <Link to={"/userList"} className="btn btn-info">
-          Users
-        </Link>
-      </div>
-      <div className="form-group">
-        <Link to={"/movieList"} className="btn btn-info">
-          Movies
-        </Link>
-      </div>
-      <div className="form-group">
-        <Link to={"/issueList"} className="btn btn-info">
-          Book Issues
-        </Link>
-      </div>
-      <div className="form-group">
-        <Link to={"/issueBook"} className="btn btn-info">
-          Issue Book
-        </Link>
+    <br></br>
+    <br></br>
+      <div className="container">
+      
+
+        <div className="form-group">
+          <Link to={"/scrapeBooks"} className="btn btn-primary">
+            Competitors-Books
+          </Link>
+        </div>
       </div>
     </div>
   );
