@@ -38,6 +38,7 @@ import ScrapeBooks from "./components/Scrape/ScrapeBooks";
 import ScrapeMovies from "./components/Scrape/ScrapeMovies";
 
 import ApiBooksSearch from "./components/API-Intergration/apiBooksSearch";
+import ApiMoviesSearch from "./components/API-Intergration/apiMoviesSearch";
 
 const App = () => {
   const [showAdminBoard, setShowAdminBoard] = useState(false);
@@ -156,6 +157,7 @@ const App = () => {
           <Route path="/scrapeMovies" component={ScrapeMovies}/>
 
           <Route path="/apiBooksSearch" component={ApiBooksSearch}/>
+          <Route path="/apiMoviesSearch" component={ApiMoviesSearch}/>
         </Switch>
       </div>
     </div>

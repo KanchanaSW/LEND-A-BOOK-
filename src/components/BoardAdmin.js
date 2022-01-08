@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import UserService from "../services/user.service";
 
@@ -71,11 +71,16 @@ const BoardAdmin = () => {
             Competitors-Movies
           </Link>
         </div>
-
         <br></br>
         <div className="form-group">
           <Link to={"/apiBooksSearch"} className="btn btn-primary">
             API-Books
+          </Link>
+        </div>
+        <br></br>
+        <div className="form-group">
+          <Link to={"/apiMoviesSearch"} className="btn btn-primary">
+            API-Movies
           </Link>
         </div>
       </div>

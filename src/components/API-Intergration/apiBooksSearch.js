@@ -32,7 +32,7 @@ function ApiBooksSearch() {
     <form onSubmit={handleSubmit}>
       <div className="card-header main-search">
         <div className="row">
-          <div className="col-12 col-md-3 col-xl-3">
+          <div className="col-12 col-md-3 col-xl-4">
             <input
               onChange={handleChange}
               className="AutoFocus form-control"
@@ -40,7 +40,7 @@ function ApiBooksSearch() {
               type="text"
             />
           </div>
-          <div className="ml-auto">
+          <div className="col-sm align-self-end">
             <input
               type="submit"
               value="Search"
@@ -67,7 +67,9 @@ function ApiBooksSearch() {
                 <div class="col-md-8">
                   <div class="card-body">
                     <h5 class="card-title">{book.volumeInfo.title}</h5>
-                    <h6 className="card-author">by {book.volumeInfo.authors}</h6>
+                    <h6 className="card-author">
+                      by {book.volumeInfo.authors}
+                    </h6>
                     <p className="card-text2">{book.volumeInfo.description}</p>
                     <p class="card-text">
                       <a
