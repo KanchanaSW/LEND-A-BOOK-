@@ -40,6 +40,10 @@ import ScrapeMovies from "./components/Scrape/ScrapeMovies";
 import ApiBooksSearch from "./components/API-Intergration/apiBooksSearch";
 import ApiMoviesSearch from "./components/API-Intergration/apiMoviesSearch";
 
+import CSVBooks from "./components/CSV/CSVBooks";
+import CSVAddBook from "./components/CSV/CSVAddBook";
+import CSVUpdateBook from "./components/CSV/CSVUpdateBook";
+
 const App = () => {
   const [showAdminBoard, setShowAdminBoard] = useState(false);
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -158,6 +162,10 @@ const App = () => {
 
           <Route path="/apiBooksSearch" component={ApiBooksSearch}/>
           <Route path="/apiMoviesSearch" component={ApiMoviesSearch}/>
+
+          <Route path="/csvBooks" component={CSVBooks}/>
+          <Route path="/csvAddBook/:id" component={CSVAddBook}/>
+          <Route path="/csvUpdateBook/:id" component={CSVUpdateBook}/>
         </Switch>
       </div>
     </div>

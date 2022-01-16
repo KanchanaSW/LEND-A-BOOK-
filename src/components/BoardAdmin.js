@@ -83,6 +83,13 @@ const BoardAdmin = () => {
             API-Movies
           </Link>
         </div>
+
+        <br></br>
+        <div className="form-group">
+          <Link to={"/csvBooks"} className="btn btn-primary">
+            CSV-Books
+          </Link>
+        </div>
       </div>
     </div>
   );
