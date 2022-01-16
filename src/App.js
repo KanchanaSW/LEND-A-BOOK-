@@ -44,6 +44,10 @@ import CSVBooks from "./components/CSV/CSVBooks";
 import CSVAddBook from "./components/CSV/CSVAddBook";
 import CSVUpdateBook from "./components/CSV/CSVUpdateBook";
 
+import CSVMovies from "./components/CSV/CSVMovies";
+import CSVAddMovie from "./components/CSV/CSVAddMovie";
+import CSVUpdateMovie from "./components/CSV/CSVUpdateMovie";
+
 const App = () => {
   const [showAdminBoard, setShowAdminBoard] = useState(false);
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -166,6 +170,10 @@ const App = () => {
           <Route path="/csvBooks" component={CSVBooks}/>
           <Route path="/csvAddBook/:id" component={CSVAddBook}/>
           <Route path="/csvUpdateBook/:id" component={CSVUpdateBook}/>
+
+          <Route path="/csvMovies" component={CSVMovies}/>
+          <Route path="/csvAddMovie/:id" component={CSVAddMovie} />
+          <Route path="/csvUpdateMovie/:id" component={CSVUpdateMovie}/>
         </Switch>
       </div>
     </div>
