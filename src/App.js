@@ -48,6 +48,8 @@ import CSVMovies from "./components/CSV/CSVMovies";
 import CSVAddMovie from "./components/CSV/CSVAddMovie";
 import CSVUpdateMovie from "./components/CSV/CSVUpdateMovie";
 
+import ExBookSearch from "./components/DB-Integration/exBookSearch";
+
 const App = () => {
   const [showAdminBoard, setShowAdminBoard] = useState(false);
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -174,6 +176,8 @@ const App = () => {
           <Route path="/csvMovies" component={CSVMovies}/>
           <Route path="/csvAddMovie/:id" component={CSVAddMovie} />
           <Route path="/csvUpdateMovie/:id" component={CSVUpdateMovie}/>
+
+          <Route path="/exDBBookSearch" component={ExBookSearch}/>
         </Switch>
       </div>
     </div>

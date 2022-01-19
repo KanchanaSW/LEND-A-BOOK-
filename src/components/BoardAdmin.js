@@ -89,11 +89,16 @@ const BoardAdmin = () => {
             CSV-Books
           </Link>
         </div>
-
         <br></br>
         <div className="form-group">
           <Link to={"/csvMovies"} className="btn btn-primary">
             CSV-Movies
+          </Link>
+        </div>
+        <br></br>
+        <div className="form-group">
+          <Link to={"/exDBBookSearch"} className="btn btn-primary">
+            External DB Books
           </Link>
         </div>
       </div>

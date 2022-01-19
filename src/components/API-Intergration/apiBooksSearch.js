@@ -31,6 +31,18 @@ function ApiBooksSearch() {
   return (
     <form onSubmit={handleSubmit}>
       <div className="card-header main-search">
+        {/* 
+            <form:form action="${pageContext.request.contextPath}/SearchItem" method="GET">
+            <div class="row">
+                <div class="col-10">
+                    <input type="text" placeholder="Type Item Name.." class="form-control" name="searchItem">
+                </div>
+                <div class="col">
+                    <button class="btn btn-primary search-btn" type="submit">Search</button>
+                    <button href="/ViewAllItems">Item-List</button>
+                </div>
+            </div>
+        </form:form> */}
         <div className="row">
           <div className="col-12 col-md-3 col-xl-4">
             <input
