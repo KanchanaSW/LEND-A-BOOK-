@@ -49,6 +49,7 @@ import CSVAddMovie from "./components/CSV/CSVAddMovie";
 import CSVUpdateMovie from "./components/CSV/CSVUpdateMovie";
 
 import ExBookSearch from "./components/DB-Integration/exBookSearch";
+import ExMovieSearch from "./components/DB-Integration/exMovieSearch";
 
 const App = () => {
   const [showAdminBoard, setShowAdminBoard] = useState(false);
@@ -178,6 +179,7 @@ const App = () => {
           <Route path="/csvUpdateMovie/:id" component={CSVUpdateMovie}/>
 
           <Route path="/exDBBookSearch" component={ExBookSearch}/>
+          <Route path="/exDBMovieSearch" component={ExMovieSearch}/>
         </Switch>
       </div>
     </div>

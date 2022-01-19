@@ -101,6 +101,12 @@ const BoardAdmin = () => {
             External DB Books
           </Link>
         </div>
+        <br></br>
+        <div className="form-group">
+          <Link to={"/exDBMovieSearch"} className="btn btn-primary">
+            External DB Movies
+          </Link>
+        </div>
       </div>
     </div>
   );

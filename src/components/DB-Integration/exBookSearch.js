@@ -20,20 +20,8 @@ function ExBookSearch(){
       return (
         <form onSubmit={handleSubmit}>
           <div className="card-header main-search">
-            {/* 
-            <form:form action="${pageContext.request.contextPath}/SearchItem" method="GET">
-            <div class="row">
-                <div class="col-10">
-                    <input type="text" placeholder="Type Item Name.." class="form-control" name="searchItem">
-                </div>
-                <div class="col">
-                    <button class="btn btn-primary search-btn" type="submit">Search</button>
-                    <button href="/ViewAllItems">Item-List</button>
-                </div>
-            </div>
-        </form:form> */}
             <div className="row">
-              <div className="col-12 col-md-3 col-xl-4">
+              <div className="col-10">
                 <input
                   onChange={handleChange}
                   className="AutoFocus form-control"
@@ -41,10 +29,10 @@ function ExBookSearch(){
                   type="text"
                 />
               </div>
-              <div className="col-sm align-self-end">
+              <div className="col">
                 <input
                   type="submit"
-                  value="Search"
+                  value="🔍 Search"
                   className="btn btn-primary search-btn"
                 />
               </div>
@@ -67,7 +55,7 @@ function ExBookSearch(){
                         <h6 className="card-author">by {book.author}</h6>
                         <p className="card-text2">{book.summary}...</p>
                         <p class="card-text">
-                      {/*     <a
+                          {/*     <a
                             href={book.volumeInfo.previewLink}
                             className="btn btn-primary"
                           >
