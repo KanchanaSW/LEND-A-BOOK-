@@ -80,35 +80,42 @@ class MovieList extends React.Component {
         </div>
         <div className="row">
           {this.state.movies.map((movie) => (
-            <div className="col-md-3" key={movie.movieId}>
-              <div className="card bwm-card">
-                <img src={movie.image} className="cover-img-card" />
-                <div className="card-body">
-                  <h5 className="card-title">{movie.title}</h5>
-                  <p className="card-text2">{movie.description}....</p>
+            <div class="card mb-3" style={{ maxWidth: "500px" }}>
+              <div class="row g-0">
+                <div class="col-md-4">
+                  <img src={movie.image} className="img1" alt={movie.title} />
                 </div>
-                <table>
-                  <button
-                    style={{ marginRight: "14px", marginLeft: "10px" }}
-                    class="btn btn-outline-success btn-sm"
-                    onClick={() => this.viewMovie(movie.movieId)}
-                  >
-                    Read More
-                  </button>
-                  <button
-                    style={{ marginRight: "14px" }}
-                    class="btn btn-outline-primary btn-sm"
-                    onClick={() => this.editMovie(movie.movieId)}
-                  >
-                    Edit
-                  </button>
-                  <button
-                    class="btn btn-outline-danger btn-sm"
-                    onClick={() => this.deleteMovie(movie.movieId)}
-                  >
-                    X
-                  </button>
-                </table>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 className="card-title">{movie.title}</h5>
+                    <p className="card-text2">{movie.description}....</p>
+
+                    <p class="card-text">
+                      <table style={{display:"flex"}}>
+                        <button
+                          style={{ marginRight: "8px" }}
+                          class="btn btn-outline-primary btn-sm"
+                          onClick={() => this.editMovie(movie.movieId)}
+                        >
+                          Edit
+                        </button>
+                        <button
+                        style={{ marginRight:"auto"}}
+                          class="btn btn-outline-danger btn-sm"
+                          onClick={() => this.deleteMovie(movie.movieId)}
+                        >
+                          X
+                        </button>
+                        <button
+                          class="btn btn-link"
+                          onClick={() => this.viewMovie(movie.movieId)}
+                        >
+                          Read More
+                        </button>
+                      </table>
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           ))}

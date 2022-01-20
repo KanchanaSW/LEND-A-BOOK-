@@ -85,26 +85,26 @@ class BookList extends React.Component {
                     <h5 className="card-title">{book.title}</h5>
                     <p className="card-text2">{book.summary}....</p>
                     <p class="card-text">
-                      <table>
+                      <table style={{ display: "flex" }}>
                         <button
-                          style={{ marginRight: "14px", marginLeft: "10px" }}
-                          class="btn btn-outline-success btn-sm"
-                          onClick={() => this.viewBook(book.id)}
-                        >
-                          Read More
-                        </button>
-                        <button
-                          style={{ marginRight: "14px" }}
+                          style={{ marginRight: "8px" }}
                           class="btn btn-outline-primary btn-sm"
                           onClick={() => this.editBook(book.id)}
                         >
                           Edit
                         </button>
                         <button
+                          style={{ marginRight: "auto" }}
                           class="btn btn-outline-danger btn-sm"
                           onClick={() => this.deleteBook(book.id)}
                         >
                           X
+                        </button>
+                        <button
+                          class="btn btn-link"
+                          onClick={() => this.viewBook(book.id)}
+                        >
+                          Read More
                         </button>
                       </table>
                     </p>
