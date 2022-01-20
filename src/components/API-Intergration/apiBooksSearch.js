@@ -4,6 +4,7 @@ import { Card } from "react-bootstrap";
 
 function ApiBooksSearch() {
   const [book, setBook] = useState("");
+   const [empty, setEmpty] = useState("");
   const [result, setResult] = useState([]);
   const [apiKey, setApiKey] = useState(
     "AIzaSyAZ8bZ8yJcd_vL9vSypF-nC_NHMdtAVsfs"
@@ -24,25 +25,20 @@ function ApiBooksSearch() {
           "&maxResults=40"
       )
       .then((data) => {
-        console.log(data.data.items);
-        setResult(data.data.items);
+        console.log(data.data);
+         if (data.data == 0) {
+           setEmpty("no records");
+            setResult(data.data.items);
+         } else if (data.data != 0) {
+           setEmpty("");
+           setResult(data.data.items);
+         }
+       
       });
   }
   return (
     <form onSubmit={handleSubmit}>
       <div className="card-header main-search">
-        {/* 
-            <form:form action="${pageContext.request.contextPath}/SearchItem" method="GET">
-            <div class="row">
-                <div class="col-10">
-                    <input type="text" placeholder="Type Item Name.." class="form-control" name="searchItem">
-                </div>
-                <div class="col">
-                    <button class="btn btn-primary search-btn" type="submit">Search</button>
-                    <button href="/ViewAllItems">Item-List</button>
-                </div>
-            </div>
-        </form:form> */}
         <div className="row">
           <div className="col-10">
             <input
@@ -63,6 +59,7 @@ function ApiBooksSearch() {
       </div>
       <div className="container">
         <div className="row">
+          <span className="empty">{empty}</span>
           {result.map((book) => (
             <div class="card mb-3" style={{ maxWidth: "500px" }}>
               <div class="row g-0">

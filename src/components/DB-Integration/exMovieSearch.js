@@ -4,10 +4,11 @@ import externalServices from "./external.services";
 import { useHistory } from "react-router-dom";
 
 function ExMovieSearch() {
-   const history = useHistory();
+  const history = useHistory();
   const [movie, setMovie] = useState("");
   const [result, setResult] = useState([]);
   const [movieId, setMovieId] = useState("");
+  const [empty, setEmpty] = useState("");
 
   function handleChange(event) {
     const movie = event.target.value;
@@ -17,7 +18,13 @@ function ExMovieSearch() {
     event.preventDefault();
     externalServices.searchMovie(movie).then((data) => {
       console.log(data.data);
-      setResult(data.data);
+      if (data.data == 0) {
+        setEmpty("no records");
+        setResult(data.data);
+      } else if (data.data != 0) {
+        setEmpty("");
+        setResult(data.data);
+      }
     });
   }
   function handleAddMovie(event) {
@@ -109,6 +116,7 @@ function ExMovieSearch() {
       </div>
       <div className="container">
         <div className="row">
+          <span className="empty">{empty}</span>
           {result.map((movie) => (
             <div class="card mb-3" style={{ maxWidth: "500px" }}>
               <div class="row g-0">

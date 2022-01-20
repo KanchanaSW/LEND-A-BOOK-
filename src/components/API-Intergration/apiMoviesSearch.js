@@ -3,6 +3,7 @@ import axios from "axios";
 
 function ApiMoviesSearch() {
   const [movie, setMovie] = useState("");
+  const [empty, setEmpty] = useState("");
   const [result, setResult] = useState([]);
   const [apiKey, setApiKey] = useState("cca38250fab9f053ee440931ed220cb8");
 
@@ -23,7 +24,13 @@ function ApiMoviesSearch() {
       )
       .then((data) => {
         console.log(data.data.results);
-        setResult(data.data.results);
+        if (data.data.results == 0) {
+          setEmpty("no records");
+          setResult(data.data.results);
+        } else if (data.data.results != 0) {
+          setEmpty("");
+          setResult(data.data.results);
+        }
       });
   }
   return (
@@ -49,6 +56,7 @@ function ApiMoviesSearch() {
       </div>
       <div className="container">
         <div className="row">
+          <span className="empty">{empty}</span>
           {result.map((movie) => (
             <div class="card mb-3" style={{ maxWidth: "500px" }}>
               <div class="row g-0">
@@ -56,7 +64,7 @@ function ApiMoviesSearch() {
                   <img
                     className="img1"
                     src={"https://image.tmdb.org/t/p/w185/" + movie.poster_path}
-                    alt={movie.title}                    
+                    alt={movie.title}
                   ></img>
                 </div>
                 <div className="col-md-8">

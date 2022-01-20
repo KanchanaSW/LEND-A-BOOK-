@@ -6,6 +6,7 @@ import { useHistory } from "react-router-dom";
 function ExBookSearch() {
   const history = useHistory();
   const [book, setBook] = useState("");
+  const [empty, setEmpty] = useState("");
   const [result, setResult] = useState([]);
   const [bookId, setBookId] = useState("");
 
@@ -18,7 +19,13 @@ function ExBookSearch() {
 
     externalServices.searchBook(book).then((data) => {
       console.log(data.data);
-      setResult(data.data);
+      if (data.data == 0) {
+        setEmpty("no records");
+        setResult(data.data);
+      } else if (data.data != 0) {
+        setEmpty("");
+        setResult(data.data);
+      }
     });
   }
   function handleAddBook(event) {
@@ -109,13 +116,14 @@ function ExBookSearch() {
       </div>
       <div className="container">
         <div className="row">
+          <span className="empty">{empty}</span>
           {result.map((book) => (
             <div class="card mb-3" style={{ maxWidth: "500px" }}>
               <div class="row g-0">
                 <div class="col md-4">
                   <img
                     src={book.coverPage !== undefined ? book.coverPage : ""}
-                    alt={book.title}                   
+                    alt={book.title}
                     className="img1"
                   ></img>
                 </div>
