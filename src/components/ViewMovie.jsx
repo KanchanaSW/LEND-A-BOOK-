@@ -1,9 +1,9 @@
-import React from "react";
+import React, { Component } from "react";
 import MovieService from "../services/movie.service";
 import IssueService from "../services/issueService";
 import ReserveService from "../services/reserve.service";
 
-class ViewMovie extends React.Component {
+class ViewMovie extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -28,9 +28,10 @@ class ViewMovie extends React.Component {
     ReserveService.postReserve(reserveTemp).then((res) => {
       this.props.history.push("/movieList");
     });
-  }; /*  */
-  cancel() {
-    this.props.history.push("/movieList");
+  };
+  cancel=(e) =>{
+    //e.preventDefault();
+this.props.history.push("/movieList");
   }
 
   render() {
@@ -38,47 +39,32 @@ class ViewMovie extends React.Component {
       <div>
         <div class="card mb-3" style={{ maxWidth: "800px" }}>
           <div className="row">
-            <div className="col-md-11">
-              <h3>View Movie</h3>
-            </div>
+            <div className="col-md-11">{/*        <h3>View Movie</h3> */}</div>
             <div className="col-md-1">
-              <button
-                className="btn btn-danger"
-                onClick={this.cancel.bind(this)}
-              >
+              <button className="btn btn-danger" onClick={this.cancel}>
                 X
               </button>
             </div>
           </div>
-          <div class="row g-0">
+          <div class="row g-0" style={{ marginTop: "-12px" }}>
             <div class="col-5 col-lg-4">
               <br />
               <br />
               <img
                 src={this.state.movie.image}
-                class="img-fluid rounded-start"
+                class="img2"
+                alt={this.state.movie.title}
               />
             </div>
             <div class="col-7 col-lg-8">
               <div class="card-body">
                 <h5 class="card-title">{this.state.movie.title}</h5>
                 <p class="card-text">{this.state.movie.description}</p>
+                <p className="card-text"> {this.state.movie.length} </p>
                 <p class="card-text">
-                  <small class="text-muted">
-                    <ul class="list-group list-group-flush">
-                      <li class="list-group-item">
-                        {this.state.movie.movieId}
-                      </li>
-                      <li class="list-group-item">{this.state.movie.length}</li>
-                      <li class="list-group-item">{this.state.movie.status}</li>
-                      <li class="list-group-item">
-                        18+ : {`${this.state.movie.r18}`}
-                      </li>
-                      <li class="list-group-item">
-                        {this.state.movie.noOfCopies}
-                      </li>
-                    </ul>
-                  </small>
+                  {" "}
+                  {this.state.movie.noOfCopies} :<b> Copies</b>{" "}
+                  {this.state.movie.status}
                 </p>
               </div>
               <div class="card-body">

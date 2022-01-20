@@ -168,7 +168,7 @@ class UpdateBook extends Component {
             <div className="card" style={{ width: "800px" }}>
               <div className="row">
                 <div className="col-md-11">
-                  <h3> Update Book</h3>
+                  {/*            <h3> Update Book</h3> */}
                 </div>
                 <div className="col-md-1">
                   <button
@@ -183,7 +183,13 @@ class UpdateBook extends Component {
                 <div class="col-md-4" style={{ marginRight: "2%" }}>
                   <br />
                   <br />
-                  <img src={this.state.coverPage} class="cover-img-card2" />
+                  <img
+                    src={this.state.coverPage}
+                    class="img2"
+                    alt={this.state.title}
+                  />
+                  <br></br>
+                  <br></br>
                   <input type="file" name="file" onChange={this.uploadImage} />
                 </div>
 
@@ -196,7 +202,7 @@ class UpdateBook extends Component {
                       value={this.state.id}
                     />
                   </div>
-                  <div className="row">
+                  <div className="row" style={{ marginTop: "-20px" }}>
                     <div className="col-md-9">
                       <div className="form-group">
                         <label>ISBN</label>
@@ -207,9 +213,7 @@ class UpdateBook extends Component {
                           disabled
                           value={this.state.isbn}
                           //onChange={this.handleInputChange}
-                         
                         />
-                      
                       </div>
                     </div>
                     <div className="col-md-3">
@@ -351,11 +355,12 @@ class UpdateBook extends Component {
                   </div>
                 </div>
               </div>
+              <br></br>
               <div className="row">
                 <div className="col-md-10"></div>
                 <div className="col-md-2">
                   <button
-                    className="btn btn-success"
+                    className="btn btn-primary"
                     style={{ marginLeft: "12px" }}
                     onClick={this.handleSubmit}
                   >
