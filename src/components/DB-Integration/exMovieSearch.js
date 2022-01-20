@@ -112,13 +112,14 @@ function ExMovieSearch() {
           {result.map((movie) => (
             <div class="card mb-3" style={{ maxWidth: "500px" }}>
               <div class="row g-0">
-                <div class="col md-4">
+                <div class="col-md-4">
                   <img
+                    className="img1"
                     src={movie.image !== undefined ? movie.image : ""}
                     alt={movie.title}
                   ></img>
                 </div>
-                <div class="col md-8">
+                <div class="col-md-8">
                   <div class="card-body">
                     <h5 class="card-title">{movie.title}</h5>
                     <h6 className="card-author">{movie.length} long</h6>

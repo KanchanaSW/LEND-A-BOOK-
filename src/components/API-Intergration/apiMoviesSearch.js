@@ -30,7 +30,7 @@ function ApiMoviesSearch() {
     <form onSubmit={handleSubmit}>
       <div className="card-header main-search">
         <div className="row">
-          <div className="col-12 col-md-3 col-xl-4">
+          <div className="col-10">
             <input
               onChange={handleChange}
               className="AutoFocus form-control"
@@ -38,7 +38,7 @@ function ApiMoviesSearch() {
               type="text"
             />
           </div>
-          <div className="col-sm align-self-end">
+          <div className="col">
             <input
               type="submit"
               value="Search"
@@ -50,15 +50,16 @@ function ApiMoviesSearch() {
       <div className="container">
         <div className="row">
           {result.map((movie) => (
-            <div class="card mb-3" style={{ maxWidth: "540px" }}>
+            <div class="card mb-3" style={{ maxWidth: "500px" }}>
               <div class="row g-0">
-                <div class="col-md-5">
+                <div class="col-md-4">
                   <img
+                    className="img1"
                     src={"https://image.tmdb.org/t/p/w185/" + movie.poster_path}
-                    alt={movie.title}
+                    alt={movie.title}                    
                   ></img>
                 </div>
-                <div className="col-md-7">
+                <div className="col-md-8">
                   <div className="card-body">
                     <h5 class="card-title">{movie.title}</h5>
                     <p className="card-text2">{movie.overview}</p>

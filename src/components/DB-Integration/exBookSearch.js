@@ -115,10 +115,11 @@ function ExBookSearch() {
                 <div class="col md-4">
                   <img
                     src={book.coverPage !== undefined ? book.coverPage : ""}
-                    alt={book.title}
+                    alt={book.title}                   
+                    className="img1"
                   ></img>
                 </div>
-                <div class="col md-8">
+                <div class="col-md-8">
                   <div class="card-body">
                     <h5 class="card-title">{book.title}</h5>
                     <h6 className="card-author">by {book.author}</h6>

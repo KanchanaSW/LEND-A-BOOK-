@@ -44,7 +44,7 @@ function ApiBooksSearch() {
             </div>
         </form:form> */}
         <div className="row">
-          <div className="col-12 col-md-3 col-xl-4">
+          <div className="col-10">
             <input
               onChange={handleChange}
               className="AutoFocus form-control"
@@ -52,7 +52,7 @@ function ApiBooksSearch() {
               type="text"
             />
           </div>
-          <div className="col-sm align-self-end">
+          <div className="col">
             <input
               type="submit"
               value="Search"
@@ -64,10 +64,11 @@ function ApiBooksSearch() {
       <div className="container">
         <div className="row">
           {result.map((book) => (
-            <div class="card mb-3" style={{ maxWidth: "540px" }}>
+            <div class="card mb-3" style={{ maxWidth: "500px" }}>
               <div class="row g-0">
                 <div class="col-md-4">
                   <img
+                    className="img1"
                     src={
                       book.volumeInfo.imageLinks !== undefined
                         ? book.volumeInfo.imageLinks.thumbnail

@@ -75,35 +75,41 @@ class BookList extends React.Component {
         </div>
         <div className="row">
           {this.state.books.map((book) => (
-            <div className="col-md-3" key={book.id}>
-              <div className="card bwm-card">
-                <img src={book.coverPage} className="cover-img-card" />
-                <div className="card-body">
-                  <h5 className="card-title">{book.title}</h5>
-                  <p className="card-text2">{book.summary}....</p>
+            <div class="card mb-3" style={{ maxWidth: "500px" }}>
+              <div class="row g-0">
+                <div class="col-md-4">
+                  <img src={book.coverPage} className="img1" alt={book.title} />
                 </div>
-                <table>
-                  <button
-                    style={{ marginRight: "14px",marginLeft:"10px" }}
-                    class="btn btn-outline-success btn-sm"
-                    onClick={() => this.viewBook(book.id)}
-                  >
-                    Read More
-                  </button>
-                  <button
-                    style={{ marginRight: "14px" }}
-                    class="btn btn-outline-primary btn-sm"
-                    onClick={() => this.editBook(book.id)}
-                  >
-                    Edit
-                  </button>
-                  <button
-                    class="btn btn-outline-danger btn-sm"
-                    onClick={() => this.deleteBook(book.id)}
-                  >
-                    X
-                  </button>
-                </table>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 className="card-title">{book.title}</h5>
+                    <p className="card-text2">{book.summary}....</p>
+                    <p class="card-text">
+                      <table>
+                        <button
+                          style={{ marginRight: "14px", marginLeft: "10px" }}
+                          class="btn btn-outline-success btn-sm"
+                          onClick={() => this.viewBook(book.id)}
+                        >
+                          Read More
+                        </button>
+                        <button
+                          style={{ marginRight: "14px" }}
+                          class="btn btn-outline-primary btn-sm"
+                          onClick={() => this.editBook(book.id)}
+                        >
+                          Edit
+                        </button>
+                        <button
+                          class="btn btn-outline-danger btn-sm"
+                          onClick={() => this.deleteBook(book.id)}
+                        >
+                          X
+                        </button>
+                      </table>
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           ))}
