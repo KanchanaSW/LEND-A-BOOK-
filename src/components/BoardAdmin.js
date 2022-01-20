@@ -27,85 +27,130 @@ const BoardAdmin = () => {
   return (
     <div>
       <div className="container">
-        <header className="jumbotron">
-          <h3>{content}</h3>
-        </header>
-
-        <div className="form-group">
-          <Link to={"/bookList"} className="btn btn-info">
-            Books
-          </Link>
-        </div>
-        <div className="form-group">
-          <Link to={"/userList"} className="btn btn-info">
-            Users
-          </Link>
-        </div>
-        <div className="form-group">
-          <Link to={"/movieList"} className="btn btn-info">
-            Movies
-          </Link>
-        </div>
-        <div className="form-group">
-          <Link to={"/issueList"} className="btn btn-info">
-            Book Issues
-          </Link>
-        </div>
-        <div className="form-group">
-          <Link to={"/issueBook"} className="btn btn-info">
-            Issue Book
-          </Link>
-        </div>
-      </div>
-      <br></br>
-      <br></br>
-      <div className="container">
-        <div className="form-group">
-          <Link to={"/scrapeBooks"} className="btn btn-primary">
-            Competitors-Books
-          </Link>
-        </div>
-        <br></br>
-        <div className="form-group">
-          <Link to={"/scrapeMovies"} className="btn btn-primary">
-            Competitors-Movies
-          </Link>
-        </div>
-        <br></br>
-        <div className="form-group">
-          <Link to={"/apiBooksSearch"} className="btn btn-primary">
-            API-Books
-          </Link>
-        </div>
-        <br></br>
-        <div className="form-group">
-          <Link to={"/apiMoviesSearch"} className="btn btn-primary">
-            API-Movies
-          </Link>
-        </div>
-        <br></br>
-        <div className="form-group">
-          <Link to={"/csvBooks"} className="btn btn-primary">
-            CSV-Books
-          </Link>
-        </div>
-        <br></br>
-        <div className="form-group">
-          <Link to={"/csvMovies"} className="btn btn-primary">
-            CSV-Movies
-          </Link>
-        </div>
-        <br></br>
-        <div className="form-group">
-          <Link to={"/exDBBookSearch"} className="btn btn-primary">
-            External DB Books
-          </Link>
-        </div>
-        <br></br>
-        <div className="form-group">
-          <Link to={"/exDBMovieSearch"} className="btn btn-primary">
-            External DB Movies
-          </Link>
+        <div
+          class="card text-center"
+          style={{ width: "75rem", marginLeft: "-60px" }}
+        >
+          <div className="row">
+            <div className="col">
+              <div class="card-header">User-Functions</div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                  <div className="form-group">
+                    <Link to={"/userList"} className="btn btn-info">
+                      Users
+                    </Link>
+                  </div>
+                </li>
+                <li class="list-group-item">
+                  <div className="form-group">
+                    <Link to={"/movieList"} className="btn btn-info">
+                      Movies
+                    </Link>
+                  </div>
+                </li>
+                <li class="list-group-item">
+                  <div className="form-group">
+                    <Link to={"/issueList"} className="btn btn-info">
+                      Issue-List
+                    </Link>
+                  </div>
+                </li>
+                <li class="list-group-item">
+                  <div className="form-group">
+                    <Link to={"/issueBook"} className="btn btn-info">
+                      Issue Book
+                    </Link>
+                  </div>
+                </li>
+                <li class="list-group-item">
+                  <div className="form-group">
+                    <Link to={"/issueMovie"} className="btn btn-info">
+                      Issue Movie
+                    </Link>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            {/*  */}
+            <div className="col">
+              <div class="card-header">Competitors-Prices</div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                  <div className="form-group">
+                    <Link to={"/scrapeBooks"} className="btn btn-primary">
+                      Competitors-Books
+                    </Link>
+                  </div>
+                </li>
+                <li class="list-group-item">
+                  <div className="form-group">
+                    <Link to={"/scrapeMovies"} className="btn btn-primary">
+                      Competitors-Movies
+                    </Link>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            {/* Apis */}
+            <div className="col">
+              <div class="card-header">API</div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                  <div className="form-group">
+                    <Link to={"/apiBooksSearch"} className="btn btn-primary">
+                      API-Books
+                    </Link>
+                  </div>
+                </li>
+                <li class="list-group-item">
+                  <div className="form-group">
+                    <Link to={"/apiMoviesSearch"} className="btn btn-primary">
+                      API-Movies
+                    </Link>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div className="col">
+              <div class="card-header">CSV</div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                  <div className="form-group">
+                    <Link to={"/csvBooks"} className="btn btn-primary">
+                      CSV-Books
+                    </Link>
+                  </div>
+                </li>
+                <li class="list-group-item">
+                  <div className="form-group">
+                    <Link to={"/csvMovies"} className="btn btn-primary">
+                      CSV-Movies
+                    </Link>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div className="col">
+              <div class="card-header">External-DB</div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                  <div className="form-group">
+                    <Link to={"/exDBBookSearch"} className="btn btn-primary">
+                      External DB Books
+                    </Link>
+                  </div>
+                </li>
+                <li class="list-group-item">
+                  <div className="form-group">
+                    <Link to={"/exDBMovieSearch"} className="btn btn-primary">
+                      External DB Movies
+                    </Link>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </div>

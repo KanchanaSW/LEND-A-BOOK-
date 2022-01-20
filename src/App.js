@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Switch, Route, Link } from "react-router-dom";
 
-
 import "bootstrap/dist/css/bootstrap.css";
 import "./App.css";
 
@@ -61,9 +60,9 @@ const App = () => {
     const user = AuthService.getCurrentUser();
 
     if (user) {
-      setCurrentUser(user);//gusest
+      setCurrentUser(user); //gusest
       setShowAdminBoard(user.roles.includes("ROLE_ADMIN"));
-      setShowUserBoard(user.roles.includes("ROLE_USER"))
+      setShowUserBoard(user.roles.includes("ROLE_USER"));
     }
   }, []);
 
@@ -100,36 +99,43 @@ const App = () => {
             </li>
           )}
         </div>
-        {showAdminBoard,showUserBoard  && (
-                  <><NavDropdown title="Content" id="collasible-nav-dropdown">
-            <NavDropdown.Item>
-              <Link to={"/bookList"} className="nav-link">
-                Books-List
-              </Link>
-            </NavDropdown.Item>
-            <NavDropdown.Item>
-              <Link to={"/movieList"} className="nav-link">
-                Movies-List
-              </Link>
-            </NavDropdown.Item>
-          </NavDropdown><NavDropdown title="Issue" id="collasible-nav-dropdown">
-              <NavDropdown.Item>
-                <Link to={"/issueBook"} className="nav-link">
-                  Issue-Book
-                </Link>
-              </NavDropdown.Item>
-              <NavDropdown.Item>
-                <Link to={"/issueMovie"} className="nav-link">
-                  Issue-Movie
-                </Link>
-              </NavDropdown.Item>
-              <NavDropdown.Item>
-                <Link to={"/issueList"} className="nav-link">
-                  Issues-List
-                </Link>
-              </NavDropdown.Item>
-            </NavDropdown></>
-        )}
+        {
+          (showAdminBoard +
+          showUserBoard && (
+            <>
+              <NavDropdown title="Content" id="collasible-nav-dropdown">
+                <NavDropdown.Item>
+                  <Link to={"/bookList"} className="nav-link">
+                    Books-List
+                  </Link>
+                </NavDropdown.Item>
+                <NavDropdown.Item>
+                  <Link to={"/movieList"} className="nav-link">
+                    Movies-List
+                  </Link>
+                </NavDropdown.Item>
+              </NavDropdown>
+              {/* Issues functions */}
+              <NavDropdown title="Issue" id="collasible-nav-dropdown">
+                <NavDropdown.Item>
+                  <Link to={"/issueBook"} className="nav-link">
+                    Issue-Book
+                  </Link>
+                </NavDropdown.Item>
+                <NavDropdown.Item>
+                  <Link to={"/issueMovie"} className="nav-link">
+                    Issue-Movie
+                  </Link>
+                </NavDropdown.Item>
+                <NavDropdown.Item>
+                  <Link to={"/issueList"} className="nav-link">
+                    Issues-List
+                  </Link>
+                </NavDropdown.Item>
+              </NavDropdown>
+            </>
+          ))
+        }
 
         {currentUser ? (
           <div className="navbar-nav ml-auto">
