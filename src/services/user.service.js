@@ -27,7 +27,7 @@ const getAllUsers = () => {
 
  const putSubscription=(sub,subscriptionId)=>{
   
-  console.log( { headers: authHeader() });
+ // console.log( { headers: authHeader() });
   return axios.post(API_URL2+"updateSubs/"+subscriptionId,sub,{headers:authHeader()});
 } 
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import { Link } from "react-router-dom";
 import UserService from "../services/user.service";
 
 const BoardUser = () => {
@@ -24,10 +24,62 @@ const BoardUser = () => {
   }, []);
 
   return (
-    <div className="container">
-      <header className="jumbotron">
-        <h3>{content}</h3>
-      </header>
+    <div>
+      <div className="container">
+        <div class="card text-center" style={{ width: "30rem" }}>
+          <div className="row">
+            <div className="col">
+              <div class="card-header">Content</div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                  <div className="form-group">
+                    <Link to={"/movieList"} className="btn btn-info">
+                      Movies
+                    </Link>
+                  </div>
+                </li>
+                <li class="list-group-item">
+                  <div className="form-group">
+                    <Link to={"/bookList"} className="btn btn-info">
+                      Books
+                    </Link>
+                  </div>
+                </li>
+               
+              </ul>
+            </div>
+            {/*  */}
+            <div className="col">
+              <div class="card-header">Functions</div>
+              <ul class="list-group list-group-flush">
+               
+                <li class="list-group-item">
+                  <div className="form-group">
+                    <Link to={"/issueList"} className="btn btn-info">
+                      Issue-List
+                    </Link>
+                  </div>
+                </li>
+                <li class="list-group-item">
+                  <div className="form-group">
+                    <Link to={"/issueBook"} className="btn btn-info">
+                      Issue Book
+                    </Link>
+                  </div>
+                </li>
+                <li class="list-group-item">
+                  <div className="form-group">
+                    <Link to={"/issueMovie"} className="btn btn-info">
+                      Issue Movie
+                    </Link>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+          
+        </div>
+      </div>
     </div>
   );
 };

@@ -2,7 +2,8 @@ import React from "react";
 import SubscriptionService from "../services/subscription.service";
 import "../css/Subs.css";
 import AuthService from "../services/auth.service";
-const user = AuthService.getCurrentUser();
+
+let user = AuthService.getCurrentUser();
 
 class Subscription extends React.Component {
   constructor(props) {

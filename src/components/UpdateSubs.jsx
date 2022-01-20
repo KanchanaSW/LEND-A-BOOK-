@@ -1,7 +1,9 @@
 import React from "react";
 import SubscriptionService from "../services/subscription.service";
 import UserService from "../services/user.service";
-import "../css/updateSubs.css"
+import "../css/updateSubs.css";
+import Swal from "sweetalert2";
+import AuthService from "../services/auth.service";
 
 //const currentUser = SubscriptionService.getCurrentUser();
 
@@ -11,7 +13,7 @@ class UpdateSubs extends React.Component {
     this.state = {
       subscriptionId: this.props.match.params.subscriptionId,
       membershipFee: "",
-     // id:currentUser.id,
+      // id:currentUser.id,
     };
     this.changeMembershipFeeHandler =
       this.changeMembershipFeeHandler.bind(this);
@@ -27,13 +29,13 @@ class UpdateSubs extends React.Component {
         });
       }
     );
-   }  
+  }
 
   updateSubscription = (e) => {
     e.preventDefault();
-    let sub={
+    let sub = {
       subscriptionId: this.state.subscriptionId,
-    }
+    };
 
     UserService.putSubscription(
       sub,
@@ -41,11 +43,45 @@ class UpdateSubs extends React.Component {
       //  this.state.id,
     )
       .then((response) => {
-        console.log("response" + response);
-         this.props.history.push("/profile");
+        console.log(response.data);
+        //this.props.history.push("/profile");
+        if (response.data === "success") {
+          Swal.fire({
+            title: "Subscription Updated Success!",
+            text: "Please login again",
+            type: "success",
+            icon: "success",
+          }).then(
+            localStorage.removeItem("user"),
+            localStorage.clear(),
+            this.props.history.push("/login"),
+            window.location.reload(false),
+          );
+        } else {
+          console.log(response.statusText);
+        }
       })
       .catch((error) => {
         console.log(error);
+        if (error.response.data === "error") {
+          Swal.fire({
+            title: "Error occured while Updating subscription",
+            text: "updated Failed!",
+            type: "error",
+            icon: "warning",
+          }).then(function () {
+            console.log("Error : updated failed");
+          });
+        } else {
+          Swal.fire({
+            title: "Network Failed",
+            text: "Updated Failed!",
+            type: "error",
+            icon: "warning",
+          }).then(function () {
+            console.log("Error : error");
+          });
+        }
       });
   };
   changeMembershipFeeHandler = (event) => {
@@ -105,7 +141,7 @@ class UpdateSubs extends React.Component {
                   class="btn-b btn-primary mb-3"
                   onClick={this.updateSubscription}
                 >
-                  <span class="ps-3">Pay {this.state.membershipFee}</span>{" "}LKR
+                  <span class="ps-3">Pay {this.state.membershipFee}</span> LKR
                   <span class="fas fa-arrow-right"></span>{" "}
                 </button>
               </div>

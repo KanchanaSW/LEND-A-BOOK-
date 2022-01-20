@@ -21,10 +21,11 @@ const Profile = () => {
       <p>
         <strong>Email:</strong> {currentUser.email}
       </p>
+      <p>Subscription:
+        <strong>{currentUser.subType}</strong>
+      </p>
       <strong>Authorities:</strong>
-      <ul>
-        {currentUser.roles}
-      </ul>
+      <ul>{currentUser.roles}</ul>
     </div>
   );
 };

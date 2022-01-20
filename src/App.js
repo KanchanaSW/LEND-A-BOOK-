@@ -73,103 +73,115 @@ const App = () => {
   return (
     <div>
       <nav className="navbar navbar-expand navbar-dark bg-dark">
-        <Link to={"/"} className="navbar-brand">
-          Lend A Book
-        </Link>
-        <div className="navbar-nav mr-auto">
-          {/*  <li className="nav-item">
+        <div className="container-fluid">
+          <Link to={"/"} className="navbar-brand">
+            Lend A Book
+          </Link>
+          <div className="collapse navbar-collapse">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              {/*  <li className="nav-item">
             <Link to={"/home"} className="nav-link">
               Home
             </Link>
           </li> */}
 
-          {showAdminBoard && (
-            <li className="nav-item">
-              <Link to={"/admin"} className="nav-link">
-                Admin Board
-              </Link>
-            </li>
-          )}
+              {showAdminBoard && (
+                <li className="nav-item">
+                  <Link to={"/admin"} className="nav-link">
+                    Admin Board
+                  </Link>
+                </li>
+              )}
 
-          {showUserBoard && (
-            <li className="nav-item">
-              <Link to={"/user"} className="nav-link">
-                User
-              </Link>
-            </li>
+              {showUserBoard && (
+                <>
+                  <li className="nav-item">
+                    <Link to={"/user"} className="nav-link">
+                      User
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link to={"/subscription"} className="nav-link">
+                      Subscription
+                    </Link>
+                  </li>
+                </>
+              )}
+
+              {showAdminBoard + showUserBoard && (
+                <>
+                  <NavDropdown
+                    title="Content"
+                    id="nav-dropdown-dark-example"
+                    menuVariant="dark"
+                  >
+                    <NavDropdown.Item style={{ color: "black" }}>
+                      <Link to={"/bookList"} className="nav-link">
+                        Books-List
+                      </Link>
+                    </NavDropdown.Item>
+                    <NavDropdown.Item>
+                      <Link to={"/movieList"} className="nav-link">
+                        Movies-List
+                      </Link>
+                    </NavDropdown.Item>
+                  </NavDropdown>
+                  {/* Issues functions */}
+                  <NavDropdown
+                    title="Issue"
+                    id="nav-dropdown-dark-example"
+                    menuVariant="dark"
+                  >
+                    <NavDropdown.Item>
+                      <Link to={"/issueBook"} className="nav-link">
+                        Issue-Book
+                      </Link>
+                    </NavDropdown.Item>
+                    <NavDropdown.Item>
+                      <Link to={"/issueMovie"} className="nav-link">
+                        Issue-Movie
+                      </Link>
+                    </NavDropdown.Item>
+                    <NavDropdown.Item>
+                      <Link to={"/issueList"} className="nav-link">
+                        Issues-List
+                      </Link>
+                    </NavDropdown.Item>
+                  </NavDropdown>
+                </>
+              )}
+            </ul>
+          </div>
+
+          {currentUser ? (
+            <div className="navbar-nav">
+              <li className="nav-item">
+                <Link to={"/profile"} className="nav-link">
+                  {currentUser.email}
+                </Link>
+              </li>
+              <li className="nav-item">
+                <a href="/login" className="nav-link" onClick={logOut}>
+                  LogOut
+                </a>
+              </li>
+            </div>
+          ) : (
+            <div className="navbar-nav ml-auto">
+              <li className="nav-item">
+                <Link to={"/login"} className="nav-link">
+                  Login
+                </Link>
+              </li>
+
+              <li className="nav-item">
+                <Link to={"/register"} className="nav-link">
+                  Sign Up
+                </Link>
+              </li>
+            </div>
           )}
         </div>
-        {
-          (showAdminBoard +
-          showUserBoard && (
-            <>
-              <NavDropdown title="Content" id="collasible-nav-dropdown">
-                <NavDropdown.Item>
-                  <Link to={"/bookList"} className="nav-link">
-                    Books-List
-                  </Link>
-                </NavDropdown.Item>
-                <NavDropdown.Item>
-                  <Link to={"/movieList"} className="nav-link">
-                    Movies-List
-                  </Link>
-                </NavDropdown.Item>
-              </NavDropdown>
-              {/* Issues functions */}
-              <NavDropdown title="Issue" id="collasible-nav-dropdown">
-                <NavDropdown.Item>
-                  <Link to={"/issueBook"} className="nav-link">
-                    Issue-Book
-                  </Link>
-                </NavDropdown.Item>
-                <NavDropdown.Item>
-                  <Link to={"/issueMovie"} className="nav-link">
-                    Issue-Movie
-                  </Link>
-                </NavDropdown.Item>
-                <NavDropdown.Item>
-                  <Link to={"/issueList"} className="nav-link">
-                    Issues-List
-                  </Link>
-                </NavDropdown.Item>
-              </NavDropdown>
-            </>
-          ))
-        }
-
-        {currentUser ? (
-          <div className="navbar-nav ml-auto">
-            <li className="nav-item">
-              <Link to={"/subscription"} className="nav-link">
-                Subscription
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to={"/profile"} className="nav-link">
-                {currentUser.email}
-              </Link>
-            </li>
-            <li className="nav-item">
-              <a href="/login" className="nav-link" onClick={logOut}>
-                LogOut
-              </a>
-            </li>
-          </div>
-        ) : (
-          <div className="navbar-nav ml-auto">
-            <li className="nav-item">
-              <Link to={"/login"} className="nav-link">
-                Login
-              </Link>
-            </li>
-
-            <li className="nav-item">
-              <Link to={"/register"} className="nav-link">
-                Sign Up
-              </Link>
-            </li>
-          </div>
-        )}
       </nav>
 
       <div className="container mt-3">
