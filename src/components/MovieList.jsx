@@ -1,6 +1,7 @@
 import React from "react";
 import MovieService from "../services/movie.service";
 import Swal from "sweetalert2";
+import AuthService from "../services/auth.service";
 
 class MovieList extends React.Component {
   constructor(props) {
@@ -71,13 +72,51 @@ class MovieList extends React.Component {
   viewMovie(movieId) {
     this.props.history.push(`/movie/${movieId}`);
   }
+  showAddBtn(){
+ const user = AuthService.getCurrentUser();
+    console.log(user.roles);
+    //this.setState({ user: user.roles });
+    if (user.roles == "ROLE_ADMIN") {
+    return (
+      <div className="btn btn-primary" onClick={this.addMovie}>
+        Add new movie
+      </div>
+    );
+    }
+  }
+  showEditDelet(id) {
+    const user = AuthService.getCurrentUser();
+    console.log(user.roles);
+    //this.setState({ user: user.roles });
+    if (user.roles == "ROLE_ADMIN") {
+   //   console.log("admin" + id);
+      return (
+        <div>
+          <button
+            style={{ marginRight: "8px" }}
+            class="btn btn-outline-primary btn-sm"
+            onClick={() => this.editMovie(id)}
+          >
+            Edit
+          </button>
+          <button
+            style={{ marginRight: "auto" }}
+            class="btn btn-outline-danger btn-sm"
+            onClick={() => this.deleteMovie(id)}
+          >
+            X
+          </button>
+        </div>
+      );
+    } else {
+      //console.log("user" + id);
+    }
+  }
 
   render() {
     return (
       <div>
-        <div className="btn btn-primary" onClick={this.addMovie}>
-          Add new movie
-        </div>
+        {this.showAddBtn()}
         <div className="row">
           {this.state.movies.map((movie) => (
             <div class="card mb-3" style={{ maxWidth: "500px" }}>
@@ -91,21 +130,8 @@ class MovieList extends React.Component {
                     <p className="card-text2">{movie.description}....</p>
 
                     <p class="card-text">
-                      <table style={{display:"flex"}}>
-                        <button
-                          style={{ marginRight: "8px" }}
-                          class="btn btn-outline-primary btn-sm"
-                          onClick={() => this.editMovie(movie.movieId)}
-                        >
-                          Edit
-                        </button>
-                        <button
-                        style={{ marginRight:"auto"}}
-                          class="btn btn-outline-danger btn-sm"
-                          onClick={() => this.deleteMovie(movie.movieId)}
-                        >
-                          X
-                        </button>
+                      <table style={{ display: "flex" }}>
+                        {this.showEditDelet(movie.movieId)}
                         <button
                           class="btn btn-link"
                           onClick={() => this.viewMovie(movie.movieId)}

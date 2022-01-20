@@ -50,19 +50,20 @@ import CSVUpdateMovie from "./components/CSV/CSVUpdateMovie";
 
 import ExBookSearch from "./components/DB-Integration/exBookSearch";
 import ExMovieSearch from "./components/DB-Integration/exMovieSearch";
+import { NavDropdown } from "react-bootstrap";
 
 const App = () => {
   const [showAdminBoard, setShowAdminBoard] = useState(false);
   const [currentUser, setCurrentUser] = useState(undefined);
-  //const [showUserBoard, setShowUserBoard] = useState(false);
+  const [showUserBoard, setShowUserBoard] = useState(false);
 
   useEffect(() => {
     const user = AuthService.getCurrentUser();
 
     if (user) {
-      setCurrentUser(user);
+      setCurrentUser(user);//gusest
       setShowAdminBoard(user.roles.includes("ROLE_ADMIN"));
-      //setShowUserBoard(user.roles.includes("ROLE_USER"))
+      setShowUserBoard(user.roles.includes("ROLE_USER"))
     }
   }, []);
 
@@ -77,11 +78,11 @@ const App = () => {
           Lend A Book
         </Link>
         <div className="navbar-nav mr-auto">
-          <li className="nav-item">
+          {/*  <li className="nav-item">
             <Link to={"/home"} className="nav-link">
               Home
             </Link>
-          </li>
+          </li> */}
 
           {showAdminBoard && (
             <li className="nav-item">
@@ -91,7 +92,7 @@ const App = () => {
             </li>
           )}
 
-          {currentUser && (
+          {showUserBoard && (
             <li className="nav-item">
               <Link to={"/user"} className="nav-link">
                 User
@@ -99,6 +100,36 @@ const App = () => {
             </li>
           )}
         </div>
+        {showAdminBoard,showUserBoard  && (
+                  <><NavDropdown title="Content" id="collasible-nav-dropdown">
+            <NavDropdown.Item>
+              <Link to={"/bookList"} className="nav-link">
+                Books-List
+              </Link>
+            </NavDropdown.Item>
+            <NavDropdown.Item>
+              <Link to={"/movieList"} className="nav-link">
+                Movies-List
+              </Link>
+            </NavDropdown.Item>
+          </NavDropdown><NavDropdown title="Issue" id="collasible-nav-dropdown">
+              <NavDropdown.Item>
+                <Link to={"/issueBook"} className="nav-link">
+                  Issue-Book
+                </Link>
+              </NavDropdown.Item>
+              <NavDropdown.Item>
+                <Link to={"/issueMovie"} className="nav-link">
+                  Issue-Movie
+                </Link>
+              </NavDropdown.Item>
+              <NavDropdown.Item>
+                <Link to={"/issueList"} className="nav-link">
+                  Issues-List
+                </Link>
+              </NavDropdown.Item>
+            </NavDropdown></>
+        )}
 
         {currentUser ? (
           <div className="navbar-nav ml-auto">
@@ -165,21 +196,21 @@ const App = () => {
           <Route path="/issueMovie" component={IssueMovie} />
 
           <Route path="/scrapeBooks" component={ScrapeBooks} />
-          <Route path="/scrapeMovies" component={ScrapeMovies}/>
+          <Route path="/scrapeMovies" component={ScrapeMovies} />
 
-          <Route path="/apiBooksSearch" component={ApiBooksSearch}/>
-          <Route path="/apiMoviesSearch" component={ApiMoviesSearch}/>
+          <Route path="/apiBooksSearch" component={ApiBooksSearch} />
+          <Route path="/apiMoviesSearch" component={ApiMoviesSearch} />
 
-          <Route path="/csvBooks" component={CSVBooks}/>
-          <Route path="/csvAddBook/:id" component={CSVAddBook}/>
-          <Route path="/csvUpdateBook/:id" component={CSVUpdateBook}/>
+          <Route path="/csvBooks" component={CSVBooks} />
+          <Route path="/csvAddBook/:id" component={CSVAddBook} />
+          <Route path="/csvUpdateBook/:id" component={CSVUpdateBook} />
 
-          <Route path="/csvMovies" component={CSVMovies}/>
+          <Route path="/csvMovies" component={CSVMovies} />
           <Route path="/csvAddMovie/:id" component={CSVAddMovie} />
-          <Route path="/csvUpdateMovie/:id" component={CSVUpdateMovie}/>
+          <Route path="/csvUpdateMovie/:id" component={CSVUpdateMovie} />
 
-          <Route path="/exDBBookSearch" component={ExBookSearch}/>
-          <Route path="/exDBMovieSearch" component={ExMovieSearch}/>
+          <Route path="/exDBBookSearch" component={ExBookSearch} />
+          <Route path="/exDBMovieSearch" component={ExMovieSearch} />
         </Switch>
       </div>
     </div>
