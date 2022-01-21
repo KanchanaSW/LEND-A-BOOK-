@@ -30,6 +30,18 @@ const updateUser=(id,password,fullname,dob,image)=>{
   return axios.post(API_URL2+"updateSubs/"+subscriptionId,sub,{headers:authHeader()});
 } 
 
+//send otp number
+const requestPasswordChangPOST=(email)=>{
+  return axios.post(API_URL2 + "otp/request-password-change/" + email );
+};
+//otp valid check
+const validCheckOtpPOST=(otp)=>{
+  return axios.post(API_URL2 + "otp/valid-check/"+otp);
+};
+// reset password
+const retsetPasswordPOST=(otp,pass)=>{
+  return axios.post(API_URL2 + "otp/reset/"+otp+"/pass/"+pass);
+};
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
   getPublicContent,
@@ -39,4 +51,7 @@ export default {
   putSubscription,
   updateUser,
   getUserDetails,
+  requestPasswordChangPOST,
+  validCheckOtpPOST,
+  retsetPasswordPOST,
 };

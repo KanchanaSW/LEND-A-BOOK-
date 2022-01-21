@@ -50,6 +50,10 @@ import CSVUpdateMovie from "./components/CSV/CSVUpdateMovie";
 
 import ExBookSearch from "./components/DB-Integration/exBookSearch";
 import ExMovieSearch from "./components/DB-Integration/exMovieSearch";
+import FogotPassword from "./components/FogotPassword";
+import ValidateOTP from "./components/ValidateOTP";
+import ResetPassword from "./components/ResetPassword";
+
 import { NavDropdown } from "react-bootstrap";
 
 const App = () => {
@@ -280,6 +284,9 @@ const App = () => {
 
           <Route path="/exDBBookSearch" component={ExBookSearch} />
           <Route path="/exDBMovieSearch" component={ExMovieSearch} />
+          <Route path="/fogotPassword" component={FogotPassword} />
+          <Route path="/validateOTP" component={ValidateOTP} />
+          <Route path="/resetPassword/:otp" component={ResetPassword} />
         </Switch>
       </div>
     </div>
