@@ -18,16 +18,15 @@ const getAllUsers = () => {
   return axios.get(API_URL2 + "all", { headers: authHeader() });
 };
 
-/* const putUpdateSubscription = (subscriptionId) => {
-  console.log("header =>"+authHeader());
-  return axios.post(API_URL2 + "updateSubs/" + subscriptionId, {
-    headers: authHeader(),
-  });
-};  */
+const getUserDetails=(id)=>{
+  return axios.get(API_URL2 + "user/"+id,{headers:authHeader()});
+};
+
+const updateUser=(id,password,fullname,dob,image)=>{
+  return axios.put(API_URL2+"update-user",{id,password,fullname,dob,image} ,{headers:authHeader()});
+};
 
  const putSubscription=(sub,subscriptionId)=>{
-  
- // console.log( { headers: authHeader() });
   return axios.post(API_URL2+"updateSubs/"+subscriptionId,sub,{headers:authHeader()});
 } 
 
@@ -38,4 +37,6 @@ export default {
   getAdminBoard,
   getAllUsers,
   putSubscription,
+  updateUser,
+  getUserDetails,
 };

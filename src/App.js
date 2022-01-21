@@ -8,6 +8,7 @@ import AuthService from "./services/auth.service";
 
 import Login from "./components/Login";
 import Register from "./components/Register";
+import Update from "./components/UpdateUser";
 import Home from "./components/Home";
 import Profile from "./components/Profile";
 import BoardUser from "./components/BoardUser";
@@ -79,12 +80,6 @@ const App = () => {
           </Link>
           <div className="collapse navbar-collapse">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              {/*  <li className="nav-item">
-            <Link to={"/home"} className="nav-link">
-              Home
-            </Link>
-          </li> */}
-
               {showAdminBoard && (
                 <li className="nav-item">
                   <Link to={"/admin"} className="nav-link">
@@ -110,6 +105,12 @@ const App = () => {
 
               {showAdminBoard + showUserBoard && (
                 <>
+                  {" "}
+                  <li className="nav-item">
+                    <Link to={"/updateUser"} className="nav-link">
+                      Account
+                    </Link>
+                  </li>
                   <>
                     <NavDropdown
                       title="Content"
@@ -238,6 +239,7 @@ const App = () => {
           <Route exact path={["/", "/home"]} component={Home} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
+          <Route exact path="/updateUser" component={Update} />
           <Route exact path="/profile" component={Profile} />
           <Route path="/user" component={BoardUser} />
           <Route path="/admin" component={BoardAdmin} />

@@ -77,6 +77,13 @@ const BoardAdmin = () => {
                     </Link>
                   </div>
                 </li>
+                <li class="list-group-item">
+                  <div className="form-group">
+                    <Link to={"/updateUser"} className="btn btn-info">
+                      Update User
+                    </Link>
+                  </div>
+                </li>
               </ul>
             </div>
             {/*  */}
