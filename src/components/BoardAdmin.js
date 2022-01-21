@@ -38,21 +38,21 @@ const BoardAdmin = () => {
                 <li class="list-group-item">
                   <div className="form-group">
                     <Link to={"/userList"} className="btn btn-info">
-                      Users
+                      Users-List
                     </Link>
                   </div>
                 </li>
                 <li class="list-group-item">
                   <div className="form-group">
                     <Link to={"/bookList"} className="btn btn-info">
-                      Books
+                      Books-List
                     </Link>
                   </div>
                 </li>
                 <li class="list-group-item">
                   <div className="form-group">
                     <Link to={"/movieList"} className="btn btn-info">
-                      Movies
+                      Movies-List
                     </Link>
                   </div>
                 </li>

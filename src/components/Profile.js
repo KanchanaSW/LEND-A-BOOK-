@@ -6,26 +6,34 @@ const Profile = () => {
 
   return (
     <div className="container">
-      <header className="jumbotron">
-        <h3>
-          <strong>{currentUser.username}</strong> Profile
-        </h3>
-      </header>
-      <p>
-        <strong>Token:</strong> {currentUser.accessToken.substring(0, 20)} ...{" "}
-        {currentUser.accessToken.substr(currentUser.accessToken.length - 20)}
-      </p>
-      <p>
-        <strong>Id:</strong> {currentUser.id}
-      </p>
-      <p>
-        <strong>Email:</strong> {currentUser.email}
-      </p>
-      <p>Subscription:
-        <strong>{currentUser.subType}</strong>
-      </p>
-      <strong>Authorities:</strong>
-      <ul>{currentUser.roles}</ul>
+      <div class="card border-dark mb-3" style={{ width: "18rem;" }}>
+        <div class="card-header">
+          HELLO : <strong>{currentUser.fullname}</strong>
+        </div>
+        <div class="card-body text-dark">
+          <h5 class="card-title"> {currentUser.email}</h5>
+          <h5>
+            Subscription :<strong>--{currentUser.subType}--</strong>
+          </h5>
+          <h5>{currentUser.roles}</h5>
+          <p class="card-text">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+            vestibulum orci a sapien imperdiet maximus. Suspendisse vel ex eget
+            mauris efficitur finibus eu a enim. Aenean tellus neque, consectetur
+            sit amet lacus a, hendrerit ornare urna. Fusce venenatis lorem vitae
+            augue suscipit, eu tempor massa vulputate. Praesent iaculis velit
+            libero, vel faucibus sem pulvinar vel. Curabitur viverra nisl dui, a
+            venenatis felis pellentesque id. Donec non lacus diam. Lorem ipsum
+            dolor sit amet, consectetur adipiscing elit. Nullam vestibulum orci
+            a sapien imperdiet maximus. Suspendisse vel ex eget mauris efficitur
+            finibus eu a enim. Aenean tellus neque, consectetur sit amet lacus
+            a, hendrerit ornare urna. Fusce venenatis lorem vitae augue
+            suscipit, eu tempor massa vulputate. Praesent iaculis velit libero,
+            vel faucibus sem pulvinar vel. Curabitur viverra nisl dui, a
+            venenatis felis pellentesque id. Donec non lacus diam.
+          </p>
+        </div>
+      </div>
     </div>
   );
 };

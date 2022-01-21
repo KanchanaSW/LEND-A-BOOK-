@@ -110,41 +110,90 @@ const App = () => {
 
               {showAdminBoard + showUserBoard && (
                 <>
+                  <>
+                    <NavDropdown
+                      title="Content"
+                      id="nav-dropdown-dark-example"
+                      menuVariant="dark"
+                    >
+                      <NavDropdown.Item>
+                        <Link to={"/bookList"} className="nav-link">
+                          Books-List
+                        </Link>
+                      </NavDropdown.Item>
+                      <NavDropdown.Item>
+                        <Link to={"/movieList"} className="nav-link">
+                          Movies-List
+                        </Link>
+                      </NavDropdown.Item>
+                    </NavDropdown>
+                    {/* Issues functions */}
+                    <NavDropdown
+                      title="Issue"
+                      id="nav-dropdown-dark-example"
+                      menuVariant="dark"
+                    >
+                      <NavDropdown.Item>
+                        <Link to={"/issueBook"} className="nav-link">
+                          Issue-Book
+                        </Link>
+                      </NavDropdown.Item>
+                      <NavDropdown.Item>
+                        <Link to={"/issueMovie"} className="nav-link">
+                          Issue-Movie
+                        </Link>
+                      </NavDropdown.Item>
+                      <NavDropdown.Item>
+                        <Link to={"/issueList"} className="nav-link">
+                          Issues-List
+                        </Link>
+                      </NavDropdown.Item>
+                    </NavDropdown>
+                  </>
+                  {/*     Integrations */}
                   <NavDropdown
-                    title="Content"
+                    title="Integrations"
                     id="nav-dropdown-dark-example"
                     menuVariant="dark"
                   >
-                    <NavDropdown.Item style={{ color: "black" }}>
-                      <Link to={"/bookList"} className="nav-link">
-                        Books-List
+                    <NavDropdown.Item>
+                      <Link to={"/scrapeBooks"} className="nav-link">
+                        Competitors-Books
                       </Link>
                     </NavDropdown.Item>
                     <NavDropdown.Item>
-                      <Link to={"/movieList"} className="nav-link">
-                        Movies-List
-                      </Link>
-                    </NavDropdown.Item>
-                  </NavDropdown>
-                  {/* Issues functions */}
-                  <NavDropdown
-                    title="Issue"
-                    id="nav-dropdown-dark-example"
-                    menuVariant="dark"
-                  >
-                    <NavDropdown.Item>
-                      <Link to={"/issueBook"} className="nav-link">
-                        Issue-Book
+                      <Link to={"/scrapeMovies"} className="nav-link">
+                        Competitors-Movies
                       </Link>
                     </NavDropdown.Item>
                     <NavDropdown.Item>
-                      <Link to={"/issueMovie"} className="nav-link">
-                        Issue-Movie
+                      <Link to={"/apiBooksSearch"} className="nav-link">
+                        API-Books
                       </Link>
                     </NavDropdown.Item>
                     <NavDropdown.Item>
-                      <Link to={"/issueList"} className="nav-link">
-                        Issues-List
+                      <Link to={"/apiMoviesSearch"} className="nav-link">
+                        API-Movies
+                      </Link>
+                    </NavDropdown.Item>
+                    <NavDropdown.Item>
+                      <Link to={"/csvBooks"} className="nav-link">
+                        CSV-Books
+                      </Link>
+                    </NavDropdown.Item>
+                    <NavDropdown.Item>
+                      <Link to={"/csvMovies"} className="nav-link">
+                        CSV-Movies
+                      </Link>
+                    </NavDropdown.Item>
+                    <NavDropdown.Item>
+                      <Link to={"/exDBBookSearch"} className="nav-link">
+                        External DB Books
+                      </Link>
+                    </NavDropdown.Item>
+                    <NavDropdown.Item>
+                      <Link to={"/exDBMovieSearch"} className="nav-link">
+                        External DB Movies
                       </Link>
                     </NavDropdown.Item>
                   </NavDropdown>
