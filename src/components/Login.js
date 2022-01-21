@@ -70,11 +70,11 @@ const Login = (props) => {
   return (
     <div className="col-md-12">
       <div className="card card-container">
-        <img
+      {/*   <img
           src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
           alt="profile-img"
           className="profile-img-card"
-        />
+        /> */}
 
         <Form onSubmit={handleLogin} ref={form}>
           <div className="form-group">
@@ -100,9 +100,9 @@ const Login = (props) => {
               validations={[required]}
             />
           </div>
-
+          <br></br>
           <div className="form-group">
-            <button className="btn btn-primary btn-block" disabled={loading}>
+            <button className="btn btn-primary form-control" disabled={loading}>
               {loading && (
                 <span className="spinner-border spinner-border-sm"></span>
               )}
@@ -110,11 +110,9 @@ const Login = (props) => {
             </button>
           </div>
           <div className="form-group">
-            <a>
-              <Link to={"/fogotPassword"} className="nav-link">
-                Fogot Password
-              </Link>
-            </a>
+            <Link to={"/fogotPassword"} className="nav-link">
+              Fogot Password
+            </Link>
           </div>
           {message && (
             <div className="form-group">

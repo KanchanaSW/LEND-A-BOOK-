@@ -99,6 +99,7 @@ class ResetPassword extends React.Component {
                   value={this.state.pass1}
                   onChange={this.handleInputChange}
                   required
+                  maxLength={10}
                 />
               </div>
               <div class="form-group">
@@ -112,6 +113,7 @@ class ResetPassword extends React.Component {
                   value={this.state.pass2}
                   onChange={this.handleInputChange}
                   required
+                  maxLength={10}
                 />
               </div>
               <br></br>
