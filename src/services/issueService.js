@@ -63,6 +63,14 @@ class IssueService {
   getCheckIsBooks = (issueId) => {
     return axios.get(API_URL + "isBooks/" + issueId, { headers: authHeader() });
   };
+
+  //admin
+  adminViewReturned=()=>{
+    return axios.get(API_URL + "viewIssuesR",{headers:authHeader()});
+  };
+  adminViewNotReturned=()=>{
+    return axios.get(API_URL + "viewIssuesNR",{headers:authHeader()});
+  };
 }
 
 

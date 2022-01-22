@@ -29,6 +29,7 @@ import UpdateMovie from "./components/UpdateMovie";
 import ViewMovie from "./components/ViewMovie";
 
 import IssueList from "./components/IssueList";
+import IssueListALL from "./components/IssueListALL";
 import ViewIssue from "./components/ViewIssue";
 import ViewIssueMovie from "./components/ViewIssueMovie";
 import IssueBook from "./components/IssueBook";
@@ -263,6 +264,7 @@ const App = () => {
           <Route path="/movie/:movieId" component={ViewMovie} />
 
           <Route path="/issueList" component={IssueList} />
+          <Route path="/issueListALL" component={IssueListALL}/>
           <Route path="/issueNR/:issueId" component={ViewIssue} />
           <Route path="/issueNRmovie/:issueId" component={ViewIssueMovie} />
           <Route path="/issueBook" component={IssueBook} />
