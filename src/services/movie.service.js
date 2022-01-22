@@ -21,7 +21,10 @@ class MovieService {
   getMovieList = () => {
     return axios.get(API_URL + "movies", { headers: authHeader() });
   };
-
+  // saerch movie
+  searchMovie=(name)=>{
+    return axios.get(API_URL + "movies/" + name, { headers: authHeader() });
+  };
   postAddMovie = (movie) => {
     return axios.post(API_URL + "addMovie", movie, { headers: authHeader() });
   };

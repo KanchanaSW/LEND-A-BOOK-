@@ -98,6 +98,10 @@ class BookService {
   getBookList = () => {
     return axios.get(API_URL + "books", { headers: authHeader() });
   };
+  //search book
+  searchBook=(name)=>{
+    return axios.get(API_URL+"books/"+name,{headers:authHeader()});
+  };
   /*
  postAddBook=(isbn,title,author,publisher,copiesAvi,coverPage)=>{
     return axios.post(

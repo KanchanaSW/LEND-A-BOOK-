@@ -17,6 +17,13 @@ const getAdminBoard = () => {
 const getAllUsers = () => {
   return axios.get(API_URL2 + "all", { headers: authHeader() });
 };
+//search
+const searchName=(name)=>{
+  return axios.get(API_URL2+"userName/"+name,{headers:authHeader() });
+}
+const searchN=(name)=>{
+  return axios.get(API_URL2+"name",name,{headers: authHeader()});
+}
 
 const getUserDetails=(id)=>{
   return axios.get(API_URL2 + "user/"+id,{headers:authHeader()});
@@ -53,5 +60,7 @@ export default {
   getUserDetails,
   requestPasswordChangPOST,
   validCheckOtpPOST,
+  searchName,
   retsetPasswordPOST,
+  searchN,
 };
