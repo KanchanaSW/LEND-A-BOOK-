@@ -55,6 +55,8 @@ import FogotPassword from "./components/FogotPassword";
 import ValidateOTP from "./components/ValidateOTP";
 import ResetPassword from "./components/ResetPassword";
 
+import ContactUs from "./components/ContactUs";
+
 import { NavDropdown } from "react-bootstrap";
 
 const App = () => {
@@ -83,6 +85,7 @@ const App = () => {
           <Link to={"/"} className="navbar-brand">
             Lend A Book
           </Link>
+
           <div className="collapse navbar-collapse">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               {showAdminBoard && (
@@ -224,11 +227,15 @@ const App = () => {
           ) : (
             <div className="navbar-nav ml-auto">
               <li className="nav-item">
+                <Link to={"/contactUs"} className="nav-link">
+                  Contact Us
+                </Link>
+              </li>
+              <li className="nav-item">
                 <Link to={"/login"} className="nav-link">
                   Login
                 </Link>
               </li>
-
               <li className="nav-item">
                 <Link to={"/register"} className="nav-link">
                   Sign Up
@@ -264,7 +271,7 @@ const App = () => {
           <Route path="/movie/:movieId" component={ViewMovie} />
 
           <Route path="/issueList" component={IssueList} />
-          <Route path="/issueListALL" component={IssueListALL}/>
+          <Route path="/issueListALL" component={IssueListALL} />
           <Route path="/issueNR/:issueId" component={ViewIssue} />
           <Route path="/issueNRmovie/:issueId" component={ViewIssueMovie} />
           <Route path="/issueBook" component={IssueBook} />
@@ -289,6 +296,8 @@ const App = () => {
           <Route path="/fogotPassword" component={FogotPassword} />
           <Route path="/validateOTP" component={ValidateOTP} />
           <Route path="/resetPassword/:otp" component={ResetPassword} />
+
+          <Route path="/contactUs" component={ContactUs} />
         </Switch>
       </div>
     </div>

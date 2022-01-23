@@ -159,8 +159,18 @@ class IssueBook extends React.Component {
         <br></br>
         <br></br>
         <div>
-          <div className="row">
-            <div className="col">
+          <div
+            className="row"
+            style={{ textAlign: "center", margin: "auto" }}
+          >
+            <div
+              className="col"
+              style={{
+                display: "inline-block",
+                verticalAlign: "middle",
+                float: "none",
+              }}
+            >
               <div className="form-group">
                 <label>Issue Date</label>
                 <input
@@ -173,7 +183,14 @@ class IssueBook extends React.Component {
                 />
               </div>
             </div>
-            <div className="col">
+            <div
+              className="col"
+              style={{
+                display: "inline-block",
+                verticalAlign: "middle",
+                float: "none",
+              }}
+            >
               <label>Expected Return Date</label>
               <input
                 type="date"
@@ -184,18 +201,22 @@ class IssueBook extends React.Component {
                 onChange={this.changeExpectedReturnDate}
               />
             </div>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-md-10"></div>
-          <div className="col-md-2">
-            <button
-              className="btn btn-primary"
-              style={{ marginLeft: "32px" }}
-              onClick={this.addIssue}
+            <div
+              className="col"
+              style={{
+                display: "inline-block",
+                verticalAlign: "middle",
+                float: "none",
+              }}
             >
-              Save
-            </button>
+              <button
+                className="btn btn-primary"
+                style={{ marginLeft: "32px", marginTop: "35px" }}
+                onClick={this.addIssue}
+              >
+                Save
+              </button>
+            </div>
           </div>
         </div>
       </div>

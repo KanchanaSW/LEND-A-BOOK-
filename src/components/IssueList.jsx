@@ -96,7 +96,7 @@ class IssueList extends React.Component {
   render() {
     return (
       <div>
-        <div className="btn btn-primary" onClick={this.viewReserves}>
+        <div className="btn btn-primary" style={{marginRight:"10px"}} onClick={this.viewReserves}>
           Reserves
         </div>
         <div className="btn btn-primary" onClick={this.viewMovieReserves}>
