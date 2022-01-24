@@ -100,7 +100,7 @@ class CSVMovies extends React.Component {
                         class="btn btn-outline-primary btn-sm"
                         onClick={() => this.updateMovie(movieExists.movieId)}
                       >
-                        Add
+                        Update
                       </button>
                     </td>
                   </tr>

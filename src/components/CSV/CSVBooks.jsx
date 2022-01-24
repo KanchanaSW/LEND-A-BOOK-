@@ -100,7 +100,7 @@ class CSVBooks extends React.Component {
                         class="btn btn-outline-primary btn-sm"
                         onClick={() => this.updateBook(bookExists.id)}
                       >
-                        Add
+                        Update
                       </button>
                     </td>
                   </tr>

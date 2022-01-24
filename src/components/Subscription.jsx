@@ -31,6 +31,11 @@ class Subscription extends React.Component {
       return { color: "red" };
     }
   }
+  displaySubsBtn(){
+    if (user) {
+      
+    }
+  }
 
   render() {
     return (
@@ -79,13 +84,28 @@ class Subscription extends React.Component {
                     <span className="sub"> {subscription.membershipFee}</span>
                     /LKR
                   </p>
-                  <button
-                    style={{ width: "220px" }}
-                    className="btn btn-primary"
-                    onClick={() => this.updateSubs(subscription.subscriptionId)}
-                  >
-                    Subscribe
-                  </button>
+                  {user.subType == subscription.type ? (
+                    <button
+                      disabled
+                      style={{ width: "220px" }}
+                      className="btn btn-primary"
+                      onClick={() =>
+                        this.updateSubs(subscription.subscriptionId)
+                      }
+                    >
+                      Subscribe
+                    </button>
+                  ) : (
+                    <button
+                      style={{ width: "220px" }}
+                      className="btn btn-primary"
+                      onClick={() =>
+                        this.updateSubs(subscription.subscriptionId)
+                      }
+                    >
+                      Subscribe
+                    </button>
+                  )}
                 </div>
               </div>
             ))}

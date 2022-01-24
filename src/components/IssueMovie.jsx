@@ -29,12 +29,34 @@ class IssueMovie extends React.Component {
       issueDate: this.state.issueDate,
       expectedReturnDate: this.state.expectedReturnDate,
     };
-    //console.log("issue=>" + JSON.stringify(issue));
- /*    IssueService.postAddMovieIssue(issue).then((res) => {
-      this.props.history.push("/issueList");
-    });
- */
-
+   if (this.state.list.length == 0) {
+      Swal.fire({
+        title: "Issue list is empty",
+        text: "Select book to issue",
+        type: "error",
+        icon: "warning",
+      }).then(function () {
+        console.log("Error : List empty");
+      });
+    } else if (this.state.issueDate == "") {
+      Swal.fire({
+        title: "Issue date is empty",
+        text: "Select a issue date to issue",
+        type: "error",
+        icon: "warning",
+      }).then(function () {
+        console.log("Error : issue date empty");
+      });
+    } else if (this.state.expectedReturnDate == "") {
+      Swal.fire({
+        title: "Expected return date is empty",
+        text: "Select a Expected return to issue",
+        type: "error",
+        icon: "warning",
+      }).then(function () {
+        console.log("Error :Expected return  date empty");
+      });
+    }else{
     IssueService.postAddMovieIssue(issue)
       .then((res) => {
         console.log(res.data);
@@ -84,7 +106,7 @@ class IssueMovie extends React.Component {
           console.log(error.response.data);
         });
       });
-
+    };
   };
   changeIssueDate = (event) => {
     this.setState({ issueDate: event.target.value });

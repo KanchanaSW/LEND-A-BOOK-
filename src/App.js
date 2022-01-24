@@ -89,11 +89,57 @@ const App = () => {
           <div className="collapse navbar-collapse">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               {showAdminBoard && (
-                <li className="nav-item">
+                <><li className="nav-item">
                   <Link to={"/admin"} className="nav-link">
                     Admin Board
                   </Link>
                 </li>
+                <NavDropdown
+                  title="Integrations"
+                  id="nav-dropdown-dark-example"
+                  menuVariant="dark"
+                >
+                    <NavDropdown.Item>
+                      <Link to={"/scrapeBooks"} className="nav-link">
+                        Competitors-Books
+                      </Link>
+                    </NavDropdown.Item>
+                    <NavDropdown.Item>
+                      <Link to={"/scrapeMovies"} className="nav-link">
+                        Competitors-Movies
+                      </Link>
+                    </NavDropdown.Item>
+                    <NavDropdown.Item>
+                      <Link to={"/apiBooksSearch"} className="nav-link">
+                        API-Books
+                      </Link>
+                    </NavDropdown.Item>
+                    <NavDropdown.Item>
+                      <Link to={"/apiMoviesSearch"} className="nav-link">
+                        API-Movies
+                      </Link>
+                    </NavDropdown.Item>
+                    <NavDropdown.Item>
+                      <Link to={"/csvBooks"} className="nav-link">
+                        CSV-Books
+                      </Link>
+                    </NavDropdown.Item>
+                    <NavDropdown.Item>
+                      <Link to={"/csvMovies"} className="nav-link">
+                        CSV-Movies
+                      </Link>
+                    </NavDropdown.Item>
+                    <NavDropdown.Item>
+                      <Link to={"/exDBBookSearch"} className="nav-link">
+                        External DB Books
+                      </Link>
+                    </NavDropdown.Item>
+                    <NavDropdown.Item>
+                      <Link to={"/exDBMovieSearch"} className="nav-link">
+                        External DB Movies
+                      </Link>
+                    </NavDropdown.Item>
+                  </NavDropdown></>
               )}
 
               {showUserBoard && (
@@ -159,53 +205,7 @@ const App = () => {
                       </NavDropdown.Item>
                     </NavDropdown>
                   </>
-                  {/*     Integrations */}
-                  <NavDropdown
-                    title="Integrations"
-                    id="nav-dropdown-dark-example"
-                    menuVariant="dark"
-                  >
-                    <NavDropdown.Item>
-                      <Link to={"/scrapeBooks"} className="nav-link">
-                        Competitors-Books
-                      </Link>
-                    </NavDropdown.Item>
-                    <NavDropdown.Item>
-                      <Link to={"/scrapeMovies"} className="nav-link">
-                        Competitors-Movies
-                      </Link>
-                    </NavDropdown.Item>
-                    <NavDropdown.Item>
-                      <Link to={"/apiBooksSearch"} className="nav-link">
-                        API-Books
-                      </Link>
-                    </NavDropdown.Item>
-                    <NavDropdown.Item>
-                      <Link to={"/apiMoviesSearch"} className="nav-link">
-                        API-Movies
-                      </Link>
-                    </NavDropdown.Item>
-                    <NavDropdown.Item>
-                      <Link to={"/csvBooks"} className="nav-link">
-                        CSV-Books
-                      </Link>
-                    </NavDropdown.Item>
-                    <NavDropdown.Item>
-                      <Link to={"/csvMovies"} className="nav-link">
-                        CSV-Movies
-                      </Link>
-                    </NavDropdown.Item>
-                    <NavDropdown.Item>
-                      <Link to={"/exDBBookSearch"} className="nav-link">
-                        External DB Books
-                      </Link>
-                    </NavDropdown.Item>
-                    <NavDropdown.Item>
-                      <Link to={"/exDBMovieSearch"} className="nav-link">
-                        External DB Movies
-                      </Link>
-                    </NavDropdown.Item>
-                  </NavDropdown>
+                 
                 </>
               )}
             </ul>
