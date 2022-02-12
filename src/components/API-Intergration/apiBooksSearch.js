@@ -44,7 +44,7 @@ function ApiBooksSearch() {
             <input
               onChange={handleChange}
               className="AutoFocus form-control"
-              placeholder="Type something..."
+              placeholder="Type Book Name..."
               type="text"
             />
           </div>

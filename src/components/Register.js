@@ -268,6 +268,8 @@ const Register = (props) => {
               <label htmlFor="dob">Date-Of-Birth</label>
               <input
                 type="date"
+                min="1950-01-01"
+                max="2012-02-12"
                 className="form-control"
                 value={dob2}
                 onChange={onChangeDob2}

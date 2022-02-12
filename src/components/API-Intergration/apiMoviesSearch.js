@@ -41,7 +41,7 @@ function ApiMoviesSearch() {
             <input
               onChange={handleChange}
               className="AutoFocus form-control"
-              placeholder="Type something..."
+              placeholder="Type Movie Name..."
               type="text"
             />
           </div>

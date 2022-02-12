@@ -185,10 +185,7 @@ class IssueBook extends React.Component {
         <br></br>
         <br></br>
         <div>
-          <div
-            className="row"
-            style={{ textAlign: "center", margin: "auto" }}
-          >
+          <div className="row" style={{ textAlign: "center", margin: "auto" }}>
             <div
               className="col"
               style={{
@@ -203,6 +200,8 @@ class IssueBook extends React.Component {
                   type="date"
                   name="issueDate"
                   required
+                  min="2022-02-12"
+                  max="2022-03-12"
                   className="form-control"
                   value={this.state.issueDate}
                   onChange={this.changeIssueDate}
@@ -222,6 +221,8 @@ class IssueBook extends React.Component {
                 type="date"
                 name="expectedReturnDate"
                 required
+                min="2022-02-13"
+                max="2022-04-12"
                 className="form-control"
                 value={this.state.expectedReturnDate}
                 onChange={this.changeExpectedReturnDate}
